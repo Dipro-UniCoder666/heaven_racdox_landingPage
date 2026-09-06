@@ -2413,8 +2413,8 @@ button {
 
   .hero-stage {
     width: 100%;
-    height: min(68vh, 560px);
-    min-height: 500px;
+    height: min(64vh, 520px);
+    min-height: 450px;
     border-radius: 18px;
   }
 
@@ -2432,10 +2432,10 @@ button {
   }
 
   .hero-wordmark {
-    top: 8%;
+    top: 7%;
     left: 50%;
     right: auto;
-    font-size: clamp(3.8rem, 19vw, 6.5rem);
+    font-size: clamp(3.2rem, 17vw, 5.7rem);
   }
 
   .hero-bed-wrap {
@@ -2443,7 +2443,7 @@ button {
     top: auto;
     bottom: auto;
     bottom: 7%;
-    width: 76%;
+    width: 64%;
   }
 
   .hero-bed-wrap[data-product="1"] {
@@ -2451,7 +2451,7 @@ button {
     top: auto;
     bottom: auto;
     bottom: 12%;
-    width: 70%;
+    width: 60%;
   }
 
   .hero-bed-wrap[data-product="2"] {
@@ -2459,24 +2459,24 @@ button {
     top: auto;
     bottom: auto;
     bottom: 14%;
-    width: 70%;
+    width: 60%;
   }
 
   .hero-card {
     left: 0.9rem;
-    bottom: 6.8rem;
-    width: 116px;
-    padding: 0.5rem;
+    bottom: 5.5rem;
+    width: 104px;
+    padding: 0.45rem;
   }
 
   .card-image-wrap {
-    height: 76px;
+    height: 68px;
   }
 
   .catalogue-caption {
     left: 0.9rem;
     bottom: 0.85rem;
-    width: 116px;
+    width: 104px;
   }
 
   .hero-copy {
@@ -2513,7 +2513,9 @@ button {
 
   .premium-section {
     width: 100%;
-    padding: 1rem 0;
+    height: auto;
+    min-height: 0;
+    padding: 0.75rem 0;
   }
 
   .premium-heading {
@@ -2522,35 +2524,38 @@ button {
   }
 
   .premium-heading h1 {
-    font-size: clamp(2.5rem, 10vw, 3.2rem);
+    font-size: clamp(2rem, 8vw, 2.8rem);
   }
 
   .premium-feature {
     width: 100%;
-    min-height: 560px;
+    height: 430px;
+    min-height: 0;
     border-radius: 20px 20px 48px 20px;
   }
 
   .premium-image-wrap {
-    top: 25%;
-    width: 112%;
+    top: 27%;
+    bottom: 24%;
+    width: 82%;
   }
 
   .premium-copy {
     right: 1.2rem;
-    bottom: 1.5rem;
+    bottom: 1.1rem;
     left: 1.2rem;
-    max-width: 230px;
+    max-width: 190px;
   }
 
   .premium-copy p {
-    max-width: 250px;
-    font-size: 0.72rem;
+    max-width: 210px;
+    font-size: 0.62rem;
+    line-height: 1.45;
   }
 
   .premium-showcase-section {
     width: 100%;
-    padding: 4.5rem 0 5rem;
+    padding: 3.5rem 0 4rem;
   }
 
   .premium-showcase-heading {
@@ -2558,7 +2563,7 @@ button {
   }
 
   .premium-showcase-heading h1 {
-    font-size: clamp(2.7rem, 13vw, 4.6rem);
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
   }
 
   .premium-showcase-grid {
@@ -2566,16 +2571,16 @@ button {
   }
 
   .premium-showcase-card {
-    flex-basis: min(58vw, 230px);
+    flex-basis: min(54vw, 205px);
   }
 
   .premium-showcase-card h2 {
-    font-size: 1.8rem;
+    font-size: 1.45rem;
   }
 
   .stories-section {
     width: 100%;
-    padding: 4.5rem 0 5rem;
+    padding: 3.5rem 0 4rem;
   }
 
   .stories-heading {
@@ -2583,27 +2588,28 @@ button {
   }
 
   .stories-heading h1 {
-    font-size: clamp(2.7rem, 13vw, 4.6rem);
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
   }
 
   .stories-layout {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .stories-feature {
     order: -1;
-    min-height: 360px;
+    min-height: 270px;
   }
 
   .stories-feature > img {
-    height: 360px;
+    height: 270px;
   }
 
   .stories-feature-card {
-    right: 1rem;
-    bottom: -1rem;
-    width: min(220px, 62%);
+    right: 0.7rem;
+    bottom: -0.7rem;
+    width: min(170px, 58%);
+    padding: 0.8rem 0.9rem;
   }
 
   .premium-primary {
@@ -2613,28 +2619,28 @@ button {
   }
 
   .hero-copy {
-    top: calc(56% + 90px);
+    top: 50%;
     right: 0.9rem;
     left: auto;
     bottom: auto;
-    width: min(54vw, 220px);
-    max-width: 220px;
+    width: min(42vw, 165px);
+    max-width: 165px;
   }
 
   .eyebrow {
     margin-bottom: 0.5rem;
     letter-spacing: 0.06em;
-    font-size: 0.82rem;
+    font-size: 0.58rem;
   }
 
   .supporting-copy {
-    font-size: 0.66rem;
+    font-size: 0.52rem;
     line-height: 1.35;
   }
 
   .collection-section {
     width: 100%;
-    padding: 4.5rem 0 5rem;
+    padding: 3.5rem 0 4rem;
   }
 
   .collections-page {
@@ -2723,7 +2729,7 @@ button {
   }
 
   .collection-heading h1 {
-    font-size: clamp(2.7rem, 14vw, 4.6rem);
+    font-size: clamp(2.2rem, 10vw, 3.6rem);
   }
 
   .collection-track {
@@ -2732,16 +2738,16 @@ button {
   }
 
   .collection-product {
-    flex-basis: min(72vw, 280px);
+    flex-basis: min(58vw, 220px);
   }
 
   .collection-product-meta h2 {
-    font-size: 2rem;
+    font-size: 1.45rem;
   }
 
   .hero-copy-title {
     margin-bottom: 0.7rem;
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    font-size: clamp(0.92rem, 4vw, 1.18rem);
   }
 
   .primary-cta {
@@ -2764,32 +2770,68 @@ button {
   }
 
   .product-visual {
-    min-height: 300px;
+    min-height: 250px;
     padding: 1rem;
   }
 
   .product-information {
-    padding: 2.2rem 1.1rem 2.5rem;
+    padding: 1.8rem 1rem 2rem;
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.2rem;
   }
 
   .footer-column {
-    gap: 0.65rem;
+    gap: 0.35rem;
   }
 
   .footer-column a,
   .footer-column address {
-    font-size: 0.76rem;
+    font-size: 0.64rem;
   }
 
   .footer-bottom {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.55rem;
+  }
+
+  .footer-inner {
+    padding: 2.8rem 0 1rem;
+  }
+
+  .footer-signature {
+    margin-bottom: 0.55rem;
+    font-size: 0.44rem;
+  }
+
+  .footer-brand h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .footer-subbrand {
+    margin-top: 0.55rem;
+    font-size: 0.48rem;
+  }
+
+  .footer-grid {
+    margin-top: 1.8rem;
+  }
+
+  .footer-column h2 {
+    margin-bottom: 0.2rem;
+    font-size: 0.58rem;
+  }
+
+  .footer-cta {
+    margin-top: 1.8rem;
+    padding-bottom: 1.2rem;
+  }
+
+  .footer-cta p {
+    font-size: 1.45rem;
   }
 
   .bespoke-page main {
