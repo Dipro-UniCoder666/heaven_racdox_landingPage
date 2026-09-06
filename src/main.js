@@ -457,7 +457,7 @@ const heroMarkup = `
       <div class="footer-art" aria-hidden="true">H</div>
       <div class="footer-inner">
         <div class="footer-brand">
-          <p class="footer-signature">Quality. Craft. Character.</p>
+          <p class="footer-signature">QUALITY. CRAFT. CHARACTER.</p>
           <h1 id="footer-brand-title">HEAVEN<span class="footer-mark">.</span></h1>
           <p class="footer-subbrand">FURNITURE MART</p>
         </div>
@@ -491,9 +491,9 @@ const heroMarkup = `
           </div>
           <div class="footer-column">
             <h2>FOLLOW</h2>
-            <a href="#" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a>
-            <a href="#" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a>
-            <a href="#" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a>
+            <a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a>
+            <a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a>
+            <a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a>
           </div>
         </div>
 
@@ -598,7 +598,7 @@ const ourStoryPageMarkup = `
       <header class="story-hero story-reveal">
         <p class="story-eyebrow">HEAVEN FURNITURE MART</p>
         <h1>OUR STORY</h1>
-        <p class="story-tagline">Quality. Craft. Character.</p>
+        <p class="story-tagline">QUALITY. CRAFT. CHARACTER.</p>
         <p class="story-lede">Founded in 2020, Heaven Furniture Mart creates thoughtfully designed furniture for living rooms, bedrooms, dining spaces, offices and the individual spaces of our customers.</p>
       </header>
 
@@ -617,7 +617,7 @@ const ourStoryPageMarkup = `
       <section class="story-approach story-section story-reveal" aria-labelledby="approach-title">
         <div class="story-section-heading">
           <p class="story-eyebrow">THE HEAVEN APPROACH</p>
-          <h2 id="approach-title">Quality. Craft. Character.</h2>
+          <h2 id="approach-title">QUALITY. CRAFT. CHARACTER.</h2>
         </div>
         <div class="story-principles">
           <article><span>01</span><h3>DESIGNED</h3><p>Thoughtfully designed furniture for modern spaces.</p></article>
@@ -700,12 +700,12 @@ const ourStoryPageMarkup = `
     <footer class="site-footer" aria-labelledby="footer-brand-title">
       <div class="footer-art" aria-hidden="true">H</div>
       <div class="footer-inner">
-        <div class="footer-brand"><p class="footer-signature">Quality. Craft. Character.</p><h1 id="footer-brand-title">HEAVEN<span class="footer-mark">.</span></h1><p class="footer-subbrand">FURNITURE MART</p></div>
+        <div class="footer-brand"><p class="footer-signature">QUALITY. CRAFT. CHARACTER.</p><h1 id="footer-brand-title">HEAVEN<span class="footer-mark">.</span></h1><p class="footer-subbrand">FURNITURE MART</p></div>
         <div class="footer-grid">
           <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
           <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
           <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
-          <div class="footer-column"><h2>FOLLOW</h2><a href="#" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="#" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="#" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
+          <div class="footer-column"><h2>FOLLOW</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
         </div>
         <div class="footer-cta"><p>Ready to shape your space?</p></div>
         <div class="footer-bottom"><p>© 2026 HEAVEN FURNITURE MART</p><p>AGRABAD <span aria-hidden="true">·</span> CHATTOGRAM <span aria-hidden="true">·</span> BANGLADESH</p></div>
@@ -723,7 +723,7 @@ const bespokePageMarkup = `
         <div class="bespoke-hero-image"><img src="/images/image4.png" alt="Dining furniture in an elegant interior" /></div>
       </section>
       <section class="bespoke-process"><p class="story-eyebrow">THE BESPOKE PROCESS</p><h2>A MORE PERSONAL WAY TO FURNISH.</h2><div class="bespoke-process-grid"><article><span>01</span><h3>LISTEN</h3><p>We begin with your room, your rhythm and the details that make the space yours.</p></article><article><span>02</span><h3>SHAPE</h3><p>Thoughtful proportions and materials are considered around your requirements.</p></article><article><span>03</span><h3>CRAFT</h3><p>In-house craftsmanship brings the final piece together with care.</p></article></div></section>
-      <section class="bespoke-callout"><p class="story-eyebrow">Quality. Craft. Character.</p><h2>FURNITURE THAT FITS THE WAY YOU LIVE.</h2><p>Explore our collections for ready inspiration, then visit the Agrabad showroom to experience Heaven in person.</p><a href="/our-story" class="story-closing-link">OUR STORY <span>→</span></a></section>
+      <section class="bespoke-callout"><p class="story-eyebrow">QUALITY. CRAFT. CHARACTER.</p><h2>FURNITURE THAT FITS THE WAY YOU LIVE.</h2><p>Explore our collections for ready inspiration, then visit the Agrabad showroom to experience Heaven in person.</p><a href="/our-story" class="story-closing-link">OUR STORY <span>→</span></a></section>
     </main>
   </div>
 `;

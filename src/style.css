@@ -651,7 +651,8 @@ button {
 .footer-signature {
   margin: 0 0 1rem;
   color: var(--brass);
-  font-size: 0.52rem;
+  font-size: 0.64rem;
+  white-space: nowrap;
 }
 
 .footer-brand h1 {
@@ -1049,6 +1050,8 @@ button {
 
 .bespoke-callout .story-eyebrow {
   color: var(--brass);
+  font-size: 0.65rem;
+  white-space: nowrap;
 }
 
 .bespoke-callout h2 {
@@ -1531,7 +1534,8 @@ button {
   margin: 1.8rem 0 0;
   color: rgba(58, 41, 34, 0.85);
   font-family: var(--display);
-  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  font-size: clamp(1.5rem, 2.45vw, 2.22rem);
+  white-space: nowrap;
 }
 
 .story-lede {
@@ -1580,6 +1584,10 @@ button {
 
 .story-section h2 {
   font-size: clamp(3rem, 5.2vw, 5.7rem);
+}
+
+#approach-title {
+  font-size: clamp(3.33rem, 5.77vw, 6.33rem);
 }
 
 .story-origin-copy p:not(.story-eyebrow),
@@ -2840,9 +2848,13 @@ button {
   }
 
   .footer-bottom {
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.55rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.28rem, 1.5vw, 0.45rem);
+    font-size: clamp(0.36rem, 1.7vw, 0.48rem);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 
   .footer-inner {
@@ -2851,7 +2863,7 @@ button {
 
   .footer-signature {
     margin-bottom: 0.55rem;
-    font-size: 0.44rem;
+    font-size: 0.54rem;
   }
 
   .footer-brand h1 {
