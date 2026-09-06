@@ -2439,7 +2439,7 @@ button {
   }
 
   .hero-bed-wrap {
-    left: 50%;
+    left: calc(50% + clamp(15px, 5vw, 24px));
     top: auto;
     bottom: auto;
     bottom: calc(7% + clamp(15px, 5vw, 24px));
@@ -2447,7 +2447,7 @@ button {
   }
 
   .hero-bed-wrap[data-product="1"] {
-    left: 50%;
+    left: calc(50% + clamp(15px, 5vw, 24px));
     top: auto;
     bottom: auto;
     bottom: calc(12% + clamp(15px, 5vw, 24px));
@@ -2455,7 +2455,7 @@ button {
   }
 
   .hero-bed-wrap[data-product="2"] {
-    left: 50%;
+    left: calc(50% + clamp(15px, 5vw, 24px));
     top: auto;
     bottom: auto;
     bottom: calc(14% + clamp(15px, 5vw, 24px));
