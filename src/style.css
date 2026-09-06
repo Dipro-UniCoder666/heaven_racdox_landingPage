@@ -2609,16 +2609,6 @@ button {
     width: 98px;
   }
 
-  .hero-copy {
-    top: 24%;
-    right: 0.8rem;
-    left: auto;
-    width: min(39vw, 150px);
-    max-width: 150px;
-    text-align: right;
-    transform: translateY(-50%);
-  }
-
   .hero-copy-title {
     max-width: none;
     font-size: clamp(0.82rem, 3.5vw, 1.05rem);
@@ -2789,12 +2779,14 @@ button {
   }
 
   .hero-copy {
-    top: 24%;
+    top: 31%;
     right: 0.9rem;
     left: auto;
     bottom: auto;
     width: min(39vw, 150px);
     max-width: 150px;
+    text-align: right;
+    transform: translateY(-50%);
   }
 
   .eyebrow {
