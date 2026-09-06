@@ -446,6 +446,106 @@ button {
   line-height: 1.5;
 }
 
+.editorial-discovery-section {
+  width: min(93vw, 1500px);
+  padding: clamp(5.5rem, 10vw, 10rem) 0 clamp(5.5rem, 10vw, 10rem);
+  color: #3a2922;
+}
+
+.editorial-discovery-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.36fr) minmax(250px, 0.64fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 2.4vw, 2.8rem);
+  align-items: stretch;
+  height: clamp(430px, 44vw, 620px);
+}
+
+.editorial-discovery-image {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #e7e0d7;
+}
+
+.editorial-discovery-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+
+.editorial-discovery-image:hover img {
+  transform: scale(1.025);
+}
+
+.editorial-discovery-image-primary {
+  grid-row: 1 / span 2;
+}
+
+.editorial-discovery-image-primary img {
+  object-position: center;
+}
+
+.editorial-discovery-image-top img {
+  object-position: center;
+}
+
+.editorial-discovery-image-bottom img {
+  object-position: center;
+}
+
+.editorial-discovery-copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(2rem, 5vw, 5rem);
+  bottom: clamp(2rem, 4.5vw, 4.6rem);
+  width: min(440px, 42vw);
+  padding: clamp(1.4rem, 2.4vw, 2.4rem);
+  background: rgba(243, 238, 229, 0.9);
+  border: 1px solid rgba(169, 124, 70, 0.2);
+  backdrop-filter: blur(14px);
+}
+
+.editorial-discovery-copy h1 {
+  margin: 0;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(2.8rem, 5.1vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: 0.005em;
+}
+
+.editorial-discovery-copy p {
+  max-width: 380px;
+  margin: clamp(1rem, 1.6vw, 1.35rem) 0 0;
+  color: rgba(58, 41, 34, 0.72);
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.editorial-discovery-copy a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: clamp(1.2rem, 2vw, 1.7rem);
+  color: var(--teal);
+  font-family: var(--sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.editorial-discovery-copy a:hover,
+.editorial-discovery-copy a:focus-visible {
+  color: var(--brass);
+  transform: translateX(5px);
+}
+
 .stories-section {
   width: min(93vw, 1320px);
   padding: clamp(5rem, 9vw, 9rem) 0 clamp(5rem, 9vw, 9rem);
@@ -2246,6 +2346,23 @@ button {
     flex-basis: clamp(165px, 24vw, 245px);
   }
 
+  .editorial-discovery-section {
+    width: min(96vw, 980px);
+    padding: 5rem 0 6rem;
+  }
+
+  .editorial-discovery-grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(190px, 0.7fr);
+    gap: 1.35rem;
+    height: 460px;
+  }
+
+  .editorial-discovery-copy {
+    left: 1.7rem;
+    bottom: 1.7rem;
+    width: min(390px, 52vw);
+  }
+
   .stories-section {
     width: min(96vw, 980px);
     padding: 5rem 0 6rem;
@@ -2591,6 +2708,45 @@ button {
     font-size: 1.45rem;
   }
 
+  .editorial-discovery-section {
+    width: 100%;
+    padding: 4rem 0 4.5rem;
+  }
+
+  .editorial-discovery-grid {
+    grid-template-columns: minmax(0, 1.34fr) minmax(86px, 0.66fr);
+    gap: clamp(0.65rem, 2.8vw, 0.95rem);
+    height: clamp(230px, 70vw, 330px);
+  }
+
+  .editorial-discovery-image {
+    border-radius: 10px;
+  }
+
+  .editorial-discovery-copy {
+    left: clamp(0.85rem, 4vw, 1.25rem);
+    bottom: clamp(0.85rem, 4vw, 1.25rem);
+    width: min(250px, 72vw);
+    padding: clamp(0.85rem, 4vw, 1.15rem);
+  }
+
+  .editorial-discovery-copy h1 {
+    max-width: 8ch;
+    font-size: clamp(1.85rem, 8.3vw, 2.65rem);
+  }
+
+  .editorial-discovery-copy p {
+    max-width: 210px;
+    font-size: 0.58rem;
+    line-height: 1.48;
+  }
+
+  .editorial-discovery-copy a {
+    margin-top: 0.9rem;
+    font-size: 0.46rem;
+    letter-spacing: 0.13em;
+  }
+
   .stories-section {
     width: 100%;
     padding: 3.5rem 0 4rem;
@@ -2848,13 +3004,22 @@ button {
   }
 
   .footer-bottom {
+    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: clamp(0.28rem, 1.5vw, 0.45rem);
-    font-size: clamp(0.36rem, 1.7vw, 0.48rem);
-    letter-spacing: 0.08em;
+    justify-content: space-between;
+    gap: clamp(0.35rem, 2vw, 0.7rem);
+    font-size: clamp(0.4rem, 1.7vw, 0.48rem);
+    letter-spacing: 0.04em;
     white-space: nowrap;
+  }
+
+  .footer-bottom p:first-child {
+    text-align: left;
+  }
+
+  .footer-bottom p:last-child {
+    text-align: right;
   }
 
   .footer-inner {

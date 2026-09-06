@@ -425,6 +425,25 @@ const heroMarkup = `
       </div>
     </section>
 
+    <section class="editorial-discovery-section" aria-labelledby="editorial-discovery-title">
+      <div class="editorial-discovery-grid">
+        <div class="editorial-discovery-image editorial-discovery-image-primary">
+          <img src="/images/image5.jpg" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
+        </div>
+        <div class="editorial-discovery-copy">
+          <h1 id="editorial-discovery-title">FIND YOUR ELEGANCE</h1>
+          <p>Discover furniture that brings refined character to every corner of your home. From timeless silhouettes to distinctive details, find pieces designed around the way you live.</p>
+          <a href="/collections">EXPLORE COLLECTION</a>
+        </div>
+        <div class="editorial-discovery-image editorial-discovery-image-top">
+          <img src="/images/image3.png" alt="Signature cabinet in a refined interior" loading="lazy" />
+        </div>
+        <div class="editorial-discovery-image editorial-discovery-image-bottom">
+          <img src="/images/Image2.jpg" alt="Heritage bedroom furniture in a warm interior" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
     <section class="stories-section" aria-labelledby="stories-title">
       <div class="stories-heading">
         <p class="stories-kicker">TESTIMONIALS</p>
@@ -1085,6 +1104,36 @@ stage.addEventListener('pointerleave', resetBedPosition);
     }, { threshold: 0.16 });
 
     showcaseObserver.observe(premiumShowcaseSection);
+  }
+
+  const editorialDiscoverySection = document.querySelector('.editorial-discovery-section');
+  const editorialDiscoveryImages = document.querySelectorAll('.editorial-discovery-image');
+  const editorialDiscoveryCopy = document.querySelector('.editorial-discovery-copy');
+  if (editorialDiscoverySection && editorialDiscoveryImages.length && editorialDiscoveryCopy) {
+    gsap.set(editorialDiscoverySection, { autoAlpha: 0 });
+    gsap.set(editorialDiscoveryImages, {
+      autoAlpha: 0,
+      y: 28,
+      clipPath: 'inset(0 0 18% 0)',
+    });
+    gsap.set(editorialDiscoveryCopy, { autoAlpha: 0, y: 22 });
+
+    const editorialDiscoveryObserver = new IntersectionObserver((entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      gsap.to(editorialDiscoverySection, { autoAlpha: 1, duration: 0.45, ease: 'power2.out' });
+      gsap.to(editorialDiscoveryImages, {
+        autoAlpha: 1,
+        y: 0,
+        clipPath: 'inset(0 0 0% 0)',
+        duration: 1.05,
+        stagger: 0.14,
+        ease: 'power3.out',
+      });
+      gsap.to(editorialDiscoveryCopy, { autoAlpha: 1, y: 0, duration: 0.8, delay: 0.24, ease: 'power3.out' });
+      observer.disconnect();
+    }, { threshold: 0.16 });
+
+    editorialDiscoveryObserver.observe(editorialDiscoverySection);
   }
 
   const storiesSection = document.querySelector('.stories-section');
