@@ -479,11 +479,15 @@ const heroMarkup = `
             <a href="/#collections">OFFICE &amp; STUDY</a>
           </div>
           <div class="footer-column footer-contact-column">
-            <h2>CONTACT</h2>
-            <a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a>
-            <a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a>
-            <p class="footer-visit-label">VISIT US</p>
-            <address>Agrabad Access Road,<br />Chattogram, Bangladesh</address>
+            <div class="footer-contact-group">
+              <h2>CONTACT</h2>
+              <a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a>
+              <a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a>
+            </div>
+            <div class="footer-visit-group">
+              <p class="footer-visit-label">VISIT US</p>
+              <address>Agrabad Access Road,<br />Chattogram, Bangladesh</address>
+            </div>
           </div>
           <div class="footer-column">
             <h2>FOLLOW</h2>
@@ -700,7 +704,7 @@ const ourStoryPageMarkup = `
         <div class="footer-grid">
           <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
           <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
-          <div class="footer-column footer-contact-column"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div>
+          <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
           <div class="footer-column"><h2>FOLLOW</h2><a href="#" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="#" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="#" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
         </div>
         <div class="footer-cta"><p>Ready to shape your space?</p></div>
