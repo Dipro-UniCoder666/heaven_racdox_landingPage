@@ -2808,7 +2808,12 @@ button {
   }
 
   .footer-contact-column .footer-visit-label {
+    grid-row: 1;
     margin: 0 0 0.2rem;
+  }
+
+  .footer-contact-column address {
+    grid-row: 2 / span 2;
   }
 
   .footer-grid > .footer-column:last-child {
