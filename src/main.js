@@ -431,7 +431,7 @@ const heroMarkup = `
           <img src="/images/image5.jpg" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
         </div>
         <div class="editorial-discovery-copy">
-          <h1 id="editorial-discovery-title">FIND YOUR ELEGANCE</h1>
+          <h1 id="editorial-discovery-title">ELEVATE YOUR SPACE</h1>
           <p>Discover furniture that brings refined character to every corner of your home. From timeless silhouettes to distinctive details, find pieces designed around the way you live.</p>
           <a href="/collections">EXPLORE COLLECTION</a>
         </div>
@@ -439,7 +439,7 @@ const heroMarkup = `
           <img src="/images/image3.png" alt="Signature cabinet in a refined interior" loading="lazy" />
         </div>
         <div class="editorial-discovery-image editorial-discovery-image-bottom">
-          <img src="/images/Image2.jpg" alt="Heritage bedroom furniture in a warm interior" loading="lazy" />
+          <img src="/images/image4.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
         </div>
       </div>
     </section>
