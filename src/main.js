@@ -161,6 +161,118 @@ const premiumShowcaseProducts = [
   },
 ];
 
+// Placeholder catalogue pricing is intentionally kept in the product data for easy replacement.
+const catalogueProducts = [
+  {
+    image: '/images/main_bed.png',
+    imageAlt: 'Majesty Glame bed in a refined bedroom',
+    name: 'Majesty Glame',
+    category: 'Bedroom',
+    description: 'Refined comfort with timeless detailing for an elegant bedroom.',
+    price: '৳85,000',
+    route: '/product/majesty-bed',
+  },
+  {
+    image: '/images/image3.png',
+    imageAlt: 'Signature cabinet in a modern interior',
+    name: 'Signature Cabinet',
+    category: 'Living Room',
+    description: 'Elegant storage designed for modern interiors.',
+    price: '৳120,000',
+    route: '/product/signature-cabinet',
+  },
+  {
+    image: '/images/image5.jpg',
+    imageAlt: 'Luxury living furniture in an elegant interior',
+    name: 'Luxury Living',
+    category: 'Living Room',
+    description: 'Statement seating crafted for elevated comfort and lasting appeal.',
+    price: '৳145,000',
+    route: '/product/luxury-living',
+  },
+  {
+    image: '/images/image4.png',
+    imageAlt: 'Dining furniture in an elegant interior',
+    name: 'Dining Collection',
+    category: 'Dining',
+    description: 'A refined dining set for memorable meals and effortless style.',
+    price: '৳95,000',
+    route: '/product/dining-collection',
+  },
+  {
+    image: '/images/Image2.jpg',
+    imageAlt: 'Heritage bedroom furniture in a warm interior',
+    name: 'Heritage Bedroom',
+    category: 'Bedroom',
+    description: 'A considered bedroom composition shaped around quiet comfort.',
+    price: '৳110,000',
+    route: '/product/heritage-bedroom',
+  },
+  {
+    image: '/images/fc938df5-3085-4626-9e62-7818ffbf5b5c.png',
+    imageAlt: 'Curved accent furniture in a considered interior',
+    name: 'Curved Accent',
+    category: 'Living Room',
+    description: 'A sculptural accent piece that brings softness to a room.',
+    price: '৳65,000',
+    route: '/product/curved-accent',
+  },
+  {
+    image: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
+    imageAlt: 'Blue lounge furniture in a refined interior',
+    name: 'Blue Lounge',
+    category: 'Living Room',
+    description: 'A relaxed lounge piece with color, comfort, and quiet confidence.',
+    price: '৳78,000',
+    route: '/product/blue-lounge',
+  },
+  {
+    image: '/images/image4.png',
+    imageAlt: 'Office dining set in a warm contemporary interior',
+    name: 'Office Dining Set',
+    category: 'Office & Study',
+    description: 'A composed table setting for focused work and shared ideas.',
+    price: '৳115,000',
+    route: '/product/office-dining-set',
+  },
+  {
+    image: '/images/image3.png',
+    imageAlt: 'Modern console cabinet in a contemporary interior',
+    name: 'Modern Console',
+    category: 'Living Room',
+    description: 'A measured storage piece for an uncluttered entrance or living room.',
+    price: '৳72,000',
+    route: '/product/modern-console',
+  },
+  {
+    image: '/images/Image2.jpg',
+    imageAlt: 'Quiet bedroom furniture in a warm interior',
+    name: 'Quiet Bedroom',
+    category: 'Bedroom',
+    description: 'Softly tailored furniture for a calm, considered retreat.',
+    price: '৳98,000',
+    route: '/product/quiet-bedroom',
+  },
+  {
+    image: '/images/image4.png',
+    imageAlt: 'Gathering table and dining chairs in an elegant room',
+    name: 'Gathering Table',
+    category: 'Dining',
+    description: 'Generous proportions made for long meals and everyday rituals.',
+    price: '৳130,000',
+    route: '/product/gathering-table',
+  },
+  {
+    image: '/images/image5.jpg',
+    imageAlt: 'Refined lounge furniture in an elegant interior',
+    name: 'Refined Lounge',
+    category: 'Living Room',
+    description: 'A generous lounge composition with a quietly expressive presence.',
+    price: '৳155,000',
+    route: '/product/refined-lounge',
+  },
+];
+
 const customerStories = [
   { initials: 'AR', name: 'Ayesha Rahman', detail: 'Chattogram', quote: 'Beautiful craftsmanship and excellent attention to detail.' },
   { initials: 'TH', name: 'Tanvir Hasan', detail: 'Dhaka', quote: 'Everything felt thoughtfully designed and perfectly finished.' },
@@ -171,15 +283,15 @@ const customerStories = [
 const renderNavbar = () => `
   <header class="site-navbar">
     <a class="brand-lockup" href="/" aria-label="Heaven Furniture Mart home">
-      <span class="brand-word">HEAVEN</span>
+      <span class="brand-word">HE<img class="brand-letter-image" src="/images/A_trans.png" alt="A" />VEN</span>
       <small>FURNITURE MART</small>
     </a>
 
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="/#home">HOME</a>
-      <a href="/#collections">COLLECTIONS</a>
-      <a href="/#bespoke">BESPOKE</a>
-      <a href="/#story">OUR STORY</a>
+      <a href="/collections">COLLECTIONS</a>
+      <a href="/bespoke">BESPOKE</a>
+      <a href="/our-story">OUR STORY</a>
     </nav>
 
     <div class="utility-actions">
@@ -194,6 +306,14 @@ const renderNavbar = () => `
     <button class="mobile-menu-trigger" type="button" aria-label="Open menu">
       <span></span><span></span>
     </button>
+    <div class="mobile-menu-panel" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="/#home">HOME</a>
+        <a href="/collections">COLLECTIONS</a>
+        <a href="/bespoke">BESPOKE</a>
+        <a href="/our-story">OUR STORY</a>
+      </nav>
+    </div>
   </header>
 `;
 
@@ -386,19 +506,238 @@ const heroMarkup = `
   </div>
 `;
 
+const collectionsPageMarkup = `
+  <div class="collections-page">
+    ${renderNavbar()}
+    <main class="catalogue-main">
+      <header class="catalogue-heading">
+        <p class="catalogue-eyebrow">HEAVEN FURNITURE MART</p>
+        <h1>OUR COLLECTIONS</h1>
+        <p class="catalogue-intro">Explore thoughtfully crafted furniture for every space.</p>
+      </header>
+
+      <section class="catalogue-browser" aria-labelledby="catalogue-title">
+        <div class="catalogue-toolbar">
+          <p class="catalogue-count" id="catalogue-title">SHOWING <span>12</span> OF 12 PRODUCTS</p>
+          <div class="catalogue-controls">
+            <label class="catalogue-control">
+              <span>SORT BY</span>
+              <select data-catalogue-sort aria-label="Sort products">
+                <option value="featured">Featured</option>
+                <option value="name-asc">Name A-Z</option>
+                <option value="name-desc">Name Z-A</option>
+                <option value="price-asc">Price Low to High</option>
+                <option value="price-desc">Price High to Low</option>
+              </select>
+            </label>
+            <label class="catalogue-control">
+              <span>CATEGORY</span>
+              <select data-catalogue-category aria-label="Filter products by category">
+                <option value="All">All</option>
+                <option value="Living Room">Living Room</option>
+                <option value="Bedroom">Bedroom</option>
+                <option value="Dining">Dining</option>
+                <option value="Office & Study">Office &amp; Study</option>
+                <option value="Bespoke">Bespoke</option>
+              </select>
+            </label>
+            <label class="catalogue-control catalogue-search-control">
+              <span>SEARCH</span>
+              <span class="catalogue-search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"></circle><path d="m16 16 4.2 4.2"></path></svg>
+                <input type="search" data-catalogue-search placeholder="Search furniture" aria-label="Search furniture" />
+              </span>
+            </label>
+            <label class="catalogue-control catalogue-items-control">
+              <span>SHOW</span>
+              <select aria-label="Items per page" disabled>
+                <option>12 Items per Page</option>
+              </select>
+            </label>
+            <div class="catalogue-view-toggle" aria-label="Product view">
+              <button class="catalogue-view-button is-active" type="button" data-catalogue-view="grid" aria-label="Grid view" aria-pressed="true">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"></rect><rect x="14" y="4" width="6" height="6"></rect><rect x="4" y="14" width="6" height="6"></rect><rect x="14" y="14" width="6" height="6"></rect></svg>
+              </button>
+              <button class="catalogue-view-button" type="button" data-catalogue-view="list" aria-label="List view" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="catalogue-grid" data-catalogue-grid>
+          ${catalogueProducts.map((product) => `
+            <a class="catalogue-card" href="${product.route}" data-name="${product.name.toLowerCase()}" data-category="${product.category}" data-price="${product.price.replace(/[^0-9]/g, '')}">
+              <div class="catalogue-card-image">
+                <img src="${product.image}" alt="${product.imageAlt}" loading="lazy" />
+              </div>
+              <div class="catalogue-card-copy">
+                <p class="catalogue-card-category">${product.category}</p>
+                <div class="catalogue-card-title-row">
+                  <h2>${product.name}</h2>
+                  <span>${product.price}</span>
+                </div>
+                <p class="catalogue-card-description">${product.description}</p>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+        <p class="catalogue-empty" data-catalogue-empty hidden>No pieces matched your search.</p>
+      </section>
+    </main>
+  </div>
+`;
+
+const ourStoryPageMarkup = `
+  <div class="our-story-page">
+    ${renderNavbar()}
+    <main>
+      <header class="story-hero story-reveal">
+        <p class="story-eyebrow">HEAVEN FURNITURE MART</p>
+        <h1>OUR STORY</h1>
+        <p class="story-tagline">Designed. Crafted. Customized.</p>
+        <p class="story-lede">Founded in 2020, Heaven Furniture Mart creates thoughtfully designed furniture for living rooms, bedrooms, dining spaces, offices and the individual spaces of our customers.</p>
+      </header>
+
+      <section class="story-origin story-section story-reveal">
+        <div class="story-origin-image story-image-frame">
+          <img src="/images/image5.jpg" alt="Luxury living furniture in an elegant interior" loading="lazy" />
+        </div>
+        <div class="story-origin-copy">
+          <p class="story-eyebrow">THE BEGINNING</p>
+          <h2>BUILT AROUND THE WAY YOU LIVE.</h2>
+          <p>Heaven Furniture Mart believes furniture should be more than functional. It should be a reflection of lifestyle, taste and comfort, shaped with care for the way a home is truly lived in.</p>
+          <p>Founded in 2020 by Managing Director Abul Kalam Bhuiyan, Heaven brings refined design, practical comfort and considered craftsmanship together under one roof.</p>
+        </div>
+      </section>
+
+      <section class="story-approach story-section story-reveal" aria-labelledby="approach-title">
+        <div class="story-section-heading">
+          <p class="story-eyebrow">THE HEAVEN APPROACH</p>
+          <h2 id="approach-title">DESIGNED. CRAFTED. CUSTOMIZED.</h2>
+        </div>
+        <div class="story-principles">
+          <article><span>01</span><h3>DESIGNED</h3><p>Thoughtfully designed furniture for modern spaces.</p></article>
+          <article><span>02</span><h3>CRAFTED</h3><p>Premium materials and in-house craftsmanship.</p></article>
+          <article><span>03</span><h3>CUSTOMIZED</h3><p>Furniture created around your space, size, taste and lifestyle.</p></article>
+        </div>
+      </section>
+
+      <section class="story-create story-section story-reveal" aria-labelledby="create-title">
+        <div class="story-section-heading">
+          <p class="story-eyebrow">WHAT WE CREATE</p>
+          <h2 id="create-title">FURNITURE FOR EVERY ROOM.</h2>
+        </div>
+        <div class="story-category-grid">
+          <article><span>LIVING ROOM</span><p>Sofas, coffee tables, TV units and consoles.</p></article>
+          <article><span>BEDROOM</span><p>Beds, wardrobes, dressing tables and bedside tables.</p></article>
+          <article><span>DINING</span><p>Dining tables, chairs and cabinets.</p></article>
+          <article><span>OFFICE &amp; STUDY</span><p>Executive tables, bookshelves and workstations.</p></article>
+          <article><span>BESPOKE</span><p>Furniture built specifically around your space and requirements.</p></article>
+        </div>
+      </section>
+
+      <section class="story-bespoke story-section story-reveal">
+        <div class="story-bespoke-image story-image-frame">
+          <img src="/images/main_bed.png" alt="Refined bedroom furniture by Heaven Furniture Mart" loading="lazy" />
+        </div>
+        <div class="story-bespoke-copy">
+          <p class="story-eyebrow">BESPOKE PHILOSOPHY</p>
+          <h2>MADE FOR YOUR SPACE.</h2>
+          <p>Furniture can be created around your space, your taste and the way you live. Our bespoke service gives each room the attention it deserves, while our considered collections remain ready for everyday inspiration.</p>
+        </div>
+      </section>
+
+      <section class="story-trust story-section story-reveal" aria-labelledby="trust-title">
+        <div class="story-section-heading">
+          <p class="story-eyebrow">THE EXPERIENCE</p>
+          <h2 id="trust-title">A CONSIDERED WAY TO FURNISH.</h2>
+        </div>
+        <div class="story-trust-list">
+          <p><span>01</span>FREE DESIGN CONSULTATION</p>
+          <p><span>02</span>PREMIUM MATERIALS</p>
+          <p><span>03</span>IN-HOUSE CRAFTSMANSHIP</p>
+          <p><span>04</span>DELIVERY &amp; INSTALLATION</p>
+          <p><span>05</span>EASY PAYMENT OPTIONS</p>
+          <p><span>06</span>AGRABAD SHOWROOM</p>
+        </div>
+        <p class="story-trust-note">Trusted by hundreds of happy homeowners, with a large physical showroom at Agrabad where furniture can be experienced in person.</p>
+      </section>
+
+      <section class="story-director story-section story-reveal">
+        <div class="story-quote-mark">“</div>
+        <blockquote>At Heaven Furniture Mart, we believe furniture is more than just function; it is a reflection of lifestyle, taste, and comfort. Every piece we create is designed to bring lasting elegance into the homes of our clients.</blockquote>
+        <div class="story-attribution"><strong>Abul Kalam Bhuiyan</strong><span>Managing Director</span></div>
+      </section>
+
+      <section class="story-journey story-section story-reveal" aria-labelledby="journey-title">
+        <div class="story-section-heading"><p class="story-eyebrow">OUR JOURNEY</p><h2 id="journey-title">A GROWING STORY, ROOTED IN CARE.</h2></div>
+        <div class="story-milestones">
+          <article><strong>2020</strong><span>Founded</span></article>
+          <article><strong>2021</strong><span>Agrabad showroom established</span></article>
+          <article><strong>2024–2025</strong><span>International Furniture Fair, Chattogram</span></article>
+          <article><strong>2025</strong><span>Chamber of Commerce</span></article>
+          <article><strong>2026</strong><span>Nationwide BFIOA recognition</span></article>
+        </div>
+      </section>
+
+      <section class="story-showroom story-section story-reveal">
+        <div class="story-showroom-copy"><p class="story-eyebrow">VISIT HEAVEN</p><h2>EXPERIENCE THE FURNITURE IN PERSON.</h2><p>Visit our showroom at Agrabad Access Road, Chattogram, Bangladesh, and experience the materials, proportions and comfort of Heaven furniture for yourself.</p></div>
+        <div class="story-showroom-image story-image-frame"><img src="/images/image3.png" alt="Luxury cabinet in a furnished interior" loading="lazy" /></div>
+      </section>
+
+      <section class="story-closing story-reveal">
+        <p class="story-eyebrow">HEAVEN FURNITURE MART</p>
+        <h2>DESIGNED.<br />CRAFTED.<br />CUSTOMIZED.</h2>
+        <p>Furniture that brings lasting elegance, comfort and character into the home.</p>
+        <a href="/collections" class="story-closing-link">EXPLORE COLLECTIONS <span>→</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer" aria-labelledby="footer-brand-title">
+      <div class="footer-art" aria-hidden="true">H</div>
+      <div class="footer-inner">
+        <div class="footer-brand"><p class="footer-signature">DESIGNED. CRAFTED. CUSTOMIZED.</p><h1 id="footer-brand-title">HEAVEN<span class="footer-mark">.</span></h1><p class="footer-subbrand">FURNITURE MART</p></div>
+        <div class="footer-grid">
+          <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
+          <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
+          <div class="footer-column footer-contact-column"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div>
+          <div class="footer-column"><h2>FOLLOW</h2><a href="#" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="#" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="#" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
+        </div>
+        <div class="footer-cta"><p>Ready to shape your space?</p></div>
+        <div class="footer-bottom"><p>© 2026 HEAVEN FURNITURE MART</p><p>AGRABAD <span aria-hidden="true">·</span> CHATTOGRAM <span aria-hidden="true">·</span> BANGLADESH</p></div>
+      </div>
+    </footer>
+  </div>
+`;
+
+const bespokePageMarkup = `
+  <div class="bespoke-page">
+    ${renderNavbar()}
+    <main>
+      <section class="bespoke-hero">
+        <div class="bespoke-hero-copy"><p class="story-eyebrow">HEAVEN FURNITURE MART</p><h1>MADE FOR YOUR SPACE.</h1><p>Furniture created around your space, your size, your taste and the way you live.</p><a href="/collections" class="story-closing-link">EXPLORE COLLECTIONS <span>→</span></a></div>
+        <div class="bespoke-hero-image"><img src="/images/image4.png" alt="Dining furniture in an elegant interior" /></div>
+      </section>
+      <section class="bespoke-process"><p class="story-eyebrow">THE BESPOKE PROCESS</p><h2>A MORE PERSONAL WAY TO FURNISH.</h2><div class="bespoke-process-grid"><article><span>01</span><h3>LISTEN</h3><p>We begin with your room, your rhythm and the details that make the space yours.</p></article><article><span>02</span><h3>SHAPE</h3><p>Thoughtful proportions and materials are considered around your requirements.</p></article><article><span>03</span><h3>CRAFT</h3><p>In-house craftsmanship brings the final piece together with care.</p></article></div></section>
+      <section class="bespoke-callout"><p class="story-eyebrow">DESIGNED. CRAFTED. CUSTOMIZED.</p><h2>FURNITURE THAT FITS THE WAY YOU LIVE.</h2><p>Explore our collections for ready inspiration, then visit the Agrabad showroom to experience Heaven in person.</p><a href="/our-story" class="story-closing-link">OUR STORY <span>→</span></a></section>
+    </main>
+  </div>
+`;
+
 const productPageMarkup = (product) => `
   <div class="product-page">
     ${renderNavbar()}
     <main class="product-main">
-      <a class="product-back-link" href="/">← BACK TO COLLECTION</a>
+      <a class="product-back-link" href="/collections">← BACK TO COLLECTIONS</a>
       <section class="product-detail" aria-labelledby="product-title">
         <div class="product-visual">
-          <img src="${product.catalogueImage}" alt="${product.catalogueAlt}" />
+          <img src="${product.image}" alt="${product.imageAlt}" />
         </div>
         <div class="product-information">
           <p class="product-category">${product.category}</p>
-          <h1 id="product-title">${product.title}</h1>
+          <h1 id="product-title">${product.name}</h1>
           <p class="product-description">${product.description}</p>
+          <p class="product-price">${product.price}</p>
           <div class="product-contact">
             <p>+880 1960-481983</p>
             <a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a>
@@ -410,12 +749,109 @@ const productPageMarkup = (product) => `
   </div>
 `;
 
-const productPage = collectionProducts.find((product) => product.productRoute === window.location.pathname);
+const productPage = catalogueProducts.find((product) => product.route === window.location.pathname);
 const isProductPage = Boolean(productPage);
-document.querySelector('#app').innerHTML = isProductPage ? productPageMarkup(productPage) : heroMarkup;
+const isCollectionsPage = window.location.pathname === '/collections';
+const isOurStoryPage = window.location.pathname === '/our-story';
+const isBespokePage = window.location.pathname === '/bespoke';
+document.querySelector('#app').innerHTML = isProductPage ? productPageMarkup(productPage) : isCollectionsPage ? collectionsPageMarkup : isOurStoryPage ? ourStoryPageMarkup : isBespokePage ? bespokePageMarkup : heroMarkup;
+
+const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
+const mobileMenuPanel = document.querySelector('.mobile-menu-panel');
+if (mobileMenuTrigger && mobileMenuPanel) {
+  mobileMenuTrigger.addEventListener('click', () => {
+    const isOpen = mobileMenuPanel.classList.toggle('is-open');
+    mobileMenuTrigger.setAttribute('aria-expanded', String(isOpen));
+    mobileMenuTrigger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    mobileMenuPanel.setAttribute('aria-hidden', String(!isOpen));
+  });
+  mobileMenuPanel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenuPanel.classList.remove('is-open');
+      mobileMenuTrigger.setAttribute('aria-expanded', 'false');
+      mobileMenuPanel.setAttribute('aria-hidden', 'true');
+    });
+  });
+}
 
 if (isProductPage) {
   gsap.from('.product-page', { autoAlpha: 0, y: 10, duration: 0.55, ease: 'power2.out' });
+} else if (isCollectionsPage) {
+  gsap.from('.collections-page', { autoAlpha: 0, y: 10, duration: 0.55, ease: 'power2.out' });
+  const catalogueGrid = document.querySelector('[data-catalogue-grid]');
+  const catalogueSearch = document.querySelector('[data-catalogue-search]');
+  const catalogueSort = document.querySelector('[data-catalogue-sort]');
+  const catalogueCategory = document.querySelector('[data-catalogue-category]');
+  const catalogueCount = document.querySelector('.catalogue-count');
+  const catalogueEmpty = document.querySelector('[data-catalogue-empty]');
+  const catalogueCards = [...document.querySelectorAll('.catalogue-card')];
+  const catalogueViewButtons = [...document.querySelectorAll('[data-catalogue-view]')];
+
+  const renderCatalogue = () => {
+    const query = catalogueSearch.value.trim().toLowerCase();
+    const category = catalogueCategory.value;
+    const sort = catalogueSort.value;
+    const filteredProducts = catalogueProducts
+      .filter((product) => {
+        const searchableText = `${product.name} ${product.category}`.toLowerCase();
+        return (!query || searchableText.includes(query)) && (category === 'All' || product.category === category);
+      })
+      .sort((firstProduct, secondProduct) => {
+        if (sort === 'price-asc') return Number(firstProduct.price.replace(/[^0-9]/g, '')) - Number(secondProduct.price.replace(/[^0-9]/g, ''));
+        if (sort === 'price-desc') return Number(secondProduct.price.replace(/[^0-9]/g, '')) - Number(firstProduct.price.replace(/[^0-9]/g, ''));
+        if (sort === 'name-asc') return firstProduct.name.localeCompare(secondProduct.name);
+        if (sort === 'name-desc') return secondProduct.name.localeCompare(firstProduct.name);
+        return catalogueProducts.indexOf(firstProduct) - catalogueProducts.indexOf(secondProduct);
+      });
+
+    filteredProducts.forEach((product) => {
+      const card = catalogueCards.find((catalogueCard) => catalogueCard.href.endsWith(product.route));
+      if (card) catalogueGrid.append(card);
+    });
+    catalogueCount.innerHTML = `SHOWING <span>${filteredProducts.length}</span> OF 12 PRODUCTS`;
+    catalogueEmpty.hidden = filteredProducts.length > 0;
+  };
+
+  [catalogueSearch, catalogueSort, catalogueCategory].forEach((control) => {
+    control.addEventListener('input', renderCatalogue);
+    control.addEventListener('change', renderCatalogue);
+  });
+
+  catalogueViewButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const isList = button.dataset.catalogueView === 'list';
+      catalogueGrid.classList.toggle('is-list', isList);
+      catalogueViewButtons.forEach((viewButton) => {
+        const isActive = viewButton === button;
+        viewButton.classList.toggle('is-active', isActive);
+        viewButton.setAttribute('aria-pressed', String(isActive));
+      });
+    });
+  });
+} else if (isOurStoryPage) {
+  gsap.from('.our-story-page', { autoAlpha: 0, y: 10, duration: 0.55, ease: 'power2.out' });
+  const storyReveals = [...document.querySelectorAll('.story-reveal')];
+
+  storyReveals.forEach((section) => {
+    gsap.set(section, { autoAlpha: 0, y: 24 });
+  });
+
+  const revealStorySection = (section) => {
+    gsap.to(section, { autoAlpha: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+  };
+
+  const storyObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        revealStorySection(entry.target);
+        storyObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  storyReveals.forEach((section) => storyObserver.observe(section));
+} else if (isBespokePage) {
+  gsap.from('.bespoke-page', { autoAlpha: 0, y: 10, duration: 0.55, ease: 'power2.out' });
 } else {
 
 const stage = document.querySelector('.hero-stage');
@@ -588,11 +1024,7 @@ stage.addEventListener('pointerleave', resetBedPosition);
       const cardStyle = getComputedStyle(firstCard);
       const trackStyle = getComputedStyle(premiumShowcaseTrack);
       const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || parseFloat(cardStyle.marginRight) || 0;
-      const slotCount = viewportBounds.width <= 560 ? 1.65 : viewportBounds.width <= 900 ? 3 : 5;
-      const cardWidth = (viewportBounds.width - gap * (slotCount - 1)) / slotCount;
-      carouselCards.forEach((card) => {
-        card.style.flexBasis = `${cardWidth}px`;
-      });
+      const cardWidth = firstCard.offsetWidth;
       const stride = cardWidth + gap;
       const loopWidth = stride * (carouselCards.length / 2);
       const baseOffset = viewportBounds.width / 2 - (cardWidth / 2 + stride * 2);
