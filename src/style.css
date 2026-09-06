@@ -2443,7 +2443,7 @@ button {
     top: auto;
     bottom: auto;
     bottom: 7%;
-    width: 64%;
+    width: 56%;
   }
 
   .hero-bed-wrap[data-product="1"] {
@@ -2451,7 +2451,7 @@ button {
     top: auto;
     bottom: auto;
     bottom: 12%;
-    width: 60%;
+    width: 52%;
   }
 
   .hero-bed-wrap[data-product="2"] {
@@ -2459,44 +2459,44 @@ button {
     top: auto;
     bottom: auto;
     bottom: 14%;
-    width: 60%;
+    width: 52%;
   }
 
   .hero-card {
     left: 0.9rem;
-    bottom: 5.5rem;
-    width: 104px;
+    bottom: 8.1rem;
+    width: 98px;
     padding: 0.45rem;
   }
 
   .card-image-wrap {
-    height: 68px;
+    height: 64px;
   }
 
   .catalogue-caption {
     left: 0.9rem;
     bottom: 0.85rem;
-    width: 104px;
+    width: 98px;
   }
 
   .hero-copy {
-    top: 51%;
+    top: 24%;
     right: 0.8rem;
     left: auto;
-    width: min(35vw, 136px);
-    max-width: 136px;
+    width: min(39vw, 150px);
+    max-width: 150px;
     text-align: right;
     transform: translateY(-50%);
   }
 
   .hero-copy-title {
     max-width: none;
-    font-size: clamp(0.95rem, 4.2vw, 1.25rem);
+    font-size: clamp(0.82rem, 3.5vw, 1.05rem);
   }
 
   .supporting-copy {
     max-width: none;
-    font-size: 0.55rem;
+    font-size: 0.46rem;
     line-height: 1.45;
   }
 
@@ -2619,12 +2619,12 @@ button {
   }
 
   .hero-copy {
-    top: 50%;
+    top: 24%;
     right: 0.9rem;
     left: auto;
     bottom: auto;
-    width: min(42vw, 165px);
-    max-width: 165px;
+    width: min(39vw, 150px);
+    max-width: 150px;
   }
 
   .eyebrow {
@@ -2634,7 +2634,7 @@ button {
   }
 
   .supporting-copy {
-    font-size: 0.52rem;
+    font-size: 0.46rem;
     line-height: 1.35;
   }
 
@@ -2729,7 +2729,7 @@ button {
   }
 
   .collection-heading h1 {
-    font-size: clamp(2.2rem, 10vw, 3.6rem);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .collection-track {
