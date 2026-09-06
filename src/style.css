@@ -2780,17 +2780,48 @@ button {
   }
 
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.45rem clamp(0.9rem, 5vw, 1.35rem);
   }
 
   .footer-column {
+    min-width: 0;
     gap: 0.35rem;
+  }
+
+  .footer-contact-column {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(0.9rem, 5vw, 1.35rem);
+    align-items: start;
+  }
+
+  .footer-contact-column h2,
+  .footer-contact-column a {
+    grid-column: 1;
+  }
+
+  .footer-contact-column .footer-visit-label,
+  .footer-contact-column address {
+    grid-column: 2;
+  }
+
+  .footer-contact-column .footer-visit-label {
+    margin: 0 0 0.2rem;
+  }
+
+  .footer-grid > .footer-column:last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
   }
 
   .footer-column a,
   .footer-column address {
     font-size: 0.64rem;
+    overflow-wrap: anywhere;
   }
 
   .footer-bottom {
