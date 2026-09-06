@@ -2613,7 +2613,7 @@ button {
   }
 
   .premium-primary {
-    bottom: calc(2.3rem + clamp(4px, 2vw, 7px));
+    bottom: calc(2.3rem + clamp(2px, calc(2vw - 2px), 5px));
     width: auto;
     min-height: 0;
     font-size: 0.6rem;
