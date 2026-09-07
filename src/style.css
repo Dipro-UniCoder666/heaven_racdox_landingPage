@@ -2804,11 +2804,15 @@ button {
     left: 0.9rem;
     bottom: 8.1rem;
     width: 98px;
-    padding: 0.45rem;
+    padding: 0.45rem 0.45rem 10px;
   }
 
   .card-image-wrap {
     height: 64px;
+  }
+
+  .card-copy {
+    padding-top: 8px;
   }
 
   .card-copy span {
