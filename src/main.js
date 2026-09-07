@@ -12,7 +12,7 @@ const heroProducts = [
     title: 'MAJESTY BED',
     description: 'A statement bedroom piece crafted to bring refined comfort, character and presence to your space.',
     catalogueTitle: 'MAJESTY GLAME',
-    catalogueDescription: 'Refined detailing, plush comfort, and timeless elegance.',
+    catalogueDescription: 'Refined detailing, plush comfort, timeless elegance.',
   },
   {
     catalogueImage: '/images/image3.png',
@@ -24,7 +24,7 @@ const heroProducts = [
     title: 'LUXURY CABINET',
     description: 'A refined storage piece designed to bring character and presence to your living space.',
     catalogueTitle: 'SIGNATURE CABINET',
-    catalogueDescription: 'Refined storage with elegant proportions, designed for modern interiors.',
+    catalogueDescription: 'Refined storage, elegant proportions, modern interiors.',
   },
   {
     catalogueImage: '/images/image5.jpg',
@@ -36,7 +36,7 @@ const heroProducts = [
     title: 'LUXURY LIVING SUITE',
     description: 'A statement living collection crafted to bring character and presence to your space.',
     catalogueTitle: 'DINING COLLECTION',
-    catalogueDescription: 'Modern form, lasting comfort, and timeless elegance.',
+    catalogueDescription: 'Modern form, lasting comfort, timeless elegance.',
   },
 ];
 

@@ -2427,7 +2427,8 @@ button {
 
   .catalogue-caption {
     left: 1rem;
-    bottom: 1rem;
+    bottom: auto;
+    top: calc(70% + 50px);
     width: 150px;
   }
 
@@ -2823,13 +2824,14 @@ button {
 
   .catalogue-caption {
     left: 0.9rem;
-    bottom: 0.85rem;
+    bottom: auto;
+    top: calc(100% - 7.475rem);
     width: 98px;
   }
 
   .catalogue-caption p {
     font-size: 0.65rem;
-    line-height: 1.35;
+    line-height: 1.28;
   }
 
   .hero-copy-title {
