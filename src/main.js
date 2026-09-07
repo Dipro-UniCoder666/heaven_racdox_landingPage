@@ -24,7 +24,7 @@ const heroProducts = [
     title: 'LUXURY CABINET',
     description: 'A refined storage piece designed to bring character and presence to your living space.',
     catalogueTitle: 'SIGNATURE CABINET',
-    catalogueDescription: 'Designed for modern interiors, this statement piece brings refined storage, elegant proportions, and effortless sophistication.',
+    catalogueDescription: 'Refined storage with elegant proportions, designed for modern interiors.',
   },
   {
     catalogueImage: '/images/image5.jpg',
@@ -338,6 +338,7 @@ const heroMarkup = `
         <a class="hero-card" href="${heroProducts[0].productRoute}" aria-label="View ${heroProducts[0].title} product details">
           <div class="card-image-wrap">
             <img class="catalogue-image" src="${heroProducts[0].catalogueImage}" alt="${heroProducts[0].catalogueAlt}" />
+            <img class="catalogue-image catalogue-image-incoming" src="${heroProducts[1].catalogueImage}" alt="" aria-hidden="true" />
           </div>
           <div class="card-copy">
             <span>NEW COLLECTION</span>
@@ -352,6 +353,7 @@ const heroMarkup = `
         <div class="hero-art" aria-label="Luxury furniture hero composition">
           <div class="hero-bed-wrap" data-product="0">
             <img class="hero-product-image" src="${heroProducts[0].heroImage}" alt="${heroProducts[0].heroAlt}" />
+            <img class="hero-product-image hero-product-image-incoming" src="${heroProducts[1].heroImage}" alt="" aria-hidden="true" />
           </div>
         </div>
 
@@ -976,6 +978,12 @@ const heroProductImage = document.querySelector('.hero-product-image');
 const catalogueCaption = document.querySelector('.catalogue-caption');
 const previousProductButton = document.querySelector('.control-back');
 const nextProductButton = document.querySelector('.control-next');
+const heroLayerPairs = {
+  hero: [document.querySelector('.hero-bed-wrap .hero-product-image'), document.querySelector('.hero-bed-wrap .hero-product-image-incoming')],
+  card: [document.querySelector('.card-image-wrap .catalogue-image'), document.querySelector('.card-image-wrap .catalogue-image-incoming')],
+};
+let heroActiveLayer = 0;
+gsap.set([heroLayerPairs.hero[1], heroLayerPairs.card[1]], { autoAlpha: 0 });
 
 gsap.set(stage, { autoAlpha: 0, scale: 0.985 });
 gsap.set([wordmark, bed, card, copy, controls], { autoAlpha: 0 });
@@ -1014,29 +1022,33 @@ const switchProduct = (direction) => {
   productTransitioning = true;
   activeProductIndex = (activeProductIndex + direction + heroProducts.length) % heroProducts.length;
   const nextProduct = heroProducts[activeProductIndex];
-  const exitX = direction > 0 ? -18 : 18;
-  const enterX = direction > 0 ? 18 : -18;
+  const outgoingHero = heroLayerPairs.hero[heroActiveLayer];
+  const outgoingCard = heroLayerPairs.card[heroActiveLayer];
+  const incomingHero = heroLayerPairs.hero[1 - heroActiveLayer];
+  const incomingCard = heroLayerPairs.card[1 - heroActiveLayer];
+  const exitX = direction > 0 ? -24 : 24;
+  const enterX = direction > 0 ? 24 : -24;
+
+  incomingHero.src = nextProduct.heroImage;
+  incomingCard.src = nextProduct.catalogueImage;
+  bed.dataset.product = String(activeProductIndex);
+  card.href = nextProduct.productRoute;
+  card.setAttribute('aria-label', `View ${nextProduct.title} product details`);
+  catalogueCaption.querySelector('h2').textContent = nextProduct.catalogueTitle;
+  catalogueCaption.querySelector('p').textContent = nextProduct.catalogueDescription;
 
   gsap.timeline({
     defaults: { ease: 'power2.inOut' },
     onComplete: () => {
+      gsap.set([outgoingHero, outgoingCard], { autoAlpha: 0, x: 0 });
+      incomingHero.alt = nextProduct.heroAlt;
+      incomingCard.alt = nextProduct.catalogueAlt;
+      heroActiveLayer = 1 - heroActiveLayer;
       productTransitioning = false;
     },
   })
-    .to([catalogueImage, heroProductImage], { autoAlpha: 0, x: exitX, duration: 0.28 })
-    .add(() => {
-      catalogueImage.src = nextProduct.catalogueImage;
-      catalogueImage.alt = nextProduct.catalogueAlt;
-      heroProductImage.src = nextProduct.heroImage;
-      heroProductImage.alt = nextProduct.heroAlt;
-      card.href = nextProduct.productRoute;
-      card.setAttribute('aria-label', `View ${nextProduct.title} product details`);
-      catalogueCaption.querySelector('h2').textContent = nextProduct.catalogueTitle;
-      catalogueCaption.querySelector('p').textContent = nextProduct.catalogueDescription;
-      bed.dataset.product = String(activeProductIndex);
-      gsap.set([catalogueImage, heroProductImage], { autoAlpha: 0, x: enterX });
-    })
-    .to([catalogueImage, heroProductImage], { autoAlpha: 1, x: 0, duration: 0.42 });
+    .to([outgoingHero, outgoingCard], { autoAlpha: 0, x: exitX, duration: 0.42 }, 0)
+    .fromTo([incomingHero, incomingCard], { autoAlpha: 0, x: enterX }, { autoAlpha: 1, x: 0, duration: 0.7 }, 0.08);
 };
 
 const heroAutoplayMs = 4000;
