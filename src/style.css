@@ -2439,7 +2439,7 @@ button {
     bottom: auto;
     width: min(42vw, 250px);
     max-width: 250px;
-    margin-top: 15px;
+    margin-top: 40px;
   }
 
   .supporting-copy {
