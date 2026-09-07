@@ -63,7 +63,7 @@ const collectionProducts = [
     catalogueDescription: 'Modern form and generous comfort for memorable gatherings.',
   },
   {
-    catalogueImage: '/images/fc938df5-3085-4626-9e62-7818ffbf5b5c.png',
+    catalogueImage: '/images/image7.png',
     catalogueAlt: 'Curved accent furniture by Heaven Furniture Mart',
     productRoute: '/product/curved-accent',
     category: 'LIVING',
@@ -73,7 +73,7 @@ const collectionProducts = [
     catalogueDescription: 'A sculptural note for layered, expressive interiors.',
   },
   {
-    catalogueImage: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
+    catalogueImage: '/images/image6.png',
     catalogueAlt: 'Blue lounge furniture by Heaven Furniture Mart',
     productRoute: '/product/blue-lounge',
     category: 'LIVING',
@@ -83,14 +83,14 @@ const collectionProducts = [
     catalogueDescription: 'A confident, comfortable anchor for the living space.',
   },
   {
-    catalogueImage: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
-    catalogueAlt: 'Blue lounge furniture by Heaven Furniture Mart',
+    catalogueImage: '/images/Image2.jpg',
+    catalogueAlt: 'Refined furniture detail in a warm interior by Heaven Furniture Mart',
     productRoute: '/product/refined-detail',
-    category: 'LIVING',
-    title: 'BLUE LOUNGE',
-    description: 'A relaxed lounge piece designed to bring color, comfort, and quiet confidence.',
-    catalogueTitle: 'BLUE LOUNGE',
-    catalogueDescription: 'A confident, comfortable anchor for the living space.',
+    category: 'COLLECTION',
+    title: 'REFINED DETAIL',
+    description: 'A distinctive furniture detail crafted to complete a considered interior.',
+    catalogueTitle: 'REFINED DETAIL',
+    catalogueDescription: 'A distinctive detail for considered interiors.',
   },
 ];
 
@@ -120,7 +120,7 @@ const premiumShowcaseProducts = [
     route: '/product/contemporary-dining',
   },
   {
-    image: '/images/image5.jpg',
+    image: '/images/image6.png',
     alt: 'Luxury living furniture in an elegant interior',
     name: 'LUXURY LIVING',
     category: 'LIVING',
@@ -136,7 +136,7 @@ const premiumShowcaseProducts = [
     route: '/product/heritage-bedroom',
   },
   {
-    image: '/images/fc938df5-3085-4626-9e62-7818ffbf5b5c.png',
+    image: '/images/image7.png',
     alt: 'Curved accent furniture by Heaven Furniture Mart',
     name: 'CURVED ACCENT',
     category: 'LIVING',
@@ -144,7 +144,7 @@ const premiumShowcaseProducts = [
     route: '/product/curved-accent',
   },
   {
-    image: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
+    image: '/images/image6.png',
     alt: 'Blue lounge furniture by Heaven Furniture Mart',
     name: 'BLUE LOUNGE',
     category: 'LIVING',
@@ -152,7 +152,7 @@ const premiumShowcaseProducts = [
     route: '/product/blue-lounge',
   },
   {
-    image: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
+    image: '/images/image3.png',
     alt: 'Refined furniture detail by Heaven Furniture Mart',
     name: 'REFINED DETAIL',
     category: 'COLLECTION',
@@ -273,6 +273,17 @@ const catalogueProducts = [
   },
 ];
 
+// Dedicated detail page for the featured premium-section sofa; kept out of catalogueProducts so the /collections grid and its "OF 12" count stay unchanged.
+const luxuryLivingSofaProduct = {
+  image: '/images/image4.png',
+  imageAlt: 'Ornate luxury sofa set with carved wooden detailing in an elegant interior',
+  name: 'Luxury Living Sofa',
+  category: 'Living Room',
+  description: 'Designed for refined interiors, this statement sofa combines exceptional comfort, elegant form, and lasting craftsmanship.',
+  price: '৳ 10,200',
+  route: '/product/luxury-living-sofa',
+};
+
 const customerStories = [
   { initials: 'AR', name: 'Ayesha Rahman', detail: 'Chattogram', quote: 'Beautiful craftsmanship and excellent attention to detail.' },
   { initials: 'TH', name: 'Tanvir Hasan', detail: 'Dhaka', quote: 'Everything felt thoughtfully designed and perfectly finished.' },
@@ -322,7 +333,7 @@ const heroMarkup = `
     ${renderNavbar()}
     <main class="hero-main">
       <section class="hero-stage">
-        <div class="hero-wordmark" aria-hidden="true">HEAVEN</div>
+        <div class="hero-wordmark" aria-hidden="true"><span class="hero-wordmark-main">HEAVEN</span><span class="hero-wordmark-sub">furniture mart</span></div>
 
         <a class="hero-card" href="${heroProducts[0].productRoute}" aria-label="View ${heroProducts[0].title} product details">
           <div class="card-image-wrap">
@@ -351,8 +362,8 @@ const heroMarkup = `
         </div>
 
         <div class="hero-controls" aria-label="Furniture control buttons">
-              <button type="button" aria-label="Previous product" class="control-button control-back">←</button>
-              <button type="button" aria-label="Next product" class="control-button control-next">→</button>
+              <button type="button" aria-label="Previous product" class="control-button control-back">&lt;</button>
+              <button type="button" aria-label="Next product" class="control-button control-next">&gt;</button>
         </div>
       </section>
     </main>
@@ -386,6 +397,80 @@ const heroMarkup = `
       </div>
     </section>
 
+    <section class="category-section" aria-labelledby="category-title">
+      <div class="category-grid">
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate1.png" alt="Bedroom furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Bedroom</strong><small>Designed for deeper comfort</small></span>
+        </a>
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate2.png" alt="Office and study furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Office &amp; Study</strong><small>Where focus meets refinement</small></span>
+        </a>
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate3.png" alt="Living room furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Living Room</strong><small>Built around the way you live</small></span>
+        </a>
+        <header class="category-heading">
+          <h2 id="category-title">CHOOSE BY CATEGORY</h2>
+          <p>Explore furniture for every part of your space</p>
+        </header>
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate4.png" alt="Dining furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Dining</strong><small>Made for moments together</small></span>
+        </a>
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate5.png" alt="Bespoke crafted furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Bespoke / Craft</strong><small>Made to fit your space</small></span>
+        </a>
+        <a class="category-tile" href="/collections">
+          <img src="/images/cate6.png" alt="Kitchen furniture by Heaven Furniture Mart" loading="lazy" />
+          <span class="category-tile-label"><strong>Kitchen</strong><small>Function, beautifully considered</small></span>
+        </a>
+      </div>
+    </section>
+    <section class="story-slider-section" aria-label="Heaven Furniture story gallery">
+      <div class="story-slider-track">
+        <div class="story-slide">
+          <img src="/images/first_slide.png" alt="Heaven Furniture Mart interior scene" />
+          <div class="story-slide-copy">
+            <h2 class="story-slide-title">Crafted for the way you live</h2>
+            <span class="story-slide-divider" aria-hidden="true"></span>
+            <p class="story-slide-sub">Comfort, character, and beautiful everyday moments</p>
+          </div>
+        </div>
+        <div class="story-slide">
+          <img src="/images/slide_2.png" alt="Heaven Furniture Mart furniture scene" />
+          <div class="story-slide-copy">
+            <h2 class="story-slide-title">Made with lasting character</h2>
+            <span class="story-slide-divider" aria-hidden="true"></span>
+            <p class="story-slide-sub">Refined materials, thoughtful details, timeless comfort</p>
+          </div>
+        </div>
+        <div class="story-slide">
+          <img src="/images/slide_3.png" alt="Heaven Furniture Mart styled room" />
+          <div class="story-slide-copy story-slide-copy-shift">
+            <h2 class="story-slide-title">Designed around you</h2>
+            <span class="story-slide-divider" aria-hidden="true"></span>
+            <p class="story-slide-sub">Bespoke furniture shaped to your space, taste, and life</p>
+          </div>
+        </div>
+        <div class="story-slide" aria-hidden="true">
+          <img src="/images/first_slide.png" alt="" />
+          <div class="story-slide-copy">
+            <h2 class="story-slide-title">Crafted for the way you live</h2>
+            <span class="story-slide-divider" aria-hidden="true"></span>
+            <p class="story-slide-sub">Comfort, character, and beautiful everyday moments</p>
+          </div>
+        </div>
+      </div>
+      <div class="story-slider-dots" aria-hidden="true">
+        <span class="story-dot is-active"></span>
+        <span class="story-dot"></span>
+        <span class="story-dot"></span>
+      </div>
+    </section>
+
     <section class="premium-section" aria-labelledby="premium-title">
       <div class="premium-feature">
         <div class="premium-panel">
@@ -394,7 +479,10 @@ const heroMarkup = `
             <h1 id="premium-title">Luxury Living,<br />Crafted to Last</h1>
           </div>
           <div class="premium-image-wrap">
-            <img src="/images/image4_trans.png" alt="Luxury sofa by Heaven Furniture Mart" loading="lazy" />
+            <a class="premium-sofa-link" href="/product/luxury-living-sofa" aria-label="View Luxury Living Sofa details">
+              <img src="/images/image4_trans.png" alt="Luxury sofa by Heaven Furniture Mart" loading="lazy" />
+              <span class="premium-sofa-price">${luxuryLivingSofaProduct.price}</span>
+            </a>
           </div>
           <div class="premium-copy">
             <p>Designed for refined interiors, this statement sofa combines exceptional comfort, elegant form, and lasting craftsmanship.</p>
@@ -772,7 +860,7 @@ const productPageMarkup = (product) => `
   </div>
 `;
 
-const productPage = catalogueProducts.find((product) => product.route === window.location.pathname);
+const productPage = [...catalogueProducts, luxuryLivingSofaProduct].find((product) => product.route === window.location.pathname);
 const isProductPage = Boolean(productPage);
 const isCollectionsPage = window.location.pathname === '/collections';
 const isOurStoryPage = window.location.pathname === '/our-story';
@@ -951,8 +1039,30 @@ const switchProduct = (direction) => {
     .to([catalogueImage, heroProductImage], { autoAlpha: 1, x: 0, duration: 0.42 });
 };
 
-previousProductButton.addEventListener('click', () => switchProduct(-1));
-nextProductButton.addEventListener('click', () => switchProduct(1));
+const heroAutoplayMs = 4000;
+let heroAutoplayTimer = null;
+
+const startHeroAutoplay = () => {
+  if (heroAutoplayTimer !== null) return;
+  heroAutoplayTimer = setInterval(() => switchProduct(1), heroAutoplayMs);
+};
+
+const restartHeroAutoplay = () => {
+  clearInterval(heroAutoplayTimer);
+  heroAutoplayTimer = null;
+  startHeroAutoplay();
+};
+
+previousProductButton.addEventListener('click', () => {
+  switchProduct(-1);
+  restartHeroAutoplay();
+});
+nextProductButton.addEventListener('click', () => {
+  switchProduct(1);
+  restartHeroAutoplay();
+});
+
+startHeroAutoplay();
 
 const moveBedX = gsap.quickTo(bed, 'x', { duration: 0.9, ease: 'power3.out' });
 const moveBedY = gsap.quickTo(bed, 'y', { duration: 0.9, ease: 'power3.out' });
@@ -1023,6 +1133,73 @@ stage.addEventListener('pointerleave', resetBedPosition);
     premiumObserver.observe(premiumSection);
   }
 
+  const storySliderSection = document.querySelector('.story-slider-section');
+  const storySliderTrack = document.querySelector('.story-slider-track');
+  const storyDots = document.querySelectorAll('.story-dot');
+  if (storySliderSection && storySliderTrack && storyDots.length) {
+    const storySlideCount = 3;
+    const storyIntervalMs = 4500;
+    let storyIndex = 0;
+    let storyTimer = null;
+    let storySliderRevealed = false;
+
+    const advanceStorySlide = () => {
+      const isWrappingToStart = storyIndex + 1 === storySlideCount;
+      gsap.to(storySliderTrack, {
+        xPercent: -(storyIndex + 1) * 100,
+        duration: 0.9,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          if (isWrappingToStart) {
+            gsap.set(storySliderTrack, { xPercent: 0 });
+          }
+        },
+      });
+      storyIndex = (storyIndex + 1) % storySlideCount;
+      storyDots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === storyIndex));
+    };
+
+    const startStoryInterval = () => {
+      if (storyTimer) return;
+      storyTimer = setInterval(advanceStorySlide, storyIntervalMs);
+    };
+
+    const stopStoryInterval = () => {
+      if (!storyTimer) return;
+      clearInterval(storyTimer);
+      storyTimer = null;
+    };
+
+    gsap.set(storySliderSection, { autoAlpha: 0 });
+
+    const storySliderObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) {
+        stopStoryInterval();
+        return;
+      }
+      if (!storySliderRevealed) {
+        storySliderRevealed = true;
+        gsap.to(storySliderSection, { autoAlpha: 1, duration: 0.45, ease: 'power2.out' });
+      }
+      startStoryInterval();
+    }, { threshold: 0.2 });
+
+    storySliderObserver.observe(storySliderSection);
+  }
+  const categorySection = document.querySelector('.category-section');
+  const categoryTiles = document.querySelectorAll('.category-tile');
+  const categoryHeading = categorySection ? categorySection.querySelector('.category-heading') : null;
+  if (categorySection && categoryTiles.length) {
+    gsap.set(categoryTiles, { autoAlpha: 0, y: 30 });
+    if (categoryHeading) gsap.set(categoryHeading, { autoAlpha: 0, y: 18 });
+    const categoryObserver = new IntersectionObserver((entries, observer) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      gsap.to(categoryTiles, { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.08, ease: 'power3.out' });
+      if (categoryHeading) gsap.to(categoryHeading, { autoAlpha: 1, y: 0, duration: 0.8, delay: 0.3, ease: 'power3.out' });
+      observer.disconnect();
+    }, { threshold: 0.12 });
+    categoryObserver.observe(categorySection);
+  }
   const premiumShowcaseSection = document.querySelector('.premium-showcase-section');
   const premiumShowcaseCards = document.querySelectorAll('.premium-showcase-card');
   const premiumShowcaseViewport = document.querySelector('.premium-showcase-viewport');
