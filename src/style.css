@@ -2811,6 +2811,12 @@ button {
     height: 64px;
   }
 
+  .card-copy span {
+    white-space: nowrap;
+    font-size: 0.44rem;
+    letter-spacing: 0.1em;
+  }
+
   .catalogue-caption {
     left: 0.9rem;
     bottom: 0.85rem;
