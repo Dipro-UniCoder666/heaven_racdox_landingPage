@@ -518,7 +518,7 @@ const heroMarkup = `
     <section class="editorial-discovery-section" aria-labelledby="editorial-discovery-title">
       <div class="editorial-discovery-grid">
         <div class="editorial-discovery-image editorial-discovery-image-primary">
-          <img src="/images/image5.jpg" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
+          <img src="/images/image7.png" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
         </div>
         <div class="editorial-discovery-copy">
           <h1 id="editorial-discovery-title">ELEVATE YOUR SPACE</h1>
@@ -529,7 +529,7 @@ const heroMarkup = `
           <img src="/images/image3.png" alt="Signature cabinet in a refined interior" loading="lazy" />
         </div>
         <div class="editorial-discovery-image editorial-discovery-image-bottom">
-          <img src="/images/image7.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
+          <img src="/images/image4.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
         </div>
       </div>
     </section>
