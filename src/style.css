@@ -3577,6 +3577,7 @@ button {
   .category-tile {
     overflow: visible;
     border-radius: 0;
+    background: transparent;
   }
 
   .category-tile img {
