@@ -3605,6 +3605,10 @@ button {
     color: rgba(58, 41, 34, 0.62);
   }
 
+  .category-tile img {
+    height: auto;
+  }
+
   .brand-lockup {
     align-items: center;
   }
@@ -3627,6 +3631,6 @@ button {
   }
 
   .category-heading {
-    padding: 14px 0 12px;
+    padding: 40px 0 30px;
   }
 }
