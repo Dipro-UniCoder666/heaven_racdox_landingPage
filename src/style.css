@@ -3604,4 +3604,29 @@ button {
   .category-tile-label small {
     color: rgba(58, 41, 34, 0.62);
   }
+
+  .brand-lockup {
+    align-items: center;
+  }
+
+  .brand-lockup small {
+    display: block;
+    text-transform: lowercase;
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: clamp(8px, 2.6vw, 10px);
+    letter-spacing: 0.22em;
+    color: rgba(58, 41, 34, 0.68);
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .hero-wordmark-sub {
+    font-size: 11.5px;
+    margin-right: calc(clamp(3.2rem, 17vw, 5.7rem) * -0.08 + 3.5px);
+  }
+
+  .category-heading {
+    padding: 14px 0 12px;
+  }
 }
