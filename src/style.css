@@ -3589,11 +3589,11 @@ button {
     inset: auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     gap: 0.2rem;
     padding: 7px 0 0;
-    text-align: left;
+    text-align: center;
     background: none;
     opacity: 1;
   }
@@ -3613,6 +3613,7 @@ button {
 
   .category-heading h2 {
     font-size: clamp(0.92rem, 3.8vw, 3rem);
+    color: #171717;
   }
 
   .category-heading p {
