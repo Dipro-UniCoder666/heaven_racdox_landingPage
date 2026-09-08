@@ -429,7 +429,7 @@ button {
 
 .story-slide-title {
   margin: 0;
-  color: #ffffff;
+  color: #f2eee7;
   font-family: var(--sans);
   font-weight: 700;
   font-size: clamp(2rem, 4.6vw, 4.2rem);
@@ -448,7 +448,7 @@ button {
 
 .story-slide-sub {
   margin: 0;
-  color: #ffffff;
+  color: #e8e3da;
   font-family: var(--sans);
   font-weight: 300;
   font-size: clamp(0.85rem, 1.3vw, 1.15rem);

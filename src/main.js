@@ -209,7 +209,7 @@ const catalogueProducts = [
     route: '/product/heritage-bedroom',
   },
   {
-    image: '/images/fc938df5-3085-4626-9e62-7818ffbf5b5c.png',
+    image: '/images/image7.png',
     imageAlt: 'Curved accent furniture in a considered interior',
     name: 'Curved Accent',
     category: 'Living Room',
@@ -218,7 +218,7 @@ const catalogueProducts = [
     route: '/product/curved-accent',
   },
   {
-    image: '/images/c40014a6-b4ff-45a0-9e83-97098d5ee573.png',
+    image: '/images/image6.png',
     imageAlt: 'Blue lounge furniture in a refined interior',
     name: 'Blue Lounge',
     category: 'Living Room',
