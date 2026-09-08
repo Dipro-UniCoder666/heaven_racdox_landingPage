@@ -3033,6 +3033,7 @@ button {
 
   .hero-copy-anchor {
     position: absolute;
+    z-index: 11;
     top: calc(31.5% + 27px);
     right: 0.9rem;
     left: auto;
