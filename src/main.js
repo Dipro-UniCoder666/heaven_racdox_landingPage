@@ -383,7 +383,7 @@ const heroMarkup = `
       <div class="collection-heading">
         <div>
           <p class="collection-kicker">HEAVEN FURNITURE MART</p>
-          <h1 id="collection-title">Explore Latest Collection</h1>
+          <h1 id="collection-title">Explore <span class="heading-accent heading-accent-latest">Latest</span> Collection</h1>
         </div>
         <p class="collection-intro">Furniture that blends with your personal style</p>
       </div>
@@ -404,6 +404,24 @@ const heroMarkup = `
             <p class="collection-description">${product.catalogueDescription}</p>
           </a>
         `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="craft-process-section" aria-labelledby="craft-process-title">
+      <div class="craft-process-grid">
+        <div class="craft-process-copy">
+          <h1 id="craft-process-title">WHERE <span class="heading-accent heading-accent-gold">CRAFT</span> TAKES SHAPE</h1>
+          <p class="craft-process-subtitle">Watch the process behind furniture made with patience, precision, and a passion for detail.</p>
+          <p class="craft-process-text">Every piece begins with an idea and takes shape through careful craftsmanship. From selecting the right materials to refining every edge, curve, and finish, our work is guided by patience, precision, and an unwavering attention to detail.</p>
+        </div>
+        <div class="craft-process-videos">
+          <div class="craft-process-video-wrap">
+            <video class="craft-process-video" src="/images/video1.mp4" muted autoplay loop playsinline preload="metadata"></video>
+          </div>
+          <div class="craft-process-video-wrap">
+            <video class="craft-process-video" src="/images/video2.mp4" muted autoplay loop playsinline preload="metadata"></video>
+          </div>
         </div>
       </div>
     </section>
@@ -492,7 +510,7 @@ const heroMarkup = `
       <div class="premium-feature">
         <div class="premium-panel">
           <div class="premium-heading">
-            <p class="premium-kicker">EXCELLENCE QUALITY</p>
+            <p class="premium-kicker"><span class="heading-accent heading-accent-gold">EXCELLENCE QUALITY</span></p>
             <h1 id="premium-title">Luxury Living,<br />Crafted to Last</h1>
           </div>
           <div class="premium-image-wrap">
@@ -505,14 +523,14 @@ const heroMarkup = `
             <p>Designed for refined interiors, this statement sofa combines exceptional comfort, elegant form, and lasting craftsmanship.</p>
           </div>
         </div>
-        <a class="premium-primary" href="/collections">EXPLORE MORE <span>→</span></a>
+        <a class="premium-primary" href="/collections"><span class="heading-accent heading-accent-ivory">EXPLORE MORE</span> <span class="premium-arrow">→</span></a>
       </div>
     </section>
 
     <section class="premium-showcase-section" aria-labelledby="premium-showcase-title">
       <div class="premium-showcase-heading">
         <p class="premium-showcase-kicker">HEAVEN FURNITURE MART</p>
-        <h1 id="premium-showcase-title">OUR PREMIUM COLLECTION</h1>
+        <h1 id="premium-showcase-title">OUR <span class="heading-accent heading-accent-gold">PREMIUM</span> COLLECTION</h1>
       </div>
       <div class="premium-showcase-viewport">
         <div class="premium-showcase-grid">
@@ -1581,6 +1599,15 @@ stage.addEventListener('pointerleave', resetBedPosition);
 
     showcaseObserver.observe(premiumShowcaseSection);
   }
+  const craftProcessVideos = document.querySelectorAll('.craft-process-video');
+  craftProcessVideos.forEach((video) => {
+    video.addEventListener('timeupdate', () => {
+      if (video.currentTime >= 13) {
+        video.currentTime = 0;
+      }
+    });
+  });
+
   const editorialDiscoverySection = document.querySelector('.editorial-discovery-section');
   const editorialDiscoveryImages = document.querySelectorAll('.editorial-discovery-image');
   const editorialDiscoveryCopy = document.querySelector('.editorial-discovery-copy');
