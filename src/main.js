@@ -1338,7 +1338,13 @@ stage.addEventListener('pointerleave', resetBedPosition);
           collectionPaint();
         },
       }, 0);
-      collectionCycle.to(collectionZoomTarget, { scale: 1.06, duration: collectionSlideDuration, ease: 'power2.inOut' }, 0);
+      const collectionSideNorm = Math.min(1 / 2.15, 1);
+      const collectionSideEased = collectionSideNorm * collectionSideNorm * (3 - 2 * collectionSideNorm);
+      const collectionSideScale = 1 - collectionSideEased * 0.22;
+      collectionCycle.fromTo(collectionZoomTarget,
+        { scale: collectionSideScale },
+        { scale: 1.06, duration: collectionSlideDuration, ease: 'power2.inOut' },
+        0);
 
       if (collectionDeparture) {
         const shrinkingCard = collectionDeparture;
