@@ -126,6 +126,7 @@ button {
 .collection-viewport {
   width: 100%;
   overflow: hidden;
+  padding: 20px 0;
 }
 
 .collection-track {
@@ -155,6 +156,7 @@ button {
 .collection-image-wrap {
   aspect-ratio: 1.08 / 1;
   overflow: hidden;
+  border-radius: clamp(18px, 2vw, 28px);
   background: #e4ddd3;
 }
 
