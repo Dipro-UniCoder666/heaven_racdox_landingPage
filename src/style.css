@@ -3679,6 +3679,7 @@ button {
   height: calc(100% - 84px);
   transform: translateX(-50%);
   background: linear-gradient(180deg, rgba(122, 74, 50, 0.12), rgba(122, 74, 50, 0.8));
+  opacity: 0.8;
 }
 
 .category-lamp-fitting {
@@ -3690,6 +3691,7 @@ button {
   height: 11px;
   border-radius: 3px 3px 5px 5px;
   background: linear-gradient(180deg, #96543a, #75432e);
+  opacity: 0.8;
 }
 
 .category-lamp-shade {
@@ -3701,6 +3703,7 @@ button {
   width: 66px;
   height: 34px;
   clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+  opacity: 0.8;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 85%),
     linear-gradient(105deg, #c08558 0%, #b8734f 45%, #a96844 80%, #9c5e3e 100%);
@@ -3759,5 +3762,7 @@ button {
 }
 
 @media (max-width: 560px) {
-  .category-lamp { transform: scale(0.72); }
+  .category-lamp {
+    transform: translateY(50px) scale(0.61);
+  }
 }
