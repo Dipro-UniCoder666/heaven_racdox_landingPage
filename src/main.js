@@ -430,6 +430,12 @@ const heroMarkup = `
           <span class="category-tile-label"><strong>Kitchen</strong><small>Function, beautifully considered</small></span>
         </a>
       </div>
+      <div class="category-lamp">
+        <span class="category-lamp-cord" aria-hidden="true"></span>
+        <span class="category-lamp-fitting" aria-hidden="true"></span>
+        <span class="category-lamp-shade" aria-hidden="true"></span>
+        <button type="button" class="category-lamp-bulb is-blinking" aria-label="Spotlight the next category"></button>
+      </div>
     </section>
     <section class="story-slider-section" aria-label="Heaven Furniture story gallery">
       <div class="story-slider-track">
@@ -1211,6 +1217,41 @@ stage.addEventListener('pointerleave', resetBedPosition);
       observer.disconnect();
     }, { threshold: 0.12 });
     categoryObserver.observe(categorySection);
+  }
+
+  const categoryLampBulb = document.querySelector('.category-lamp-bulb');
+  if (categoryLampBulb && categoryTiles.length) {
+    const categoryLampIdle = 'is-blinking';
+    let categoryLampStep = -1;
+    const setActiveCategory = (index) => {
+      categoryTiles.forEach((tile, tileIndex) => tile.classList.toggle('is-lamp-active', tileIndex === index));
+    };
+    categoryLampBulb.addEventListener('click', () => {
+      categoryLampStep += 1;
+      if (categoryLampStep >= categoryTiles.length) {
+        setActiveCategory(-1);
+        categoryLampStep = -1;
+        categoryLampBulb.classList.add(categoryLampIdle);
+        return;
+      }
+      categoryLampBulb.classList.remove(categoryLampIdle);
+      setActiveCategory(categoryLampStep);
+    });
+  }
+
+  const categoryLamp = document.querySelector(".category-lamp");
+  const categoryHeadingText = categorySection ? categorySection.querySelector(".category-heading h2") : null;
+  if (categoryLamp && categorySection && categoryHeadingText) {
+    const positionCategoryLamp = () => {
+      const sectionRect = categorySection.getBoundingClientRect();
+      const headingRange = document.createRange();
+      headingRange.selectNodeContents(categoryHeadingText);
+      const headingRect = headingRange.getBoundingClientRect();
+      categoryLamp.style.left = headingRect.right - sectionRect.left + 7 + "px";
+      categoryLamp.style.right = "auto";
+    };
+    positionCategoryLamp();
+    window.addEventListener("resize", positionCategoryLamp);
   }
   const premiumShowcaseSection = document.querySelector('.premium-showcase-section');
   const premiumShowcaseCards = document.querySelectorAll('.premium-showcase-card');

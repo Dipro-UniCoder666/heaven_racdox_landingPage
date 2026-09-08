@@ -3526,12 +3526,14 @@ button {
 }
 
 .category-tile:hover img,
-.category-tile:focus-visible img {
+.category-tile:focus-visible img,
+.category-tile.is-lamp-active img {
   transform: scale(1.03);
 }
 
 .category-tile:hover .category-tile-label,
-.category-tile:focus-visible .category-tile-label {
+.category-tile:focus-visible .category-tile-label,
+.category-tile.is-lamp-active .category-tile-label {
   opacity: 1;
 }
 
@@ -3609,6 +3611,7 @@ button {
 
   .category-tile img {
     height: auto;
+    aspect-ratio: 1 / 0.62;
   }
 
   .category-heading h2 {
@@ -3644,4 +3647,117 @@ button {
   .category-heading {
     padding: 40px 0 30px;
   }
+}
+
+
+
+/* ===== category pendant lamp - terracotta cone shade, close to heading ===== */
+.category-section {
+  position: relative;
+}
+
+.category-tile {
+  z-index: 1;
+}
+
+.category-lamp {
+  position: absolute;
+  z-index: 0;
+  left: calc(50% + 16rem);
+  right: auto;
+  top: calc(9% + 10px);
+  width: 66px;
+  height: 37%;
+  pointer-events: none;
+}
+
+.category-lamp-cord {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1.5px;
+  height: calc(100% - 84px);
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(122, 74, 50, 0.12), rgba(122, 74, 50, 0.8));
+}
+
+.category-lamp-fitting {
+  position: absolute;
+  left: 50%;
+  bottom: 74px;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 3px 3px 5px 5px;
+  background: linear-gradient(180deg, #96543a, #75432e);
+}
+
+.category-lamp-shade {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: 2;
+  transform: translateX(-50%);
+  width: 66px;
+  height: 34px;
+  clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 85%),
+    linear-gradient(105deg, #c08558 0%, #b8734f 45%, #a96844 80%, #9c5e3e 100%);
+}
+
+.category-lamp-bulb {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  z-index: 1;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.category-lamp-bulb::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -52%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, #ffd873 0%, #f6b83f 55%, #e3a23c 100%);
+  box-shadow: 0 0 8px 3px rgba(246, 184, 63, 0.5), 0 0 20px 8px rgba(246, 184, 63, 0.3), 0 0 34px 14px rgba(246, 184, 63, 0.12);
+  opacity: 1;
+  transition: box-shadow 300ms ease, opacity 300ms ease;
+}
+
+.category-lamp-bulb:focus-visible {
+  outline: 1px solid rgba(184, 154, 98, 0.8);
+  outline-offset: 4px;
+}
+
+.category-lamp-bulb.is-blinking::before {
+  animation: category-lamp-pulse 3s ease-in-out infinite;
+}
+
+@keyframes category-lamp-pulse {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 5px 2px rgba(246, 184, 63, 0.22), 0 0 12px 5px rgba(246, 184, 63, 0.12); }
+  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(246, 184, 63, 0.5), 0 0 20px 8px rgba(246, 184, 63, 0.3), 0 0 34px 14px rgba(246, 184, 63, 0.12); }
+}
+
+@media (max-width: 900px) {
+  .category-lamp {
+    transform: scale(0.85);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 560px) {
+  .category-lamp { transform: scale(0.72); }
 }
