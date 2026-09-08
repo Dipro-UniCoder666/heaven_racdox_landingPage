@@ -3768,3 +3768,11 @@ button {
     transform: translateX(-17px) translateY(70px) scale(0.49);
   }
 }
+
+
+/* ===== desktop hero wordmark sub size ===== */
+@media (min-width: 901px) {
+  .hero-wordmark-sub {
+    font-size: clamp(11px, 0.95vw, 14px);
+  }
+}
