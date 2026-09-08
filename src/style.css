@@ -2427,7 +2427,7 @@ button {
     max-width: 100%;
     justify-self: center;
     min-height: 68px;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     padding: 0 1.1rem;
   }
 
@@ -2441,6 +2441,8 @@ button {
 
   .utility-actions {
     display: flex;
+    align-items: center;
+    justify-self: end;
     gap: 0.25rem;
   }
 
@@ -2448,7 +2450,7 @@ button {
     display: block;
     width: 2.75rem;
     height: 2.75rem;
-    justify-self: end;
+    flex-shrink: 0;
   }
 
   .utility-button {
@@ -2456,19 +2458,22 @@ button {
     height: 2.75rem;
   }
 
+  .nav-search,
+  .utility-actions,
+  .utility-button,
+  .mobile-menu-trigger,
+  .brand-lockup {
+    flex-shrink: 0;
+  }
+
   .nav-search-box {
-    right: 0;
-    height: 2.75rem;
-    background: var(--ivory);
+    right: calc(100% + 0.4rem);
+    height: 2.2rem;
+    background: rgba(255, 255, 255, 0.48);
   }
 
   .nav-search.is-open .nav-search-box {
-    width: min(48vw, 190px);
-  }
-
-  .nav-search.is-open .nav-search-toggle {
-    opacity: 0;
-    pointer-events: none;
+    width: var(--nav-search-open-width, min(7.25rem, calc(100vw - 14.5rem)));
   }
 
   .nav-search-glyph {
@@ -2476,7 +2481,7 @@ button {
   }
 
   .nav-search.is-open .nav-search-field {
-    padding: 0 0.8rem 0 0.3rem;
+    padding: 0 0.7rem 0 0.28rem;
   }
 
   .mobile-menu-panel {
@@ -2485,6 +2490,7 @@ button {
     top: 100%;
     right: 0;
     left: 0;
+    grid-column: 1 / -1;
     display: block;
     max-height: 0;
     overflow: hidden;
@@ -2866,9 +2872,13 @@ button {
     width: calc(100vw - 1.5rem);
     min-width: 0;
     max-width: calc(100vw - 1.5rem);
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     min-height: 62px;
     padding: 0 0.9rem;
+  }
+
+  .nav-search.is-open .nav-search-box {
+    width: var(--nav-search-open-width, min(6.5rem, calc(100vw - 13.25rem)));
   }
 
   .brand-word {

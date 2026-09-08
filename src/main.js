@@ -320,11 +320,10 @@ const renderNavbar = () => `
       <button class="utility-button" type="button" aria-label="Account">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.3"></circle><path d="M5.4 20c.7-3.4 3-5.1 6.6-5.1s5.9 1.7 6.6 5.1"></path></svg>
       </button>
+      <button class="mobile-menu-trigger" type="button" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
     </div>
-
-    <button class="mobile-menu-trigger" type="button" aria-label="Open menu">
-      <span></span><span></span>
-    </button>
     <div class="mobile-menu-panel" aria-hidden="true">
       <nav aria-label="Mobile navigation">
         <a href="/#home">HOME</a>
@@ -898,7 +897,20 @@ const navSearch = document.querySelector('.nav-search');
 const navSearchToggle = document.querySelector('.nav-search-toggle');
 const navSearchField = document.querySelector('.nav-search-field');
 if (navSearch && navSearchToggle && navSearchField) {
+  const sizeMobileNavSearch = () => {
+    if (!window.matchMedia('(max-width: 900px)').matches) {
+      navSearch.style.removeProperty('--nav-search-open-width');
+      return;
+    }
+    const logo = document.querySelector('.brand-lockup');
+    if (!logo) return;
+    const available = navSearch.getBoundingClientRect().left - logo.getBoundingClientRect().right - 8;
+    navSearch.style.setProperty('--nav-search-open-width', `${Math.max(0, Math.min(132, available))}px`);
+  };
+  sizeMobileNavSearch();
+  window.addEventListener('resize', sizeMobileNavSearch);
   navSearchToggle.addEventListener('click', () => {
+    sizeMobileNavSearch();
     const isOpen = navSearch.classList.toggle('is-open');
     navSearchToggle.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
