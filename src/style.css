@@ -192,6 +192,10 @@ button {
   color: #3a2922;
 }
 
+.craft-process-title-break {
+  display: none;
+}
+
 .craft-process-subtitle {
   margin: 0 0 1.4rem;
   max-width: 34ch;
@@ -263,12 +267,28 @@ button {
     padding: 0.75rem 0 3.75rem;
   }
 
+  .craft-process-copy h1 {
+    max-width: none;
+  }
+
+  .craft-process-title-break {
+    display: block;
+  }
+
+  .craft-process-subtitle {
+    margin-bottom: 0;
+  }
+
+  .craft-process-text {
+    display: none;
+  }
+
   .craft-process-videos {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .craft-process-video-wrap {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 3 / 4;
   }
 }
 

@@ -411,7 +411,7 @@ const heroMarkup = `
     <section class="craft-process-section" aria-labelledby="craft-process-title">
       <div class="craft-process-grid">
         <div class="craft-process-copy">
-          <h1 id="craft-process-title">WHERE <span class="heading-accent heading-accent-gold">CRAFT</span> TAKES SHAPE</h1>
+          <h1 id="craft-process-title">WHERE <span class="heading-accent heading-accent-gold">CRAFT</span> TAKES<br class="craft-process-title-break" /> SHAPE</h1>
           <p class="craft-process-subtitle">Watch the process behind furniture made with patience, precision, and a passion for detail.</p>
           <p class="craft-process-text">Every piece begins with an idea and takes shape through careful craftsmanship. From selecting the right materials to refining every edge, curve, and finish, our work is guided by patience, precision, and an unwavering attention to detail.</p>
         </div>
