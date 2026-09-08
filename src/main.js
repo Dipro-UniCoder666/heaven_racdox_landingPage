@@ -441,7 +441,7 @@ const heroMarkup = `
           <span class="category-tile-label"><strong>Living Room</strong><small>Built around the way you live</small></span>
         </a>
         <header class="category-heading">
-          <h2 id="category-title">CHOOSE BY CATEGORY</h2>
+          <h2 id="category-title">CHOOSE BY <span class="heading-accent heading-accent-gold">CATEGORY</span></h2>
           <p>Explore furniture for every part of your space</p>
         </header>
         <a class="category-tile" href="/collections">
@@ -557,7 +557,7 @@ const heroMarkup = `
           </picture>
         </div>
         <div class="editorial-discovery-copy">
-          <h1 id="editorial-discovery-title">ELEVATE YOUR SPACE</h1>
+          <h1 id="editorial-discovery-title"><span class="heading-accent heading-accent-gold">ELEVATE</span> YOUR SPACE</h1>
           <p>Discover furniture that brings refined character to every corner of your home. From timeless silhouettes to distinctive details, find pieces designed around the way you live.</p>
           <a href="/collections">EXPLORE COLLECTION</a>
         </div>
