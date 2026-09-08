@@ -1262,17 +1262,19 @@ stage.addEventListener('pointerleave', resetBedPosition);
     gsap.set(premiumShowcaseCards, { y: 24 });
 
     const carouselCards = [...premiumShowcaseCards];
-    const carouselSpeed = 45;
+    const slideDuration = 1.6;
+    const holdZoomedOutMs = 3000;
     let carouselOffset = 0;
-    let carouselLastTimestamp = null;
-    let carouselFrame;
     let carouselVisible = true;
     let showcaseRevealed = false;
+    let cycleTimeline = null;
+    let zoomTargetCard = null;
+    let departureCard = null;
 
-    const renderPremiumCarousel = (timestamp) => {
-      if (!premiumShowcaseViewport || !premiumShowcaseTrack) return;
-
+    const paintCarousel = () => {
       const firstCard = carouselCards[0];
+      if (!premiumShowcaseViewport || !premiumShowcaseTrack || !firstCard) return;
+
       const viewportBounds = premiumShowcaseViewport.getBoundingClientRect();
       const cardStyle = getComputedStyle(firstCard);
       const trackStyle = getComputedStyle(premiumShowcaseTrack);
@@ -1281,15 +1283,6 @@ stage.addEventListener('pointerleave', resetBedPosition);
       const stride = cardWidth + gap;
       const loopWidth = stride * (carouselCards.length / 2);
       const baseOffset = viewportBounds.width / 2 - (cardWidth / 2 + stride * 2);
-
-      if (carouselVisible) {
-        if (carouselLastTimestamp !== null) {
-          carouselOffset = (carouselOffset + (timestamp - carouselLastTimestamp) * (carouselSpeed / 1000)) % loopWidth;
-        }
-        carouselLastTimestamp = timestamp;
-      } else {
-        carouselLastTimestamp = null;
-      }
 
       premiumShowcaseTrack.style.transform = `translate3d(${baseOffset - carouselOffset}px, 0, 0)`;
 
@@ -1301,14 +1294,13 @@ stage.addEventListener('pointerleave', resetBedPosition);
         const normalizedDistance = Math.min(distance / 2.15, 1);
         const easedDistance = normalizedDistance * normalizedDistance * (3 - 2 * normalizedDistance);
         const scale = 1 - easedDistance * 0.22;
-        const opacity = 0.66 + (1 - easedDistance) * 0.34;
+        const opacity = 0.5 + (1 - easedDistance) * 0.5;
 
-        card.style.transform = `scale(${scale})`;
+        if (card !== zoomTargetCard && card !== departureCard) {
+          card.style.transform = `scale(${scale})`;
+        }
         card.style.opacity = String(opacity);
-        card.dataset.focused = distance < 0.22 ? 'true' : 'false';
       });
-
-      carouselFrame = requestAnimationFrame(renderPremiumCarousel);
     };
 
     const revealPremiumShowcase = () => {
@@ -1324,18 +1316,97 @@ stage.addEventListener('pointerleave', resetBedPosition);
       });
     };
 
-    carouselFrame = requestAnimationFrame(renderPremiumCarousel);
-    revealPremiumShowcase();
+    const nearestCenterCardIndex = () => {
+      const viewportBounds = premiumShowcaseViewport.getBoundingClientRect();
+      const viewportCenter = viewportBounds.left + viewportBounds.width / 2;
+      let best = 0;
+      let bestDistance = Infinity;
+      carouselCards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = index;
+        }
+      });
+      return best;
+    };
 
-    const showcaseObserver = new IntersectionObserver((entries, observer) => {
+    const advanceCarousel = () => {
+      if (cycleTimeline) return;
+      const firstCard = carouselCards[0];
+      const trackStyle = getComputedStyle(premiumShowcaseTrack);
+      const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || 0;
+      const stride = firstCard.offsetWidth + gap;
+      const loopWidth = stride * (carouselCards.length / 2);
+      const targetOffset = carouselOffset + stride;
+      const startCenterIndex = nearestCenterCardIndex();
+      const nextCenterCard = carouselCards[(startCenterIndex + 1) % carouselCards.length];
+      const proxy = { offset: carouselOffset };
+      zoomTargetCard = carouselCards[(startCenterIndex + 1) % carouselCards.length];
+
+      cycleTimeline = gsap.timeline({
+        onComplete: () => {
+          cycleTimeline = null;
+          carouselOffset = targetOffset;
+          if (carouselOffset >= loopWidth) carouselOffset -= loopWidth;
+          departureCard = zoomTargetCard;
+          zoomTargetCard = null;
+          paintCarousel();
+          if (carouselVisible) advanceCarousel();
+        },
+      });
+      cycleTimeline.to(proxy, {
+        offset: targetOffset,
+        duration: slideDuration,
+        ease: 'power2.inOut',
+        onUpdate: () => {
+          carouselOffset = proxy.offset;
+          paintCarousel();
+        },
+      }, 0);
+      const sideNorm = Math.min(1 / 2.15, 1);
+      const sideEased = sideNorm * sideNorm * (3 - 2 * sideNorm);
+      const sideScale = 1 - sideEased * 0.22;
+      cycleTimeline.fromTo(zoomTargetCard,
+        { scale: sideScale },
+        { scale: 1.06, duration: slideDuration, ease: 'power2.inOut' },
+        0);
+
+      if (departureCard) {
+        const shrinkingCard = departureCard;
+        const normDepart = Math.min(1 / 2.15, 1);
+        const easedDepart = normDepart * normDepart * (3 - 2 * normDepart);
+        cycleTimeline.to(shrinkingCard, {
+          scale: 1 - easedDepart * 0.22,
+          duration: slideDuration,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            if (departureCard === shrinkingCard) departureCard = null;
+          },
+        }, 0);
+      }
+      cycleTimeline.to({}, { duration: holdZoomedOutMs / 1000 });
+    };
+
+    paintCarousel();
+    revealPremiumShowcase();
+    advanceCarousel();
+
+    const showcaseObserver = new IntersectionObserver((entries) => {
       const entry = entries[0];
       carouselVisible = Boolean(entry?.isIntersecting);
-      if (carouselVisible) revealPremiumShowcase();
+      if (carouselVisible) {
+        revealPremiumShowcase();
+        if (cycleTimeline) cycleTimeline.play();
+        else advanceCarousel();
+      } else {
+        if (cycleTimeline) cycleTimeline.pause();
+      }
     }, { threshold: 0.16 });
 
     showcaseObserver.observe(premiumShowcaseSection);
   }
-
   const editorialDiscoverySection = document.querySelector('.editorial-discovery-section');
   const editorialDiscoveryImages = document.querySelectorAll('.editorial-discovery-image');
   const editorialDiscoveryCopy = document.querySelector('.editorial-discovery-copy');
