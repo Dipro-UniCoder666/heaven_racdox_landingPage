@@ -1104,32 +1104,7 @@ const resetBedPosition = () => {
 stage.addEventListener('pointermove', handleBedPointerMove);
 stage.addEventListener('pointerleave', resetBedPosition);
 
-  const collectionSection = document.querySelector('.collection-section');
-  const collectionProductCards = document.querySelectorAll('.collection-product');
 
-  if (collectionSection && collectionProductCards.length) {
-    const revealCollection = () => {
-      gsap.to(collectionSection, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
-      gsap.to(collectionProductCards, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
-    };
-
-    gsap.set(collectionSection, { autoAlpha: 0 });
-  gsap.set(collectionProductCards, { autoAlpha: 0, y: 28 });
-
-    const collectionObserver = new IntersectionObserver((entries, observer) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      revealCollection();
-      observer.disconnect();
-    }, { threshold: 0.18 });
-
-    collectionObserver.observe(collectionSection);
-  }
 
   const premiumSection = document.querySelector('.premium-section');
   if (premiumSection) {
@@ -1253,6 +1228,153 @@ stage.addEventListener('pointerleave', resetBedPosition);
     positionCategoryLamp();
     window.addEventListener("resize", positionCategoryLamp);
   }
+  const collectionSection = document.querySelector('.collection-section');
+  const collectionCards = document.querySelectorAll('.collection-product');
+  const collectionViewport = document.querySelector('.collection-viewport');
+  const collectionTrack = document.querySelector('.collection-track');
+  if (collectionSection && collectionCards.length) {
+    gsap.set([collectionSection, ...collectionCards], { autoAlpha: 0 });
+    gsap.set(collectionCards, { y: 24 });
+
+    const collectionSlideDuration = 1.6;
+    const collectionHoldZoomedOutMs = 3000;
+    let collectionOffset = 0;
+    let collectionVisible = true;
+    let collectionRevealed = false;
+    let collectionCycle = null;
+    let collectionZoomTarget = null;
+    let collectionDeparture = null;
+
+    const collectionPaint = () => {
+      const firstCard = collectionCards[0];
+      if (!collectionViewport || !collectionTrack || !firstCard) return;
+
+      const viewportBounds = collectionViewport.getBoundingClientRect();
+      const cardStyle = getComputedStyle(firstCard);
+      const trackStyle = getComputedStyle(collectionTrack);
+      const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || parseFloat(cardStyle.marginRight) || 0;
+      const cardWidth = firstCard.offsetWidth;
+      const stride = cardWidth + gap;
+      const loopWidth = stride * (collectionCards.length / 2);
+      const baseOffset = viewportBounds.width / 2 - (cardWidth / 2 + stride * 2);
+
+      collectionTrack.style.transform = `translate3d(${baseOffset - collectionOffset}px, 0, 0)`;
+
+      const trackBounds = collectionTrack.getBoundingClientRect();
+      const viewportCenter = viewportBounds.left + viewportBounds.width / 2;
+      collectionCards.forEach((card) => {
+        const cardCenter = trackBounds.left + card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(cardCenter - viewportCenter) / stride;
+        const normalizedDistance = Math.min(distance / 2.15, 1);
+        const easedDistance = normalizedDistance * normalizedDistance * (3 - 2 * normalizedDistance);
+        const scale = 1 - easedDistance * 0.22;
+        const opacity = 0.5 + (1 - easedDistance) * 0.5;
+
+        if (card !== collectionZoomTarget && card !== collectionDeparture) {
+          card.style.transform = `scale(${scale})`;
+        }
+        card.style.opacity = String(opacity);
+      });
+    };
+
+    const collectionReveal = () => {
+      if (collectionRevealed) return;
+      collectionRevealed = true;
+      gsap.to(collectionSection, { autoAlpha: 1, duration: 0.45, ease: 'power2.out' });
+      gsap.to(collectionCards, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.65,
+        stagger: 0.1,
+        ease: 'power3.out',
+      });
+    };
+
+    const collectionNearestIndex = () => {
+      const viewportBounds = collectionViewport.getBoundingClientRect();
+      const viewportCenter = viewportBounds.left + viewportBounds.width / 2;
+      let best = 0;
+      let bestDistance = Infinity;
+      collectionCards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - viewportCenter);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = index;
+        }
+      });
+      return best;
+    };
+
+    const collectionAdvance = () => {
+      if (collectionCycle) return;
+      const firstCard = collectionCards[0];
+      const trackStyle = getComputedStyle(collectionTrack);
+      const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || 0;
+      const stride = firstCard.offsetWidth + gap;
+      const loopWidth = stride * (collectionCards.length / 2);
+      const targetOffset = collectionOffset + stride;
+      const startCenterIndex = collectionNearestIndex();
+      collectionZoomTarget = collectionCards[(startCenterIndex + 1) % collectionCards.length];
+      const proxy = { offset: collectionOffset };
+
+      collectionCycle = gsap.timeline({
+        onComplete: () => {
+          collectionCycle = null;
+          collectionOffset = targetOffset;
+          if (collectionOffset >= loopWidth) collectionOffset -= loopWidth;
+          collectionDeparture = collectionZoomTarget;
+          collectionZoomTarget = null;
+          collectionPaint();
+          if (collectionVisible) collectionAdvance();
+        },
+      });
+      collectionCycle.to(proxy, {
+        offset: targetOffset,
+        duration: collectionSlideDuration,
+        ease: 'power2.inOut',
+        onUpdate: () => {
+          collectionOffset = proxy.offset;
+          collectionPaint();
+        },
+      }, 0);
+      collectionCycle.to(collectionZoomTarget, { scale: 1.06, duration: collectionSlideDuration, ease: 'power2.inOut' }, 0);
+
+      if (collectionDeparture) {
+        const shrinkingCard = collectionDeparture;
+        const normDepart = Math.min(1 / 2.15, 1);
+        const easedDepart = normDepart * normDepart * (3 - 2 * normDepart);
+        collectionCycle.to(shrinkingCard, {
+          scale: 1 - easedDepart * 0.22,
+          duration: collectionSlideDuration,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            if (collectionDeparture === shrinkingCard) collectionDeparture = null;
+          },
+        }, 0);
+      }
+      collectionCycle.to({}, { duration: collectionHoldZoomedOutMs / 1000 });
+    };
+
+    collectionPaint();
+    collectionReveal();
+    collectionAdvance();
+
+    const collectionObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      collectionVisible = Boolean(entry?.isIntersecting);
+      if (collectionVisible) {
+        collectionReveal();
+        if (collectionCycle) collectionCycle.play();
+        else collectionAdvance();
+      } else {
+        if (collectionCycle) collectionCycle.pause();
+      }
+    }, { threshold: 0.16 });
+
+    collectionObserver.observe(collectionSection);
+  }
+
   const premiumShowcaseSection = document.querySelector('.premium-showcase-section');
   const premiumShowcaseCards = document.querySelectorAll('.premium-showcase-card');
   const premiumShowcaseViewport = document.querySelector('.premium-showcase-viewport');

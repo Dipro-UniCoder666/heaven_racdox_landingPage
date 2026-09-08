@@ -132,7 +132,7 @@ button {
   display: flex;
   width: max-content;
   gap: clamp(1.25rem, 2.4vw, 3rem);
-  animation: collection-marquee 72s linear infinite;
+  /* marquee replaced by stepped carousel */
   will-change: transform;
 }
 
@@ -3147,7 +3147,7 @@ button {
 
   .collection-track {
     gap: 1rem;
-    animation-duration: 58s;
+    /* marquee replaced by stepped carousel */
   }
 
   .collection-product {
