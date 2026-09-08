@@ -3736,7 +3736,7 @@ button {
   border-radius: 50%;
   background: radial-gradient(circle at 50% 30%, #ffd873 0%, #f6b83f 55%, #e3a23c 100%);
   box-shadow: 0 0 8px 3px rgba(246, 184, 63, 0.5), 0 0 20px 8px rgba(246, 184, 63, 0.3), 0 0 34px 14px rgba(246, 184, 63, 0.12);
-  opacity: 1;
+  opacity: 0.8;
   transition: box-shadow 300ms ease, opacity 300ms ease;
 }
 
@@ -3750,8 +3750,8 @@ button {
 }
 
 @keyframes category-lamp-pulse {
-  0%, 100% { opacity: 0.55; box-shadow: 0 0 5px 2px rgba(246, 184, 63, 0.22), 0 0 12px 5px rgba(246, 184, 63, 0.12); }
-  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(246, 184, 63, 0.5), 0 0 20px 8px rgba(246, 184, 63, 0.3), 0 0 34px 14px rgba(246, 184, 63, 0.12); }
+  0%, 100% { opacity: 0.44; box-shadow: 0 0 5px 2px rgba(246, 184, 63, 0.22), 0 0 12px 5px rgba(246, 184, 63, 0.12); }
+  50% { opacity: 0.8; box-shadow: 0 0 8px 3px rgba(246, 184, 63, 0.5), 0 0 20px 8px rgba(246, 184, 63, 0.3), 0 0 34px 14px rgba(246, 184, 63, 0.12); }
 }
 
 @media (max-width: 900px) {
@@ -3763,6 +3763,6 @@ button {
 
 @media (max-width: 560px) {
   .category-lamp {
-    transform: translateY(50px) scale(0.61);
+    transform: translateX(-17px) translateY(67px) scale(0.54);
   }
 }
