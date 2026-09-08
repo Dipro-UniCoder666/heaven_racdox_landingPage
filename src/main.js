@@ -306,9 +306,17 @@ const renderNavbar = () => `
     </nav>
 
     <div class="utility-actions">
-      <button class="utility-button" type="button" aria-label="Search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"></circle><path d="m16 16 4.2 4.2"></path></svg>
-      </button>
+      <div class="nav-search">
+        <div class="nav-search-box">
+          <span class="nav-search-glyph" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.3"></circle><path d="m16 16 4.2 4.2"></path></svg>
+          </span>
+          <input class="nav-search-field" type="text" placeholder="Search any product" aria-label="Search any product" />
+        </div>
+        <button class="utility-button nav-search-toggle" type="button" aria-label="Search" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"></circle><path d="m16 16 4.2 4.2"></path></svg>
+        </button>
+      </div>
       <button class="utility-button" type="button" aria-label="Account">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.2" r="3.3"></circle><path d="M5.4 20c.7-3.4 3-5.1 6.6-5.1s5.9 1.7 6.6 5.1"></path></svg>
       </button>
@@ -885,6 +893,21 @@ const isCollectionsPage = window.location.pathname === '/collections';
 const isOurStoryPage = window.location.pathname === '/our-story';
 const isBespokePage = window.location.pathname === '/bespoke';
 document.querySelector('#app').innerHTML = isProductPage ? productPageMarkup(productPage) : isCollectionsPage ? collectionsPageMarkup : isOurStoryPage ? ourStoryPageMarkup : isBespokePage ? bespokePageMarkup : heroMarkup;
+
+const navSearch = document.querySelector('.nav-search');
+const navSearchToggle = document.querySelector('.nav-search-toggle');
+const navSearchField = document.querySelector('.nav-search-field');
+if (navSearch && navSearchToggle && navSearchField) {
+  navSearchToggle.addEventListener('click', () => {
+    const isOpen = navSearch.classList.toggle('is-open');
+    navSearchToggle.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      navSearchField.focus();
+    } else {
+      navSearchField.blur();
+    }
+  });
+}
 
 const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
 const mobileMenuPanel = document.querySelector('.mobile-menu-panel');
