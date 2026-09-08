@@ -524,7 +524,10 @@ const heroMarkup = `
     <section class="editorial-discovery-section" aria-labelledby="editorial-discovery-title">
       <div class="editorial-discovery-grid">
         <div class="editorial-discovery-image editorial-discovery-image-primary">
-          <img src="/images/image7.png" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
+          <picture>
+            <source media="(max-width: 900px)" srcset="/images/cate5.png" />
+            <img src="/images/cate5.png" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
+          </picture>
         </div>
         <div class="editorial-discovery-copy">
           <h1 id="editorial-discovery-title">ELEVATE YOUR SPACE</h1>
@@ -532,10 +535,16 @@ const heroMarkup = `
           <a href="/collections">EXPLORE COLLECTION</a>
         </div>
         <div class="editorial-discovery-image editorial-discovery-image-top">
-          <img src="/images/image3.png" alt="Signature cabinet in a refined interior" loading="lazy" />
+          <picture>
+            <source media="(max-width: 900px)" srcset="/images/cate2.png" />
+            <img src="/images/cate2.png" alt="Signature cabinet in a refined interior" loading="lazy" />
+          </picture>
         </div>
         <div class="editorial-discovery-image editorial-discovery-image-bottom">
-          <img src="/images/image4.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
+          <picture>
+            <source media="(max-width: 900px)" srcset="/images/cate3.png" />
+            <img src="/images/cate3.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
+          </picture>
         </div>
       </div>
     </section>
