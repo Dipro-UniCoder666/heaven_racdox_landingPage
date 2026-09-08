@@ -3031,15 +3031,22 @@ button {
     font-size: 0.6rem;
   }
 
-  .hero-copy {
+  .hero-copy-anchor {
+    position: absolute;
     top: 31.5%;
     right: 0.9rem;
     left: auto;
     bottom: auto;
     width: min(39vw, 150px);
-    max-width: 150px;
-    text-align: right;
     transform: translateY(-50%);
+  }
+
+  .hero-copy {
+    position: static;
+    width: auto;
+    max-width: none;
+    text-align: right;
+    transform: none;
   }
 
   .eyebrow {

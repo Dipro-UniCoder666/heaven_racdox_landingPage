@@ -357,10 +357,12 @@ const heroMarkup = `
           </div>
         </div>
 
-        <div class="hero-copy">
-          <p class="eyebrow">BESPOKE FURNITURE</p>
+        <div class="hero-copy-anchor">
+          <div class="hero-copy">
+            <p class="eyebrow">BESPOKE FURNITURE</p>
           <h2 class="hero-copy-title">Furniture made to fit your space, your taste, your life.</h2>
           <p class="supporting-copy">From custom sofas and beds to dining and office pieces, Heaven Furniture Mart creates furniture around your space, your taste, and the way you live.</p>
+          </div>
         </div>
 
         <div class="hero-controls" aria-label="Furniture control buttons">
