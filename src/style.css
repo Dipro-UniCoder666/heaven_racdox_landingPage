@@ -3604,10 +3604,19 @@ button {
 
   .category-tile-label small {
     color: rgba(58, 41, 34, 0.62);
+    display: none;
   }
 
   .category-tile img {
     height: auto;
+  }
+
+  .category-heading h2 {
+    font-size: clamp(0.92rem, 3.8vw, 3rem);
+  }
+
+  .category-heading p {
+    font-size: clamp(0.65rem, 1.05vw, 0.8rem);
   }
 
   .brand-lockup {
