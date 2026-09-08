@@ -199,10 +199,10 @@ button {
 .craft-process-subtitle {
   margin: 0 0 1.4rem;
   max-width: 34ch;
-  color: rgba(58, 41, 34, 0.68);
+  color: var(--brass);
   font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 400;
+  font-size: 0.98rem;
+  font-weight: 500;
   line-height: 1.55;
 }
 
@@ -277,6 +277,9 @@ button {
 
   .craft-process-subtitle {
     margin-bottom: 0;
+    color: rgba(58, 41, 34, 0.68);
+    font-size: 0.78rem;
+    font-weight: 400;
   }
 
   .craft-process-text {
