@@ -516,7 +516,7 @@ const heroMarkup = `
           <div class="premium-image-wrap">
             <a class="premium-sofa-link" href="/product/luxury-living-sofa" aria-label="View Luxury Living Sofa details">
               <img src="/images/image4_trans.png" alt="Luxury sofa by Heaven Furniture Mart" loading="lazy" />
-              <span class="premium-sofa-price">${luxuryLivingSofaProduct.price}</span>
+              <span class="premium-sofa-price"><span class="heading-accent heading-accent-gold">${luxuryLivingSofaProduct.price}</span></span>
             </a>
           </div>
           <div class="premium-copy">
@@ -555,6 +555,10 @@ const heroMarkup = `
             <source media="(max-width: 900px)" srcset="/images/cate5.png" />
             <img src="/images/cate5.png" alt="Refined lounge table setting by Heaven Furniture Mart" loading="lazy" />
           </picture>
+          <div class="editorial-discovery-caption">
+            <h3>A Space for Focus</h3>
+            <a class="editorial-discovery-explore" href="/collections">Explore Now</a>
+          </div>
         </div>
         <div class="editorial-discovery-copy">
           <h1 id="editorial-discovery-title"><span class="heading-accent heading-accent-gold">ELEVATE</span> YOUR SPACE</h1>
@@ -566,12 +570,20 @@ const heroMarkup = `
             <source media="(max-width: 900px)" srcset="/images/cate2.png" />
             <img src="/images/cate2.png" alt="Signature cabinet in a refined interior" loading="lazy" />
           </picture>
+          <div class="editorial-discovery-caption">
+            <h3>Crafted From Solid Wood</h3>
+            <a class="editorial-discovery-explore" href="/collections">Explore Now</a>
+          </div>
         </div>
         <div class="editorial-discovery-image editorial-discovery-image-bottom">
           <picture>
             <source media="(max-width: 900px)" srcset="/images/cate3.png" />
             <img src="/images/cate3.png" alt="Luxury living room sofa by Heaven Furniture Mart" loading="lazy" />
           </picture>
+          <div class="editorial-discovery-caption">
+            <h3>Comfort, Refined</h3>
+            <a class="editorial-discovery-explore" href="/collections">Explore Now</a>
+          </div>
         </div>
       </div>
     </section>
@@ -579,7 +591,15 @@ const heroMarkup = `
     <section class="stories-section" aria-labelledby="stories-title">
       <div class="stories-heading">
         <p class="stories-kicker">TESTIMONIALS</p>
-        <h1 id="stories-title">Hear from happy customers</h1>
+        <h1 id="stories-title">Hear from <span class="heading-accent heading-accent-gold heading-accent-1s">happy</span> customers<svg class="wink-emoji" viewBox="0 0 64 40" aria-hidden="true">
+          <circle class="wink-eye-right" cx="44" cy="16" r="3.4" fill="var(--brass)" />
+          <circle class="wink-eye-left" cx="20" cy="16" r="3.4" fill="var(--brass)" />
+          <g class="wink-lash">
+            <path d="M14 8.5 Q20 2.5 26 8.5" fill="none" stroke="var(--brass)" stroke-width="2.6" stroke-linecap="round" />
+            <path d="M15.5 17 Q20 13 24.5 17" fill="none" stroke="var(--brass)" stroke-width="2.6" stroke-linecap="round" />
+          </g>
+          <path class="wink-mouth" d="M11 25 Q32 38 53 25" fill="none" stroke="var(--brass)" stroke-width="3" stroke-linecap="round" />
+        </svg></h1>
       </div>
       <div class="stories-layout">
         <div class="story-list">
@@ -641,7 +661,7 @@ const heroMarkup = `
             </div>
           </div>
           <div class="footer-column">
-            <h2>FOLLOW</h2>
+            <h2>CONNECT WITH THE CRAFT</h2>
             <a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a>
             <a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a>
             <a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a>
@@ -650,6 +670,10 @@ const heroMarkup = `
 
         <div class="footer-cta">
           <p>Ready to shape your space?</p>
+          <div class="footer-wood-logs">
+            <img src="/images/wood-log.png" alt="" aria-hidden="true" />
+            <span class="footer-wood-logs-shine" aria-hidden="true"></span>
+          </div>
         </div>
 
         <div class="footer-bottom">
@@ -856,9 +880,9 @@ const ourStoryPageMarkup = `
           <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
           <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
           <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
-          <div class="footer-column"><h2>FOLLOW</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
+          <div class="footer-column"><h2>CONNECT WITH THE CRAFT</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
         </div>
-        <div class="footer-cta"><p>Ready to shape your space?</p></div>
+        <div class="footer-cta"><p>Ready to shape your space?</p><div class="footer-wood-logs"><img src="/images/wood-log.png" alt="" aria-hidden="true" /><span class="footer-wood-logs-shine" aria-hidden="true"></span></div></div>
         <div class="footer-bottom"><p>© 2026 HEAVEN FURNITURE MART</p><p>AGRABAD <span aria-hidden="true">·</span> CHATTOGRAM <span aria-hidden="true">·</span> BANGLADESH</p></div>
       </div>
     </footer>
