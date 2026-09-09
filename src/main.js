@@ -595,10 +595,9 @@ const heroMarkup = `
           <circle class="wink-eye-right" cx="44" cy="16" r="3.4" fill="var(--brass)" />
           <circle class="wink-eye-left" cx="20" cy="16" r="3.4" fill="var(--brass)" />
           <g class="wink-lash">
-            <path d="M14 8.5 Q20 2.5 26 8.5" fill="none" stroke="var(--brass)" stroke-width="2.6" stroke-linecap="round" />
             <path d="M15.5 17 Q20 13 24.5 17" fill="none" stroke="var(--brass)" stroke-width="2.6" stroke-linecap="round" />
           </g>
-          <path class="wink-mouth" d="M11 25 Q32 38 53 25" fill="none" stroke="var(--brass)" stroke-width="3" stroke-linecap="round" />
+          <path class="wink-mouth" d="M20 26 Q32 31.5 44 26" fill="none" stroke="var(--brass)" stroke-width="3" stroke-linecap="round" />
         </svg></h1>
       </div>
       <div class="stories-layout">
@@ -661,7 +660,7 @@ const heroMarkup = `
             </div>
           </div>
           <div class="footer-column">
-            <h2>CONNECT WITH THE CRAFT</h2>
+            <h2 class="footer-connect-heading">CONNECT WITH THE CRAFT</h2>
             <a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a>
             <a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a>
             <a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a>
@@ -880,7 +879,7 @@ const ourStoryPageMarkup = `
           <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
           <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
           <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
-          <div class="footer-column"><h2>CONNECT WITH THE CRAFT</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
+          <div class="footer-column"><h2 class="footer-connect-heading">CONNECT WITH THE CRAFT</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
         </div>
         <div class="footer-cta"><p>Ready to shape your space?</p><div class="footer-wood-logs"><img src="/images/wood-log.png" alt="" aria-hidden="true" /><span class="footer-wood-logs-shine" aria-hidden="true"></span></div></div>
         <div class="footer-bottom"><p>© 2026 HEAVEN FURNITURE MART</p><p>AGRABAD <span aria-hidden="true">·</span> CHATTOGRAM <span aria-hidden="true">·</span> BANGLADESH</p></div>
