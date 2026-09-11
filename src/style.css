@@ -93,6 +93,11 @@ button {
   margin-bottom: clamp(2.5rem, 5vw, 5rem);
 }
 
+/* ── Mobile hero bridge — hidden on desktop ── */
+.hero-mobile-bridge {
+  display: none;
+}
+
 .collection-kicker,
 .collection-category {
   margin: 0 0 0.9rem;
@@ -740,10 +745,22 @@ button {
     text-transform: uppercase;
     white-space: pre-line;
     pointer-events: none;
-    color: #c6a96c;
-    -webkit-text-fill-color: #c6a96c;
-    background: none;
-    animation: none;
+    background-image: linear-gradient(
+      100deg,
+      #c6a96c 0%,
+      #c6a96c 42%,
+      #f7e6b8 50%,
+      #c6a96c 58%,
+      #c6a96c 100%
+    );
+    background-size: 280% 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: hero-sub-glance 2.3s linear infinite;
   }
 }
 

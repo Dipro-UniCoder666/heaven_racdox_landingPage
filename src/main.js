@@ -381,6 +381,12 @@ const heroMarkup = `
       </section>
     </main>
 
+    <div class="hero-mobile-bridge" aria-label="Contact us on WhatsApp">
+      <p class="hero-mobile-bridge-text">Ready to shape your space
+        <a class="hero-mobile-bridge-btn" href="https://wa.me/8801960481983?text=%E0%A6%86%E0%A6%AA%E0%A6%A8%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0%20%E0%A6%B8%E0%A7%87%E0%A6%AC%E0%A6%BE%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%AC%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%A4%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp"><span class="craft-process-social-arrow" aria-hidden="true">&gt;</span></a>
+      </p>
+    </div>
+
     <section class="collection-section" id="collections" aria-labelledby="collection-title">
       <div class="collection-heading">
         <div>
