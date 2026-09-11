@@ -98,6 +98,44 @@ button {
   display: none;
 }
 
+/* ── Footer CTA WhatsApp link circle ── */
+.footer-cta-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 0.45rem;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    100deg,
+    #b89a62 0%,
+    #b89a62 42%,
+    #f4e2ab 50%,
+    #b89a62 58%,
+    #b89a62 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  animation: hero-sub-glance 2.3s linear infinite;
+  transition: transform 180ms ease;
+  text-decoration: none;
+}
+
+.footer-cta-link:hover,
+.footer-cta-link:focus-visible {
+  transform: scale(1.08);
+}
+
+.footer-cta-link .craft-process-social-arrow {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  line-height: 1;
+  color: var(--paper);
+}
+
 .collection-kicker,
 .collection-category {
   margin: 0 0 0.9rem;
