@@ -740,22 +740,10 @@ button {
     text-transform: uppercase;
     white-space: pre-line;
     pointer-events: none;
-    background-image: linear-gradient(
-      100deg,
-      #c6a96c  0%,
-      #c6a96c 38%,
-      #f7e6b8 50%,
-      #c6a96c 62%,
-      #c6a96c 100%
-    );
-    background-size: 200% 100%;
-    background-position: 150% 0;
-    background-repeat: no-repeat;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: promo-glance 2.3s linear infinite;
+    color: #c6a96c;
+    -webkit-text-fill-color: #c6a96c;
+    background: none;
+    animation: none;
   }
 }
 
