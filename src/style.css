@@ -1273,6 +1273,7 @@ button {
   transform-origin: left center;
   will-change: transform, opacity;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .story-slot:hover {
@@ -3798,7 +3799,7 @@ button {
   }
 
   .story-viewport {
-    height: 320px;
+    height: 400px;
   }
 
   .stories-feature-card {
