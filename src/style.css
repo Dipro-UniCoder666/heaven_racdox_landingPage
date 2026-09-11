@@ -3946,6 +3946,7 @@ button {
   .collection-section {
     width: 100%;
     padding: 1rem 0 4rem;
+    margin-top: -2px;
   }
 
   .collections-page {
