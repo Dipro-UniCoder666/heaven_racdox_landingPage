@@ -306,6 +306,21 @@ const renderNavbar = () => `
     </nav>
 
     <div class="utility-actions">
+      <div class="nav-consult">
+        <button class="utility-button nav-consult-toggle" type="button" aria-label="Contact consultation" aria-expanded="false">
+          <!-- Chat bubble with phone handset inside — thin line, luxury icon -->
+          <svg viewBox="3.5 3 17 17" aria-hidden="true" class="nav-consult-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- chat bubble — golden fill, no border stroke -->
+            <path d="M4 5.5C4 4.4 4.9 3.5 6 3.5h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H9.5L5.5 19.5V15.5H6c-1.1 0-2-.9-2-2v-8z" fill="#c6a96c" stroke="none"/>
+            <!-- phone handset — ivory/navbar color so it reads as cut-out on the gold bubble -->
+            <path d="M9.4 8.3c.2.6.6 1.2 1.1 1.7.5.5 1.1.9 1.7 1.1l.6-.6c.2-.2.4-.2.6-.1.5.3 1 .4 1.6.4.3 0 .5.2.5.5v1.5c0 .3-.2.5-.5.5C10.7 13.3 8 10.6 8 7.3c0-.3.2-.5.5-.5h1.5c.3 0 .5.2.5.5 0 .6.1 1.1.4 1.6.1.2.1.4-.1.6l-.4.4z" fill="#f3eee5" stroke="#f3eee5" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <!-- Consultation panel — expands LEFT like the search box -->
+        <div class="nav-consult-panel" aria-hidden="true" role="dialog" aria-label="Contact consultation">
+          <p class="nav-consult-heading">Ready to shape your space?<a class="nav-consult-cta" href="https://wa.me/8801960481983?text=%E0%A6%86%E0%A6%AA%E0%A6%A8%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B0%20%E0%A6%B8%E0%A7%87%E0%A6%AC%E0%A6%BE%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%AC%E0%A6%BF%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%BE%E0%A6%B0%E0%A6%BF%E0%A6%A4%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp"><svg aria-hidden="true" width="9" height="9" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle"><path d="M2 8L8 2M8 2H3M8 2V7" stroke="var(--paper)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+        </div>
+      </div>
       <div class="nav-search">
         <div class="nav-search-box">
           <span class="nav-search-glyph" aria-hidden="true">
@@ -1038,6 +1053,37 @@ document.querySelector('#app').innerHTML = isProductPage ? productPageMarkup(pro
 const navSearch = document.querySelector('.nav-search');
 const navSearchToggle = document.querySelector('.nav-search-toggle');
 const navSearchField = document.querySelector('.nav-search-field');
+const navConsult = document.querySelector('.nav-consult');
+const navConsultToggle = document.querySelector('.nav-consult-toggle');
+const navConsultPanel = document.querySelector('.nav-consult-panel');
+
+// ── Unified navbar utility state machine ──
+// Only one of "search" | "consultation" | "none" can be active at a time.
+// All state transitions go through setNavbarUtility().
+const setNavbarUtility = (target) => {
+  const isDesktop = !window.matchMedia('(max-width: 900px)').matches;
+
+  // Close search
+  if (navSearch && navSearchToggle && navSearchField) {
+    const openSearch = target === 'search' && isDesktop;
+    navSearch.classList.toggle('is-open', openSearch);
+    navSearchToggle.setAttribute('aria-expanded', String(openSearch));
+    if (openSearch) {
+      navSearchField.focus();
+    } else {
+      navSearchField.blur();
+    }
+  }
+
+  // Close / open consultation panel (desktop only)
+  if (navConsult && navConsultToggle && navConsultPanel) {
+    const openConsult = target === 'consultation' && isDesktop;
+    navConsult.classList.toggle('is-open', openConsult);
+    navConsultToggle.setAttribute('aria-expanded', String(openConsult));
+    navConsultPanel.setAttribute('aria-hidden', String(!openConsult));
+  }
+};
+
 if (navSearch && navSearchToggle && navSearchField) {
   const sizeMobileNavSearch = () => {
     if (!window.matchMedia('(max-width: 900px)').matches) {
@@ -1053,15 +1099,40 @@ if (navSearch && navSearchToggle && navSearchField) {
   window.addEventListener('resize', sizeMobileNavSearch);
   navSearchToggle.addEventListener('click', () => {
     sizeMobileNavSearch();
-    const isOpen = navSearch.classList.toggle('is-open');
-    navSearchToggle.setAttribute('aria-expanded', String(isOpen));
-    if (isOpen) {
-      navSearchField.focus();
-    } else {
-      navSearchField.blur();
-    }
+    // If search is already open, close everything; otherwise open search (closes consult)
+    const isCurrentlyOpen = navSearch.classList.contains('is-open');
+    setNavbarUtility(isCurrentlyOpen ? 'none' : 'search');
   });
 }
+
+if (navConsult && navConsultToggle && navConsultPanel) {
+  navConsultToggle.addEventListener('click', () => {
+    // Toggle: if consult is open close it, else open it (closes search)
+    const isCurrentlyOpen = navConsult.classList.contains('is-open');
+    setNavbarUtility(isCurrentlyOpen ? 'none' : 'consultation');
+  });
+}
+
+// ── Outside click: close whichever utility is open ──
+document.addEventListener('click', (e) => {
+  const clickedInsideSearch = navSearch && navSearch.contains(e.target);
+  const clickedInsideConsult = navConsult && navConsult.contains(e.target);
+  if (!clickedInsideSearch && !clickedInsideConsult) {
+    if ((navSearch && navSearch.classList.contains('is-open')) ||
+        (navConsult && navConsult.classList.contains('is-open'))) {
+      setNavbarUtility('none');
+    }
+  }
+});
+
+// ── Escape key: close whichever utility is open ──
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if ((navSearch && navSearch.classList.contains('is-open')) ||
+      (navConsult && navConsult.classList.contains('is-open'))) {
+    setNavbarUtility('none');
+  }
+});
 
 const mobileMenuTrigger = document.querySelector('.mobile-menu-trigger');
 const mobileMenuPanel = document.querySelector('.mobile-menu-panel');
@@ -2025,5 +2096,157 @@ stage.addEventListener('pointerleave', resetBedPosition);
     }, { threshold: 0.12 });
 
     footerObserver.observe(footer);
+  }
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  // PREMIUM SCROLL TRANSITIONS — post-hero sections only
+  // Each section uses a contextually appropriate entrance; nothing overrides
+  // existing internal animations (carousels, sliders, cinema text, etc.).
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Shared helper: observe once, fire entrance, then disconnect.
+  // threshold: how much of the element must be in view before firing.
+  // Higher threshold = fires later = section is more in view = feels smoother.
+  const onceVisible = (el, fn, threshold = 0.18) => {
+    if (!el) return;
+    const io = new IntersectionObserver((entries, obs) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      fn();
+      obs.disconnect();
+    }, { threshold });
+    io.observe(el);
+  };
+
+  // Shared smooth reveal: single unified tween per element group.
+  // y: 14px max — barely perceptible movement, just enough to feel directional.
+  // opacity from 0 to 1 over 1.05s with 'expo.out' — extremely soft landing.
+  const smoothReveal = (els, { delay = 0, stagger = 0, y = 14 } = {}) => {
+    if (!els || (Array.isArray(els) && !els.length)) return;
+    gsap.to(els, {
+      autoAlpha: 1,
+      y: 0,
+      scale: 1,
+      duration: 1.05,
+      delay,
+      stagger,
+      ease: 'expo.out',
+      overwrite: 'auto',
+    });
+  };
+
+  if (!prefersReducedMotion) {
+
+    // ── 1. Collection section heading ──────────────────────────────────────────
+    const collectionHeading = document.querySelector('.collection-heading');
+    if (collectionHeading) {
+      const els = [
+        collectionHeading.querySelector('.collection-kicker'),
+        collectionHeading.querySelector('h1'),
+        collectionHeading.querySelector('.collection-intro'),
+      ].filter(Boolean);
+      if (els.length) {
+        gsap.set(els, { autoAlpha: 0, y: 14 });
+        onceVisible(collectionHeading, () => smoothReveal(els, { stagger: 0.1 }), 0.15);
+      }
+    }
+
+    // ── 2. Craft-process section ───────────────────────────────────────────────
+    const craftSection = document.querySelector('.craft-process-section');
+    if (craftSection) {
+      const craftH1       = craftSection.querySelector('h1');
+      const craftSubtitle = craftSection.querySelector('.craft-process-subtitle');
+      const craftText     = craftSection.querySelector('.craft-process-text');
+      const craftVideos   = [...craftSection.querySelectorAll('.craft-process-video-wrap')];
+      const craftTextEls  = [craftH1, craftSubtitle, craftText].filter(Boolean);
+
+      gsap.set(craftSection, { autoAlpha: 0 });
+      if (craftTextEls.length) gsap.set(craftTextEls, { autoAlpha: 0, y: 14 });
+      if (craftVideos.length)  gsap.set(craftVideos,  { autoAlpha: 0, y: 14 });
+
+      onceVisible(craftSection, () => {
+        // Fade the section container first, then content flows in together
+        gsap.to(craftSection, { autoAlpha: 1, duration: 0.55, ease: 'power2.out', overwrite: 'auto' });
+        smoothReveal(craftTextEls, { stagger: 0.1, delay: 0.05 });
+        smoothReveal(craftVideos,  { stagger: 0.12, delay: 0.1 });
+      }, 0.15);
+    }
+
+    // ── 3. Cinema section wrapper ──────────────────────────────────────────────
+    const cinemaSection = document.querySelector('.cinema-section');
+    if (cinemaSection) {
+      gsap.set(cinemaSection, { autoAlpha: 0, y: 10 });
+      onceVisible(cinemaSection, () => {
+        gsap.to(cinemaSection, {
+          autoAlpha: 1, y: 0,
+          duration: 1.0,
+          ease: 'expo.out',
+          overwrite: 'auto',
+        });
+      }, 0.1);
+    }
+
+    // ── 4. Premium showcase heading ────────────────────────────────────────────
+    const premiumShowcaseHeading = document.querySelector('.premium-showcase-heading');
+    if (premiumShowcaseHeading) {
+      const els = [
+        premiumShowcaseHeading.querySelector('.premium-showcase-kicker'),
+        premiumShowcaseHeading.querySelector('h1'),
+      ].filter(Boolean);
+      if (els.length) {
+        gsap.set(els, { autoAlpha: 0, y: 14 });
+        onceVisible(premiumShowcaseHeading, () => smoothReveal(els, { stagger: 0.11 }), 0.18);
+      }
+    }
+
+    // ── 5. Editorial discovery section ────────────────────────────────────────
+    const editorialSection = document.querySelector('.editorial-discovery-section');
+    if (editorialSection) {
+      const editCopy   = editorialSection.querySelector('.editorial-discovery-copy');
+      const editImages = [...editorialSection.querySelectorAll('.editorial-discovery-image')];
+
+      gsap.set(editorialSection, { autoAlpha: 0 });
+      if (editCopy)         gsap.set(editCopy,    { autoAlpha: 0, y: 14 });
+      if (editImages.length) gsap.set(editImages, { autoAlpha: 0, y: 14, scale: 0.992 });
+
+      onceVisible(editorialSection, () => {
+        gsap.to(editorialSection, { autoAlpha: 1, duration: 0.55, ease: 'power2.out', overwrite: 'auto' });
+        if (editCopy)          smoothReveal(editCopy,    { delay: 0.06 });
+        if (editImages.length) smoothReveal(editImages,  { stagger: 0.1, delay: 0.08 });
+      }, 0.15);
+    }
+
+    // ── 6. Stories / testimonials section ─────────────────────────────────────
+    const storiesSection = document.querySelector('.stories-section');
+    if (storiesSection) {
+      const storiesHeading = storiesSection.querySelector('.stories-heading');
+      const storiesLayout  = storiesSection.querySelector('.stories-layout');
+
+      gsap.set(storiesSection, { autoAlpha: 0 });
+      if (storiesHeading) gsap.set(storiesHeading, { autoAlpha: 0, y: 14 });
+      if (storiesLayout)  gsap.set(storiesLayout,  { autoAlpha: 0, y: 14 });
+
+      onceVisible(storiesSection, () => {
+        gsap.to(storiesSection, { autoAlpha: 1, duration: 0.55, ease: 'power2.out', overwrite: 'auto' });
+        if (storiesHeading) smoothReveal(storiesHeading, { delay: 0.07 });
+        if (storiesLayout)  smoothReveal(storiesLayout,  { delay: 0.18 });
+      }, 0.15);
+    }
+
+  } else {
+    // prefers-reduced-motion: instantly show all initially-hidden elements.
+    document.querySelectorAll(
+      '.collection-heading .collection-kicker, .collection-heading h1, .collection-heading .collection-intro,' +
+      '.craft-process-section, .craft-process-section h1, .craft-process-section .craft-process-subtitle,' +
+      '.craft-process-section .craft-process-text, .craft-process-section .craft-process-video-wrap,' +
+      '.cinema-section, .premium-showcase-heading .premium-showcase-kicker, .premium-showcase-heading h1,' +
+      '.editorial-discovery-section, .editorial-discovery-copy, .editorial-discovery-image,' +
+      '.stories-section, .stories-heading, .stories-layout'
+    ).forEach((el) => {
+      el.style.opacity    = '1';
+      el.style.visibility = 'visible';
+      el.style.transform  = 'none';
+    });
   }
 }

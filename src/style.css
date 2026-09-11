@@ -1875,6 +1875,12 @@ button {
   border-color: var(--brass);
 }
 
+/* Hide the consult icon when search is expanded so it doesn't show inside the search box */
+.utility-actions:has(.nav-search.is-open) .nav-consult {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .nav-search-glyph {
   display: none;
   flex: 0 0 auto;
@@ -1917,6 +1923,173 @@ button {
 .nav-search-field::placeholder {
   color: rgba(58, 41, 34, 0.42);
   opacity: 1;
+}
+
+/* ===== navbar consultation icon + panel (DESKTOP ONLY) ===== */
+.nav-consult {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* The icon inherits .utility-button baseline; strip the circle border — bare icon only */
+/* Also override the fixed 2.1rem box so the button wraps tightly around the icon */
+.nav-consult-toggle {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  transition: opacity 220ms ease;
+}
+
+/* Override .utility-button svg which forces 1.1rem — let the icon control its own size */
+.nav-consult-toggle svg.nav-consult-icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* Brass icon — filled gold bubble, ivory phone cutout, glacé shimmer */
+.nav-consult-icon {
+  width: 26px;
+  height: 26px;
+  display: block;
+  overflow: visible;
+}
+
+/* Glacé shimmer overlay — same treatment as hero .eyebrow "BESPOKE FURNITURE" */
+.nav-consult-toggle {
+  position: relative;
+}
+
+.nav-consult-toggle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background-image: linear-gradient(
+    100deg,
+    transparent      0%,
+    transparent      38%,
+    rgba(255, 245, 200, 0.72) 50%,
+    transparent      62%,
+    transparent      100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  animation: hero-sub-glance 2.3s linear infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 3;
+}
+
+/* no shimmer pseudo-element */
+.nav-consult-toggle::after {
+  content: none;
+}
+
+.nav-consult-toggle:hover,
+.nav-consult-toggle:focus-visible {
+  border-color: transparent;
+  opacity: 0.72;
+}
+
+.nav-consult.is-open .nav-consult-toggle {
+  border-color: transparent;
+  opacity: 1;
+}
+
+/* ── Consultation panel — expands LEFT, identical pill geometry to .nav-search-box ── */
+.nav-consult-panel {
+  position: absolute;
+  right: calc(100% + 0.55rem);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  width: 0;
+  height: 2.1rem;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 6;
+  white-space: nowrap;
+  transition:
+    width 300ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 220ms ease,
+    border-color 220ms ease;
+}
+
+.nav-consult.is-open .nav-consult-panel {
+  width: 198px;
+  border-color: rgba(58, 41, 34, 0.22);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Heading — Cormorant Garamond, matches hero-mobile-bridge-text */
+.nav-consult-heading {
+  margin: 0;
+  padding: 0 0.75rem;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: #3a2922;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 220ms ease 80ms;
+}
+
+.nav-consult.is-open .nav-consult-heading {
+  opacity: 1;
+}
+
+/* CTA circle — exact copy of .hero-mobile-bridge-btn */
+.nav-consult-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  text-decoration: none;
+  background-image: linear-gradient(
+    100deg,
+    #b89a62 0%,
+    #b89a62 42%,
+    #f4e2ab 50%,
+    #b89a62 58%,
+    #b89a62 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  animation: hero-sub-glance 2.3s linear infinite;
+  transition: transform 180ms ease;
+}
+
+.nav-consult-cta:hover,
+.nav-consult-cta:focus-visible {
+  transform: scale(1.1);
+}
+
+/* ── Hide consultation icon + panel on mobile — desktop only ── */
+@media (max-width: 900px) {
+  .nav-consult {
+    display: none;
+  }
 }
 
 .quote-link {
