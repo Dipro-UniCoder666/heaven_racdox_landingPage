@@ -3784,16 +3784,21 @@ button {
   }
 
   .stories-layout {
-    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .stories-feature {
-    min-height: 300px;
+    order: -1;
+    min-height: 260px;
   }
 
   .stories-feature > img {
-    height: 300px;
+    height: 260px;
+  }
+
+  .story-viewport {
+    height: 320px;
   }
 
   .stories-feature-card {
