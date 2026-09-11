@@ -335,6 +335,8 @@ const renderNavbar = () => `
   </header>
 `;
 
+
+
 const heroMarkup = `
   <div class="page-shell">
     ${renderNavbar()}
@@ -464,6 +466,63 @@ const heroMarkup = `
         <button type="button" class="category-lamp-bulb is-blinking" aria-label="Spotlight the next category"></button>
       </div>
     </section>
+    <section class="cinema-section" aria-label="Heaven Furniture cinematic story">
+
+      <!-- ░░ TOP EDITORIAL HEADER — above the locked video modal ░░ -->
+      <div class="cinema-editorial" aria-hidden="true">
+        <div class="cinema-ed-top">
+          <div class="cinema-ed-top-left">
+            <div class="cinema-ed-eyebrow-row">
+              <span class="cinema-ed-eyebrow">OUR PROMISE</span>
+              <span class="cinema-ed-eyebrow-line" aria-hidden="true"></span>
+            </div>
+            <h2 class="cinema-ed-heading">More Than Furniture</h2>
+          </div>
+          <span class="cinema-ed-divider-v" aria-hidden="true"></span>
+          <p class="cinema-ed-supporting">Thoughtfully designed pieces<br />that turn houses into homes.</p>
+        </div>
+      </div>
+      <!-- ░░ END TOP EDITORIAL HEADER ░░ -->
+
+      <!-- ░░ FRAME WRAPPER — position:relative container that exactly holds the stage ░░ -->
+      <div class="cinema-frame-wrap">
+
+        <!-- LEFT side: HEAVEN spelled vertically, one letter per line -->
+        <div class="cinema-side-left" aria-hidden="true">
+          <span class="cinema-side-letter">H</span>
+          <span class="cinema-side-letter">E</span>
+          <span class="cinema-side-letter">A</span>
+          <span class="cinema-side-letter">V</span>
+          <span class="cinema-side-letter">E</span>
+          <span class="cinema-side-letter">N</span>
+        </div>
+
+        <!-- RIGHT side: CRAFTED WITH CARE · rule · DESIGNED TO LAST -->
+        <div class="cinema-side-right" aria-hidden="true">
+          <span class="cinema-side-word">CRAFTED</span>
+          <span class="cinema-side-word">WITH</span>
+          <span class="cinema-side-word">CARE</span>
+          <span class="cinema-side-rule" aria-hidden="true"></span>
+          <span class="cinema-side-word">DESIGNED</span>
+          <span class="cinema-side-word">TO</span>
+          <span class="cinema-side-word">LAST</span>
+        </div>
+
+        <!-- LOCKED VIDEO MODAL — DO NOT TOUCH -->
+        <div class="cinema-stage" role="img" aria-label="Heaven Furniture cinematic advertisement">
+          <video class="cinema-video" src="/images/NewVideoAD.mp4" autoplay muted loop playsinline preload="auto" aria-label="Heaven Furniture advertisement film"></video>
+          <div class="cinema-hmark" aria-hidden="true"><span>H</span></div>
+          <div class="cinema-copy" aria-live="polite">
+            <p class="cinema-eyebrow"></p>
+            <h3 class="cinema-heading"></h3>
+            <p class="cinema-sub"></p>
+          </div>
+        </div>
+
+      </div>
+      <!-- ░░ END FRAME WRAPPER ░░ -->
+
+    </section>
     <section class="story-slider-section" aria-label="Heaven Furniture story gallery">
       <div class="story-slider-track">
         <div class="story-slide">
@@ -509,6 +568,12 @@ const heroMarkup = `
     <section class="premium-section" aria-labelledby="premium-title">
       <div class="premium-feature">
         <div class="premium-panel">
+
+          <!-- Floating 3D wood objects — decorative, aria-hidden -->
+          <div class="premium-objects" aria-hidden="true">
+            <img class="premium-obj" src="/images/3dobjects.png" alt="" draggable="false" />
+          </div>
+
           <div class="premium-heading">
             <p class="premium-kicker"><span class="heading-accent heading-accent-gold">EXCELLENCE QUALITY</span></p>
             <h1 id="premium-title">Luxury Living,<br />Crafted to Last</h1>
@@ -522,6 +587,19 @@ const heroMarkup = `
           <div class="premium-copy">
             <p>Designed for refined interiors, this statement sofa combines exceptional comfort, elegant form, and lasting craftsmanship.</p>
           </div>
+
+          <!-- WovenCloth — ThreeUI source, right side of modal, aria-hidden decorative -->
+          <iframe
+            id="premium-woven-cloth"
+            class="premium-woven-cloth"
+            src="/woven-cloth.html"
+            title="Heaven Furniture woven cloth"
+            sandbox="allow-scripts"
+            loading="eager"
+            aria-hidden="true"
+            tabindex="-1"
+          ></iframe>
+
         </div>
         <a class="premium-primary" href="/collections"><span class="heading-accent heading-accent-ivory">EXPLORE MORE</span> <span class="premium-arrow">→</span></a>
       </div>
@@ -651,19 +729,19 @@ const heroMarkup = `
           <div class="footer-column footer-contact-column">
             <div class="footer-contact-group">
               <h2>CONTACT</h2>
-              <a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a>
-              <a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a>
+              <a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+880 1960-481983</a>
+              <a href="mailto:heavenfurnituremart@gmail.com"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>heavenfurnituremart@gmail.com</a>
             </div>
             <div class="footer-visit-group">
               <p class="footer-visit-label">VISIT US</p>
-              <address>Agrabad Access Road,<br />Chattogram, Bangladesh</address>
+              <address><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0;margin-top:-1px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Agrabad Access Road,<br />Chattogram, Bangladesh</address>
             </div>
           </div>
           <div class="footer-column">
             <h2 class="footer-connect-heading">CONNECT WITH THE CRAFT</h2>
-            <a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a>
-            <a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a>
-            <a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a>
+            <a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.15em;flex-shrink:0;position:relative;left:-2px"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>FACEBOOK</a>
+            <a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>INSTAGRAM</a>
+            <a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>YOUTUBE</a>
           </div>
         </div>
 
@@ -878,8 +956,8 @@ const ourStoryPageMarkup = `
         <div class="footer-grid">
           <div class="footer-column"><h2>EXPLORE</h2><a href="/#home">HOME</a><a href="/#collections">COLLECTIONS</a><a href="/#bespoke">BESPOKE</a><a href="/#story">OUR STORY</a><a href="mailto:heavenfurnituremart@gmail.com">CONTACT</a></div>
           <div class="footer-column"><h2>COLLECTIONS</h2><a href="/#collections">LIVING</a><a href="/#collections">BEDROOM</a><a href="/#collections">DINING</a><a href="/#collections">OFFICE &amp; STUDY</a></div>
-          <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp">+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com">heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
-          <div class="footer-column"><h2 class="footer-connect-heading">CONNECT WITH THE CRAFT</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook">FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram">INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube">YOUTUBE</a></div>
+          <div class="footer-column footer-contact-column"><div class="footer-contact-group"><h2>CONTACT</h2><a href="https://wa.me/8801960481983" target="_blank" rel="noopener noreferrer" aria-label="Chat with Heaven Furniture Mart on WhatsApp" title="Chat with Heaven Furniture Mart on WhatsApp"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+880 1960-481983</a><a href="mailto:heavenfurnituremart@gmail.com"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>heavenfurnituremart@gmail.com</a></div><div class="footer-visit-group"><p class="footer-visit-label">VISIT US</p><address><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0;margin-top:-1px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Agrabad Access Road,<br />Chattogram, Bangladesh</address></div></div>
+          <div class="footer-column"><h2 class="footer-connect-heading">CONNECT WITH THE CRAFT</h2><a href="https://www.facebook.com/HeavenFurnitureMart/" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Facebook"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.15em;flex-shrink:0;position:relative;left:-2px"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>FACEBOOK</a><a href="https://www.instagram.com/heaven_furniture_ltd" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on Instagram"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>INSTAGRAM</a><a href="https://www.youtube.com/@HeavenFurnitureMart" target="_blank" rel="noopener noreferrer" aria-label="Heaven Furniture Mart on YouTube"><svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#b89a62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:0.45em;flex-shrink:0"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>YOUTUBE</a></div>
         </div>
         <div class="footer-cta"><p>Ready to shape your space?</p><div class="footer-wood-logs"><img src="/images/wood-log.png" alt="" aria-hidden="true" /><span class="footer-wood-logs-shine" aria-hidden="true"></span></div></div>
         <div class="footer-bottom"><p>© 2026 HEAVEN FURNITURE MART</p><p>AGRABAD <span aria-hidden="true">·</span> CHATTOGRAM <span aria-hidden="true">·</span> BANGLADESH</p></div>
@@ -1265,6 +1343,126 @@ stage.addEventListener('pointerleave', resetBedPosition);
     }, { threshold: 0.2 });
 
     storySliderObserver.observe(storySliderSection);
+  }
+  const cinemaStage = document.querySelector('.cinema-stage');
+  const cinemaVideo = document.querySelector('.cinema-video');
+  const cinemaHMark = document.querySelector('.cinema-hmark');
+  const cinemaCopy = document.querySelector('.cinema-copy');
+  const cinemaEyebrow = document.querySelector('.cinema-eyebrow');
+  const cinemaHeading = document.querySelector('.cinema-heading');
+  const cinemaSub = document.querySelector('.cinema-sub');
+  if (cinemaStage && cinemaVideo && cinemaHMark && cinemaCopy && cinemaEyebrow && cinemaHeading && cinemaSub) {
+    const cinemaTextMoments = [
+      { at: 0.3,  end: 4.8,  pos: 'center-left',  title: 'CRAFTED FOR THE WAY YOU LIVE',      subtitle: 'Comfort, character, and beautiful everyday moments.' },
+      { at: 5.0,  end: 8.3,  pos: 'center-right', title: 'WHERE COMFORT MEETS CHARACTER',     subtitle: 'Designed to make everyday living feel exceptional.' },
+      { at: 8.5,  end: 11.8, pos: 'center-left',  title: 'TIMELESS FORM',                     subtitle: 'Thoughtful details, refined materials.' },
+      { at: 12.0, end: 15.8, pos: 'center-left',  title: 'DESIGNED AROUND YOU',               subtitle: 'Furniture shaped for your space and your life.' },
+      { at: 16.0, end: 19.8, pos: 'center-right', title: 'QUALITY IN EVERY DETAIL',           subtitle: 'Craftsmanship you can see and feel.' },
+      { at: 20.0, end: 23.8, pos: 'center-right', title: 'MADE TO BELONG',                    subtitle: 'Created for interiors with character.' },
+      { at: 24.0, end: 26.8, pos: 'center-left',  title: 'CRAFTED WITH PURPOSE',              subtitle: 'Built with patience, precision, and care.' },
+      { at: 27.0, end: 99,   pos: 'center-top',   eyebrow: 'HEAVEN FURNITURE MART',           title: 'QUALITY. CRAFT. CHARACTER.',                       subtitle: 'Heaven Furniture Mart, Chattogram.' },
+    ];
+    let cinemaActive = -1;
+    let cinemaRaf = 0;
+    let cinemaVisible = false;
+    let cinemaTextVisible = false;
+
+    const setCinemaMoment = (moment) => {
+      cinemaCopy.dataset.pos = moment.pos;
+      if (moment.eyebrow) {
+        cinemaEyebrow.style.display = '';
+        cinemaEyebrow.innerHTML = moment.eyebrow;
+      } else {
+        cinemaEyebrow.style.display = 'none';
+        cinemaEyebrow.innerHTML = '';
+      }
+      cinemaHeading.textContent = moment.title;
+      if (moment.subtitle) {
+        cinemaSub.style.display = '';
+        cinemaSub.textContent = moment.subtitle;
+      } else {
+        cinemaSub.style.display = 'none';
+        cinemaSub.textContent = '';
+      }
+    };
+
+    const showCinemaText = () => {
+      if (cinemaTextVisible) return;
+      cinemaTextVisible = true;
+      gsap.fromTo([cinemaEyebrow, cinemaHeading, cinemaSub], { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.07, ease: 'power3.out', overwrite: true });
+    };
+
+    const hideCinemaText = () => {
+      if (!cinemaTextVisible) return;
+      cinemaTextVisible = false;
+      gsap.to([cinemaEyebrow, cinemaHeading, cinemaSub], { autoAlpha: 0, y: -6, duration: 0.42, stagger: 0.04, ease: 'power2.in', overwrite: true });
+    };
+
+    const cinemaFrame = () => {
+      cinemaRaf = 0;
+      if (!cinemaVisible) return;
+      const time = cinemaVideo.currentTime;
+      let activeIndex = -1;
+      for (let i = 0; i < cinemaTextMoments.length; i += 1) {
+        const m = cinemaTextMoments[i];
+        if (time >= m.at && time < m.end) {
+          activeIndex = i;
+          break;
+        }
+      }
+      if (activeIndex !== cinemaActive) {
+        cinemaActive = activeIndex;
+        if (activeIndex >= 0) {
+          setCinemaMoment(cinemaTextMoments[activeIndex]);
+          showCinemaText();
+        } else {
+          hideCinemaText();
+        }
+      }
+      cinemaRaf = window.requestAnimationFrame(cinemaFrame);
+    };
+
+    const startCinemaFrame = () => {
+      if (!cinemaRaf) cinemaRaf = window.requestAnimationFrame(cinemaFrame);
+    };
+
+    const cinemaObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) {
+        cinemaVisible = false;
+        if (cinemaRaf) {
+          window.cancelAnimationFrame(cinemaRaf);
+          cinemaRaf = 0;
+        }
+        cinemaVideo.pause();
+        hideCinemaText();
+        cinemaActive = -1;
+        return;
+      }
+      cinemaVisible = true;
+      cinemaVideo.play().catch(() => {});
+      startCinemaFrame();
+    }, { threshold: 0.3 });
+    cinemaObserver.observe(cinemaStage);
+
+    cinemaStage.addEventListener('pointerdown', () => {
+      if (cinemaVisible && cinemaVideo.paused) cinemaVideo.play().catch(() => {});
+    });
+  }
+
+  // ── Editorial frame entrance observer ──
+  const cinemaEditorial = document.querySelector('.cinema-editorial');
+  const cinemaFrameWrap = document.querySelector('.cinema-frame-wrap');
+  if (cinemaEditorial) {
+    const editorialObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          cinemaEditorial.classList.add('is-visible');
+          if (cinemaFrameWrap) cinemaFrameWrap.classList.add('is-visible');
+          editorialObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.18 });
+    editorialObserver.observe(cinemaEditorial);
   }
   const categorySection = document.querySelector('.category-section');
   const categoryTiles = document.querySelectorAll('.category-tile');

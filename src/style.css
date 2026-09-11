@@ -456,6 +456,38 @@ button {
   clip-path: polygon(14% 0, 100% 0, 100% 85%, 92% 85%, 86% 100%, 0 100%, 0 15%, 8% 15%);
 }
 
+/* ── Room wall + floor plane behind sofa ── */
+.premium-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent                          0%,
+      transparent                          63%,
+      rgba(110, 72, 42, 0.08)             66%,
+      rgba(110, 72, 42, 0.05)             68%,
+      rgba(215, 185, 150, 0.22)           71%,
+      rgba(195, 162, 126, 0.18)           83%,
+      rgba(175, 142, 106, 0.15)           100%
+    ),
+    radial-gradient(
+      ellipse 72% 38% at 50% 100%,
+      rgba(205, 172, 136, 0.22) 0%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 75% 50% at 50% 34%,
+      rgba(255, 251, 244, 0.42) 0%,
+      rgba(240, 230, 215, 0.14) 62%,
+      transparent 100%
+    );
+}
+
+
 .premium-heading {
   position: absolute;
   z-index: 2;
@@ -500,6 +532,27 @@ button {
   display: grid;
   place-items: center;
   transform: translateX(-50%);
+}
+/* ── Sofa contact shadow ── */
+.premium-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 46, 18, 0.52) 0%,
+    rgba(80, 46, 18, 0.28) 40%,
+    rgba(80, 46, 18, 0.08) 68%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .premium-image-wrap img {
@@ -612,6 +665,48 @@ button {
   justify-content: center;
   color: #fffaf2;
   font-size: 1rem;
+}
+
+/* ── WovenCloth mount — upper-right of premium-panel ── */
+.premium-woven-cloth {
+  position: absolute;
+  z-index: 3;
+  top:   calc(clamp(3rem, 5.5vw, 5rem) + 20px);
+  right: clamp(2.5rem, 5vw, 5rem);
+  width:  172px;
+  height: 105px;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+  pointer-events: auto;
+  border-radius: 4px;
+  animation: woven-cloth-float 13s ease-in-out infinite alternate;
+}
+
+@keyframes woven-cloth-float {
+  0%   { transform: translateY(0px)   translateX(0px)   rotate(0deg); }
+  22%  { transform: translateY(-5px)  translateX(2px)   rotate(0.28deg); }
+  48%  { transform: translateY(-3px)  translateX(-2px)  rotate(-0.18deg); }
+  74%  { transform: translateY(-7px)  translateX(1px)   rotate(0.14deg); }
+  100% { transform: translateY(-4px)  translateX(-1px)  rotate(-0.11deg); }
+}
+
+@media (max-width: 900px) {
+  .premium-woven-cloth {
+    top:   calc(clamp(2rem, 4vw, 3.5rem) + 20px);
+    right: clamp(1rem, 2.5vw, 2rem);
+    width:  126px;
+    height: 77px;
+  }
+}
+
+@media (max-width: 560px) {
+  .premium-woven-cloth {
+    top:   calc(1.2rem + 20px);
+    right: 0.75rem;
+    width:  100px;
+    height: 61px;
+  }
 }
 
 .story-slider-section {
@@ -1260,7 +1355,7 @@ button {
 .footer-wood-logs {
   position: relative;
   flex-shrink: 0;
-  width: 205px;
+  width: 175px;
   height: auto;
   transform: translateY(38px);
 }
@@ -4357,3 +4452,529 @@ button {
     font-size: clamp(11px, 0.95vw, 14px);
   }
 }
+
+
+
+
+/* ===== cinematic editorial frame (outside locked video modal) ===== */
+
+/* ── SECTION ── */
+.cinema-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(0rem, 1.5vw, 0.5rem) 0 clamp(6.5rem, 10vw, 8.75rem);
+  margin-top: clamp(-1rem, -2vw, -2rem);
+}
+
+/* ── TOP EDITORIAL HEADER ── */
+.cinema-editorial {
+  width: min(78vw, 1244px);
+  margin: 0 auto clamp(1.4rem, 2.2vw, 2rem);
+  pointer-events: none;
+}
+
+.cinema-ed-top {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 2.5vw, 2.8rem);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.72s cubic-bezier(0.3,0,0.2,1), transform 0.72s cubic-bezier(0.3,0,0.2,1);
+}
+
+.cinema-editorial.is-visible .cinema-ed-top {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cinema-ed-top-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cinema-ed-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.cinema-ed-eyebrow {
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-image: linear-gradient(
+    100deg,
+    #b89a62 0%,
+    #b89a62 42%,
+    #f4e2ab 50%,
+    #b89a62 58%,
+    #b89a62 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-sub-glance 2.3s linear infinite;
+}
+
+.cinema-ed-eyebrow-line {
+  display: block;
+  flex: 1;
+  height: 1px;
+  min-width: clamp(40px, 8vw, 110px);
+  background: #B89A62;
+  opacity: 0.42;
+}
+
+.cinema-ed-heading {
+  margin: 0;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(1.9rem, 3.4vw, 3.6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.005em;
+  color: #3a2922;
+  white-space: nowrap;
+}
+
+.cinema-ed-divider-v {
+  display: block;
+  width: 1px;
+  height: clamp(2.4rem, 4vw, 3.8rem);
+  background: #B89A62;
+  opacity: 0.36;
+  flex-shrink: 0;
+}
+
+.cinema-ed-supporting {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  line-height: 1.65;
+  color: rgba(58, 41, 34, 0.62);
+  max-width: 30ch;
+}
+
+/* ── FRAME WRAPPER ── */
+.cinema-frame-wrap {
+  position: relative;
+  width: min(78vw, 1244px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.72s 0.1s cubic-bezier(0.3,0,0.2,1),
+              transform 0.72s 0.1s cubic-bezier(0.3,0,0.2,1);
+}
+
+.cinema-frame-wrap.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cinema-frame-wrap .cinema-stage {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  width: 100%;
+}
+
+/* SVG frame removed */
+.cinema-frame-svg { display: none; }
+
+.cf-left, .cf-right,
+.cf-corner, .cf-rule, .cf-tick, .cf-diamond,
+.cf-bracket, .cf-side, .cf-accent,
+.cinema-frame-top-label, .cinema-frame-label-text,
+.cinema-ed-side-label,
+.cinema-ed-corner-star, .cinema-ed-corner-star-bl,
+.cinema-ed-top-seal, .cinema-ed-top-seal-svg,
+.cinema-ed-top-seal-text, .cinema-ed-top-seal-star,
+.cinema-frame-left-text, .cinema-frame-right-text { display: none; }
+
+/* ── LEFT SIDE: H·E·A·V·E·N vertically ── */
+.cinema-side-left {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: calc(100% + clamp(14px, 2vw, 28px));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 0.9rem);
+  pointer-events: none;
+}
+
+.cinema-side-letter {
+  display: block;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(1.7rem, 2.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  background-image: linear-gradient(
+    100deg,
+    #b89a62 0%,
+    #b89a62 42%,
+    #f4e2ab 50%,
+    #b89a62 58%,
+    #b89a62 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-sub-glance 2.3s linear infinite;
+}
+
+/* ── RIGHT SIDE: CRAFTED WITH CARE · rule · DESIGNED TO LAST ── */
+.cinema-side-right {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: calc(100% + clamp(14px, 2vw, 28px));
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.7rem, 1.1vw, 1.1rem);
+  pointer-events: none;
+}
+
+.cinema-side-word {
+  display: block;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(0.82rem, 1.2vw, 1.18rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+  background-image: linear-gradient(
+    100deg,
+    #b89a62 0%,
+    #b89a62 42%,
+    #f4e2ab 50%,
+    #b89a62 58%,
+    #b89a62 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-sub-glance 2.3s linear infinite;
+}
+
+.cinema-side-rule {
+  display: block;
+  width: clamp(28px, 3.5vw, 48px);
+  height: 1px;
+  background: #b89a62;
+  opacity: 0.4;
+  margin: clamp(1.2rem, 2vw, 1.8rem) auto;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .cinema-editorial,
+  .cinema-frame-wrap {
+    width: calc(100vw - 1.6rem);
+  }
+
+  .cinema-ed-heading {
+    white-space: normal;
+  }
+
+  .cinema-side-left,
+  .cinema-side-right {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .cinema-section {
+    margin-top: -0.75rem;
+  }
+
+  .cinema-ed-top {
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+  }
+
+  .cinema-ed-divider-v {
+    display: none;
+  }
+
+  .cinema-ed-supporting {
+    max-width: none;
+  }
+}
+
+/* ===== cinematic furniture-story section ===== */
+.cinema-stage {
+  position: relative;
+  width: min(78vw, 1244px);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: 68vh;
+  margin: 0 auto;
+  border-radius: clamp(16px, 2vw, 26px);
+  overflow: hidden;
+  background: #17120d;
+  box-shadow: 0 34px 90px rgba(23, 17, 12, 0.2);
+}
+
+.cinema-stage::after {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: linear-gradient(14deg, rgba(10, 8, 6, 0.28) 0%, rgba(10, 8, 6, 0.13) 36%, rgba(10, 8, 6, 0) 64%);
+  pointer-events: none;
+}
+
+/* bottom-anchored vignette — soft dark gradient behind video text */
+.cinema-stage::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(4, 3, 2, 0.52) 0%,
+    rgba(4, 3, 2, 0.28) 35%,
+    rgba(4, 3, 2, 0) 100%
+  );
+  pointer-events: none;
+}
+
+.cinema-video {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #17120d;
+}
+
+.cinema-hmark {
+  position: absolute;
+  z-index: 5;
+  right: calc(4% + 40px);
+  bottom: calc(4% + 12px);
+  width: clamp(34px, 3.6vw, 46px);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  border-radius: 0;
+  background: rgba(184, 154, 98, 0.52);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(243, 238, 229, 0.3);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.cinema-hmark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  animation: hero-sub-glance 2.3s linear infinite;
+  pointer-events: none;
+}
+
+.cinema-hmark span {
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(17px, 1.9vw, 24px);
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(243, 238, 229, 0.95);
+  transform: translateY(0px);
+}
+
+.cinema-copy {
+  position: absolute;
+  z-index: 4;
+  left: clamp(1.5rem, 6vw, 5.5rem);
+  right: clamp(1.5rem, 6vw, 5.5rem);
+  bottom: clamp(1.6rem, 8vh, 4.6rem);
+  max-width: min(640px, 80%);
+  pointer-events: none;
+}
+
+/* soft cinematic vignette behind video text */
+.cinema-copy::before {
+  content: '';
+  position: fixed;
+  display: none;
+}
+
+.cinema-eyebrow {
+  margin: 0 0 0.55rem;
+  font-family: var(--mono);
+  font-size: clamp(0.55rem, 0.85vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.cinema-heading {
+  margin: 0 0 0.6rem;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(1.7rem, 3.2vw, 3rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  color: rgba(248, 245, 238, 0.94);
+  text-shadow: 0 2px 20px rgba(10, 8, 6, 0.45);
+}
+
+.cinema-sub {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(0.74rem, 1.05vw, 0.96rem);
+  line-height: 1.6;
+  color: rgba(244, 241, 233, 0.78);
+  max-width: 48ch;
+  text-shadow: 0 1px 12px rgba(10, 8, 6, 0.45);
+}
+
+.cinema-copy[data-pos='top-left'] {
+  left: clamp(1.5rem, 6vw, 5.5rem);
+  right: auto;
+  top: clamp(1.4rem, 9vh, 4.2rem);
+  bottom: auto;
+}
+
+.cinema-copy[data-pos='bottom-right'] {
+  left: auto;
+  right: clamp(1.5rem, 6vw, 5.5rem);
+  bottom: clamp(1.6rem, 8vh, 4.6rem);
+  text-align: right;
+}
+
+.cinema-copy[data-pos='center-left'] {
+  left: clamp(1.5rem, 6vw, 5.5rem);
+  right: auto;
+  top: 38%;
+  bottom: auto;
+}
+
+.cinema-copy[data-pos='top-right'] {
+  left: auto;
+  right: clamp(1.5rem, 6vw, 5.5rem);
+  top: clamp(1.4rem, 9vh, 4.2rem);
+  bottom: auto;
+  text-align: right;
+}
+
+.cinema-copy[data-pos='lower-left'] {
+  left: clamp(2.2rem, 9vw, 8rem);
+  right: auto;
+  bottom: clamp(2.6rem, 14vh, 6.5rem);
+}
+
+.cinema-copy[data-pos='center-right'] {
+  left: auto;
+  right: clamp(1.5rem, 6vw, 5.5rem);
+  top: 44%;
+  bottom: auto;
+  text-align: right;
+}
+
+.cinema-copy[data-pos='top-center'] {
+  left: 0;
+  right: 0;
+  top: clamp(1.4rem, 9vh, 4.2rem);
+  bottom: auto;
+  text-align: center;
+}
+
+/* center-top: truly centred both axes — used for QUALITY. CRAFT. CHARACTER. */
+.cinema-copy[data-pos='center-top'] {
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  text-align: center;
+  max-width: 100%;
+}
+
+.cinema-copy[data-pos='center-right'] .cinema-sub,
+.cinema-copy[data-pos='top-center'] .cinema-sub,
+.cinema-copy[data-pos='center-top'] .cinema-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cinema-copy[data-pos='bottom-right'] .cinema-sub,
+.cinema-copy[data-pos='top-right'] .cinema-sub {
+  margin-left: auto;
+}
+
+@media (max-width: 560px) {
+  .cinema-stage {
+    width: calc(100vw - 1.6rem);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-height: 62svh;
+    border-radius: 18px;
+  }
+
+  .cinema-hmark {
+    right: 4%;
+    bottom: 4%;
+  }
+
+  .cinema-copy {
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1.15rem;
+    max-width: none;
+  }
+
+  .cinema-heading {
+    font-size: clamp(1.35rem, 6vw, 1.7rem);
+  }
+
+  .cinema-sub {
+    font-size: 0.74rem;
+    max-width: none;
+  }
+}
+

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Heaven Furniture · Woven Flag</title>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+</head>
+<body style="margin:0;padding:0;overflow:hidden;background:transparent;width:100%;height:100dvh;">
+    <canvas id="cloth" style="display:block;width:100%;height:100%;background:transparent;"></canvas>
+
+    <script>
+    (() => {
+        const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        const canvas = document.getElementById('cloth');
+        if (!window.THREE) return;
+
+        // ── Premium flag texture — compact 960×680 — text fills tightly ─
+        function makeFlagTexture() {
+            const W = 960, H = 680;  // last text at ~650, ~30px breathing room
+            const c = document.createElement('canvas');
+            c.width = W; c.height = H;
+            const x = c.getContext('2d');
+
+            // Pure white fabric base with subtle fold-depth variation
+            const bg = x.createLinearGradient(0, 0, W, H);
+            bg.addColorStop(0,   '#ffffff');
+            bg.addColorStop(0.4, '#fafafa');
+            bg.addColorStop(0.7, '#f5f5f5');
+            bg.addColorStop(1,   '#fafafa');
+            x.fillStyle = bg;
+            x.fillRect(0, 0, W, H);
+
+            // Woven thread overlay — very subtle on white
+            for (let yy = 0; yy < H; yy += 4) {
+                x.strokeStyle = 'rgba(0,0,0,0.028)';
+                x.lineWidth = 1;
+                x.beginPath(); x.moveTo(0, yy + 0.5); x.lineTo(W, yy + 0.5); x.stroke();
+            }
+            for (let xx = 0; xx < W; xx += 4) {
+                x.strokeStyle = 'rgba(0,0,0,0.018)';
+                x.lineWidth = 1;
+                x.beginPath(); x.moveTo(xx + 0.5, 0); x.lineTo(xx + 0.5, H); x.stroke();
+            }
+
+            // Soft diagonal sheen
+            const sheen = x.createLinearGradient(0, 0, W * 0.6, H * 0.4);
+            sheen.addColorStop(0,   'rgba(255,255,255,0.55)');
+            sheen.addColorStop(0.5, 'rgba(255,255,255,0.15)');
+            sheen.addColorStop(1,   'rgba(0,0,0,0)');
+            x.fillStyle = sheen;
+            x.fillRect(0, 0, W, H);
+
+            // Gold border
+            const makeGold = (x1, x2) => {
+                const g = x.createLinearGradient(x1, 0, x2, 0);
+                g.addColorStop(0,   '#b8860b');
+                g.addColorStop(0.3, '#d4a017');
+                g.addColorStop(0.5, '#ffd700');
+                g.addColorStop(0.7, '#d4a017');
+                g.addColorStop(1,   '#b8860b');
+                return g;
+            };
+            x.strokeStyle = makeGold(W * 0.04, W * 0.96);
+            x.lineWidth = 10;
+            x.strokeRect(30, 30, W - 60, H - 60);
+            x.strokeStyle = 'rgba(200,160,0,0.35)';
+            x.lineWidth = 2.5;
+            x.strokeRect(46, 46, W - 92, H - 92);
+
+            // Typography — tightly packed to fill the shorter canvas
+            x.textAlign = 'center';
+            x.textBaseline = 'middle';
+            const gold = makeGold(W * 0.04, W * 0.96);
+
+            // 1. "20% OFF"
+            x.fillStyle = gold;
+            x.font = 'bold 130px Georgia, "Times New Roman", serif';
+            x.fillText('20% OFF', W / 2, 145);
+
+            // divider
+            x.strokeStyle = gold; x.lineWidth = 2;
+            x.beginPath(); x.moveTo(W*0.18, 215); x.lineTo(W*0.82, 215); x.stroke();
+
+            // 2. "Luxury Living Sofa" — solid black
+            x.fillStyle = '#111111';
+            x.font = 'bold 68px Georgia, "Times New Roman", serif';
+            x.fillText('Luxury Living', W / 2, 320);
+            x.fillText('Sofa', W / 2, 405);
+
+            // divider
+            x.strokeStyle = gold; x.lineWidth = 2;
+            x.beginPath(); x.moveTo(W*0.22, 462); x.lineTo(W*0.78, 462); x.stroke();
+
+            // 3. "SUMMER SALE"
+            x.fillStyle = gold;
+            x.font = '300 58px "Helvetica Neue", Helvetica, Arial, sans-serif';
+            x.letterSpacing = '20px';
+            x.fillText('SUMMER  SALE', W / 2, 560);
+            x.letterSpacing = '0px';
+
+            // 4. "Crafted for refined living"
+            x.fillStyle = 'rgba(80,60,40,0.65)';
+            x.font = '400 26px "Helvetica Neue", Helvetica, Arial, sans-serif';
+            x.letterSpacing = '3px';
+            x.fillText('CRAFTED FOR REFINED LIVING', W / 2, 650);
+            x.letterSpacing = '0px';
+
+            const tex = new THREE.CanvasTexture(c);
+            tex.anisotropy = 4;
+            tex.colorSpace = THREE.SRGBColorSpace;
+            return tex;
+        }
+
+        // ── Scene ─────────────────────────────────────────────────────────
+        const scene = new THREE.Scene();
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setClearColor(0x000000, 0);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        let camera;
+
+        // Compact flag geometry — slightly wide, tight height
+        const BW = 2.8, BH = 2.5;
+        const GX = 28, GY = 25;
+        const geo = new THREE.PlaneGeometry(BW, BH, GX, GY);
+
+        const mat = new THREE.MeshPhongMaterial({
+            map: makeFlagTexture(),
+            side: THREE.DoubleSide,
+            shininess: 10,
+            specular: 0xaaaaaa,
+            color: 0xffffff
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        scene.add(mesh);
+
+        // ── Lighting ──────────────────────────────────────────────────────
+        scene.add(new THREE.AmbientLight(0xffe0d0, 1.25));
+        const key = new THREE.DirectionalLight(0xfff0e0, 0.65);
+        key.position.set(-2, 3, 4);
+        scene.add(key);
+        const fill = new THREE.DirectionalLight(0xffbbbb, 0.22);
+        fill.position.set(3, -1, 2);
+        scene.add(fill);
+
+        // ── Verlet cloth physics ──────────────────────────────────────────
+        const pos = geo.attributes.position;
+        const N = (GX + 1) * (GY + 1);
+        const cur  = new Float32Array(N * 3);
+        const prev = new Float32Array(N * 3);
+        const rest = new Float32Array(N * 3);
+        const pinned = new Uint8Array(N);
+
+        // Read initial positions
+        for (let i = 0; i < N; i++) {
+            cur[i*3]   = prev[i*3]   = rest[i*3]   = pos.getX(i);
+            cur[i*3+1] = prev[i*3+1] = rest[i*3+1] = pos.getY(i);
+            cur[i*3+2] = prev[i*3+2] = rest[i*3+2] = 0;
+        }
+
+        // In PlaneGeometry, row iy=0 is the TOP row (highest Y = +BH/2)
+        // Pin the top row so the flag hangs from above
+        for (let ix = 0; ix <= GX; ix++) {
+            pinned[ix] = 1;  // iy=0 is top row in PlaneGeometry
+        }
+
+        const idxFn = (ix, iy) => ix + iy * (GX + 1);
+        const restH = BW / GX, restV = BH / GY;
+        const GRAV = 2.8, DAMP = 0.991, DT = 0.016;
+
+        function wind(ix, iy, t) {
+            // iy=0 pinned top, iy=GY free bottom — more movement further from pin
+            const cy = iy / GY;  // 0=top(pinned) → 1=bottom(free)
+            const cx = ix / GX;
+            const gust = 0.32 + 0.20 * Math.sin(t * 0.36) + 0.09 * Math.sin(t * 1.05 + 0.7);
+            const amp  = 2.0 * cy;
+            const travel = t * 0.85 - cy * 2.6;
+            const fz = (Math.sin(travel + cx * 2.2) + 0.32 * Math.sin(travel * 1.5 + cx * 4.2)) * amp * gust;
+            const fx = Math.sin(t * 0.5 + cy * 1.4) * 0.25 * cy;
+            return [fx, 0, fz];
+        }
+
+        function step(t) {
+            for (let iy = 0; iy <= GY; iy++) {
+                for (let ix = 0; ix <= GX; ix++) {
+                    const i = idxFn(ix, iy);
+                    if (pinned[i]) continue;
+                    const [fx, , fz] = wind(ix, iy, t);
+                    const j0 = i*3, j1 = i*3+1, j2 = i*3+2;
+                    const vx = (cur[j0] - prev[j0]) * DAMP;
+                    const vy = (cur[j1] - prev[j1]) * DAMP;
+                    const vz = (cur[j2] - prev[j2]) * DAMP;
+                    prev[j0] = cur[j0]; prev[j1] = cur[j1]; prev[j2] = cur[j2];
+                    cur[j0] = cur[j0] + vx + fx * DT * DT;
+                    cur[j1] = cur[j1] + vy - GRAV * DT * DT;
+                    cur[j2] = cur[j2] + vz + fz * DT * DT;
+                }
+            }
+            for (let it = 0; it < 4; it++) {
+                for (let iy = 0; iy <= GY; iy++)
+                    for (let ix = 0; ix < GX; ix++) solve(idxFn(ix,iy), idxFn(ix+1,iy), restH);
+                for (let iy = 0; iy < GY; iy++)
+                    for (let ix = 0; ix <= GX; ix++) solve(idxFn(ix,iy), idxFn(ix,iy+1), restV);
+            }
+            // Restore pinned top row
+            for (let ix = 0; ix <= GX; ix++) {
+                const i = idxFn(ix, 0);
+                cur[i*3]=rest[i*3]; cur[i*3+1]=rest[i*3+1]; cur[i*3+2]=rest[i*3+2];
+                prev[i*3]=rest[i*3]; prev[i*3+1]=rest[i*3+1]; prev[i*3+2]=rest[i*3+2];
+            }
+        }
+
+        function solve(a, b, rl) {
+            let dx=cur[b*3]-cur[a*3], dy=cur[b*3+1]-cur[a*3+1], dz=cur[b*3+2]-cur[a*3+2];
+            const d = Math.sqrt(dx*dx+dy*dy+dz*dz) || 1e-6;
+            const f = (d - rl) / d * 0.5;
+            dx*=f; dy*=f; dz*=f;
+            const pa=pinned[a], pb=pinned[b];
+            if (!pa&&!pb){ cur[a*3]+=dx;cur[a*3+1]+=dy;cur[a*3+2]+=dz; cur[b*3]-=dx;cur[b*3+1]-=dy;cur[b*3+2]-=dz; }
+            else if (pa&&!pb){ cur[b*3]-=dx*2;cur[b*3+1]-=dy*2;cur[b*3+2]-=dz*2; }
+            else if (!pa&&pb){ cur[a*3]+=dx*2;cur[a*3+1]+=dy*2;cur[a*3+2]+=dz*2; }
+        }
+
+        function commit() {
+            for (let i = 0; i < N; i++) pos.setXYZ(i, cur[i*3], cur[i*3+1], cur[i*3+2]);
+            pos.needsUpdate = true;
+            geo.computeVertexNormals();
+        }
+
+        function fit() {
+            const w = window.innerWidth, h = window.innerHeight;
+            renderer.setSize(w, h, false);
+            const aspect = w / h;
+            camera = new THREE.PerspectiveCamera(42, aspect, 0.1, 100);
+            const vFit = (BH / 2) / Math.tan(21 * Math.PI / 180);
+            const hFit = (BW / 2) / Math.tan(21 * Math.PI / 180) / aspect;
+            camera.position.set(0, 0, Math.max(vFit, hFit) * 1.08 + 0.2);
+            camera.lookAt(0, 0, 0);
+        }
+        window.addEventListener('resize', fit);
+        fit();
+
+        let running = false, raf = 0, t = 0;
+        function loop() {
+            if (!running) return;
+            t += DT;
+            step(t);
+            commit();
+            renderer.render(scene, camera);
+            raf = requestAnimationFrame(loop);
+        }
+        function start() { if (running) return; running = true; raf = requestAnimationFrame(loop); }
+        function stop()  { running = false; cancelAnimationFrame(raf); }
+
+        if (reduce) {
+            for (let s = 0; s < 200; s++) step(s * DT);
+            commit();
+            renderer.render(scene, camera);
+        } else {
+            for (let s = 0; s < 60; s++) step(s * DT);
+            t = 60 * DT;
+            start();
+            document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+        }
+    })();
+    </script>
+</body>
+</html>
