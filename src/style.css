@@ -725,13 +725,20 @@ button {
   }
 
   .premium-mobile-promo {
-    display: inline-block;
-    margin-top: 0.55rem;
-    font-family: 'Cormorant Garamond', var(--display);
-    font-size: clamp(1rem, 5vw, 1.3rem);
-    font-weight: 600;
-    font-style: italic;
-    letter-spacing: 0.08em;
+    display: block;
+    position: absolute;
+    z-index: 4;
+    top: 1.5rem;
+    right: 1rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+    text-align: right;
+    white-space: pre-line;
+    pointer-events: none;
     background-image: linear-gradient(
       105deg,
       #c8a96e 0%,
@@ -3609,17 +3616,18 @@ button {
     font-size: 0.73rem;
   }
 
-  /* ── Mobile: thin, subtle sofa contact shadow ── */
+  /* ── Mobile: thin, subtle sofa contact shadow — moved upward ── */
   .premium-image-wrap::after {
-    height: 18px;
-    width: 72%;
+    height: 14px;
+    width: 65%;
+    bottom: 8%;
     background: radial-gradient(
       ellipse at center,
-      rgba(80, 46, 18, 0.22) 0%,
-      rgba(80, 46, 18, 0.10) 45%,
+      rgba(80, 46, 18, 0.18) 0%,
+      rgba(80, 46, 18, 0.08) 45%,
       transparent 100%
     );
-    filter: blur(6px);
+    filter: blur(5px);
   }
 
   /* ── Mobile: reduce wall/floor shadow haze ── */
@@ -4004,6 +4012,20 @@ button {
   .footer-contact-group a[href^="mailto"] .footer-email-text {
     overflow-wrap: anywhere;
     word-break: break-all;
+  }
+
+  /* ── Mobile phone: always one line ── */
+  .footer-contact-group a[href^="https://wa.me"] {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    font-size: 0.6rem;
+    letter-spacing: 0.03em;
+  }
+
+  .footer-contact-group a[href^="https://wa.me"] svg {
+    flex-shrink: 0;
   }
 
   .footer-bottom {

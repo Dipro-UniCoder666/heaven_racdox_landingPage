@@ -580,7 +580,7 @@ const heroMarkup = `
           <div class="premium-heading">
             <p class="premium-kicker"><span class="heading-accent heading-accent-gold">EXCELLENCE QUALITY</span></p>
             <h1 id="premium-title">Luxury Living,<br />Crafted to Last</h1>
-            <span class="premium-mobile-promo" aria-label="20% off promotion">20% OFF</span>
+            <span class="premium-mobile-promo" aria-label="20% off promotion">20%&#10;OFF</span>
           </div>
           <div class="premium-image-wrap">
             <a class="premium-sofa-link" href="/product/luxury-living-sofa" aria-label="View Luxury Living Sofa details">
