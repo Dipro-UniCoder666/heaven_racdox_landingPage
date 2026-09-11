@@ -1,4 +1,4 @@
-import './style.css';
+﻿import './style.css';
 import gsap from 'gsap';
 
 const heroProducts = [
@@ -683,17 +683,19 @@ const heroMarkup = `
         </svg></h1>
       </div>
       <div class="stories-layout">
-        <div class="story-list">
-          ${customerStories.map((story) => `
-            <article class="story-item">
-              <div class="story-avatar" aria-hidden="true">${story.initials}</div>
-              <div class="story-content">
-                <h2>${story.name}</h2>
-                <p class="story-detail">${story.detail}</p>
-                <p class="story-quote">“${story.quote}”</p>
-              </div>
-            </article>
-          `).join('')}
+                <div class="story-viewport">
+          <div class="story-track">
+            ${[...customerStories, customerStories[0]].map((story, i) => `
+              <article class="story-slot" data-slot="${i}" data-review="${i % customerStories.length}" role="button" tabindex="0" aria-label="Read full review from ${story.name}">
+                <div class="story-avatar" aria-hidden="true">${story.initials}</div>
+                <div class="story-content">
+                  <h2>${story.name}</h2>
+                  <p class="story-detail">${story.detail}</p>
+                  <p class="story-quote">"${story.quote}"</p>
+                </div>
+              </article>
+            `).join('')}
+          </div>
         </div>
         <div class="stories-feature">
           <img src="/images/image5.jpg" alt="Luxury living furniture in an elegant interior" loading="lazy" />
@@ -705,6 +707,17 @@ const heroMarkup = `
       </div>
     </section>
 
+
+    <!-- Review detail modal -->
+    <div class="review-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="review-modal-name">
+      <div class="review-modal">
+        <button class="review-modal-close" aria-label="Close review">&times;</button>
+        <div class="review-modal-avatar" aria-hidden="true"></div>
+        <h2 class="review-modal-name" id="review-modal-name"></h2>
+        <p class="review-modal-detail"></p>
+        <p class="review-modal-quote"></p>
+      </div>
+    </div>
     <footer class="site-footer" aria-labelledby="footer-brand-title">
       <div class="footer-art" aria-hidden="true">H</div>
       <div class="footer-inner">
@@ -1863,22 +1876,127 @@ stage.addEventListener('pointerleave', resetBedPosition);
     editorialDiscoveryObserver.observe(editorialDiscoverySection);
   }
 
+  // ── Testimonial vertical carousel (Premium Collection rhythm) ──
   const storiesSection = document.querySelector('.stories-section');
-  const storyItems = document.querySelectorAll('.story-item');
+  const storyTrack     = document.querySelector('.story-track');
+  const storyViewport  = document.querySelector('.story-viewport');
   const storiesFeature = document.querySelector('.stories-feature');
-  if (storiesSection && storyItems.length && storiesFeature) {
-    gsap.set([storiesSection, storiesFeature, ...storyItems], { autoAlpha: 0 });
-    gsap.set(storyItems, { y: 20 });
+
+  if (storiesSection && storyTrack && storyViewport && storiesFeature) {
+    gsap.set([storiesSection, storiesFeature], { autoAlpha: 0 });
     gsap.set(storiesFeature, { y: 24, scale: 0.985 });
+
+    const VISIBLE      = 4;
+    const SLIDE_DUR    = 1.4;
+    const HOLD_S       = 3.0;
+    const ZOOM_DUR     = 0.4;
+    const ACTIVE_SCALE = 1.04;
+    const EASE         = 'power2.inOut';
+    let reviewOffset   = VISIBLE;
+    let cyclePaused    = false;
+    let cycleTimer     = null;
+    let cycleActive    = false;
+    const reviews      = customerStories;
+    const N            = reviews.length;
+
+    const getSlots = () => [...storyTrack.querySelectorAll('.story-slot')];
+
+    const updateSlotContent = (slot, ridx) => {
+      const r = reviews[ridx % N];
+      slot.dataset.review = String(ridx % N);
+      slot.setAttribute('aria-label', 'Read full review from ' + r.name);
+      slot.querySelector('.story-avatar').textContent = r.initials;
+      slot.querySelector('h2').textContent = r.name;
+      slot.querySelector('.story-detail').textContent = r.detail;
+      slot.querySelector('.story-quote').textContent = '\u201C' + r.quote + '\u201D';
+    };
+
+    const initTrack = () => {
+      const slots = getSlots();
+      const slotH = storyViewport.offsetHeight / VISIBLE;
+      storyViewport.style.height = (slotH * VISIBLE) + 'px';
+      slots.forEach((slot, i) => {
+        gsap.set(slot, { y: i * slotH, scale: 1, autoAlpha: i <= VISIBLE ? 1 : 0 });
+        updateSlotContent(slot, i);
+      });
+      reviewOffset = VISIBLE;
+      storyTrack.style.visibility = 'visible';
+      gsap.to(slots[0], { scale: ACTIVE_SCALE, duration: ZOOM_DUR, ease: 'power2.out' });
+    };
+
+    const runCycle = () => {
+      if (cyclePaused || !cycleActive) return;
+      const slots = getSlots();
+      const slotH = storyViewport.offsetHeight / VISIBLE;
+      const sorted = [...slots].sort((a, b) => parseFloat(gsap.getProperty(a, 'y')) - parseFloat(gsap.getProperty(b, 'y')));
+      const topSlot = sorted[0];
+      const tl = gsap.timeline({ onComplete: () => {
+        const maxY = Math.max(...slots.map((s) => parseFloat(gsap.getProperty(s, 'y'))));
+        gsap.set(topSlot, { y: maxY + slotH, scale: 1, autoAlpha: 0 });
+        updateSlotContent(topSlot, reviewOffset);
+        reviewOffset++;
+        gsap.to(topSlot, { autoAlpha: 1, duration: 0.3, ease: 'power2.out' });
+        const newSorted = [...slots].sort((a, b) => parseFloat(gsap.getProperty(a, 'y')) - parseFloat(gsap.getProperty(b, 'y')));
+        gsap.to(newSorted[0], { scale: ACTIVE_SCALE, duration: ZOOM_DUR, ease: 'power2.out' });
+        clearTimeout(cycleTimer);
+        cycleTimer = setTimeout(runCycle, (HOLD_S + ZOOM_DUR) * 1000);
+      }});
+      tl.to(topSlot, { scale: 1, duration: SLIDE_DUR * 0.5, ease: EASE }, 0);
+      slots.forEach((slot) => tl.to(slot, { y: '-=' + slotH, duration: SLIDE_DUR, ease: EASE }, 0));
+    };
+
+    const startCarousel = () => {
+      cycleActive = true;
+      initTrack();
+      cycleTimer = setTimeout(runCycle, (HOLD_S + ZOOM_DUR) * 1000);
+    };
+
+    // Modal
+    const overlay = document.querySelector('.review-modal-overlay');
+    const modalAvatar = overlay && overlay.querySelector('.review-modal-avatar');
+    const modalName   = overlay && overlay.querySelector('.review-modal-name');
+    const modalDetail = overlay && overlay.querySelector('.review-modal-detail');
+    const modalQuote  = overlay && overlay.querySelector('.review-modal-quote');
+    const modalClose  = overlay && overlay.querySelector('.review-modal-close');
+
+    const openModal = (ridx) => {
+      if (!overlay) return;
+      const story = reviews[ridx % N];
+      if (!story) return;
+      cyclePaused = true; clearTimeout(cycleTimer);
+      modalAvatar.textContent = story.initials;
+      modalName.textContent = story.name;
+      modalDetail.textContent = story.detail;
+      modalQuote.textContent = '\u201C' + story.quote + '\u201D';
+      overlay.setAttribute('aria-hidden', 'false');
+      overlay.classList.add('is-open');
+      gsap.fromTo(overlay, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.28, ease: 'power2.out' });
+      gsap.fromTo(overlay.querySelector('.review-modal'), { y: 16, scale: 0.97 }, { y: 0, scale: 1, duration: 0.32, ease: 'power3.out' });
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      if (!overlay) return;
+      gsap.to(overlay, { autoAlpha: 0, duration: 0.22, ease: 'power2.in', onComplete: () => {
+        overlay.classList.remove('is-open'); overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        cyclePaused = false;
+        cycleTimer = setTimeout(runCycle, (HOLD_S + ZOOM_DUR) * 1000);
+      }});
+    };
+
+    storyTrack.addEventListener('click', (e) => { const s = e.target.closest('.story-slot'); if (s) openModal(Number(s.dataset.review)); });
+    storyTrack.addEventListener('keydown', (e) => { if (e.key !== 'Enter' && e.key !== ' ') return; const s = e.target.closest('.story-slot'); if (s) { e.preventDefault(); openModal(Number(s.dataset.review)); }});
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay && overlay.classList.contains('is-open')) closeModal(); });
 
     const storiesObserver = new IntersectionObserver((entries, observer) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
       gsap.to(storiesSection, { autoAlpha: 1, duration: 0.45, ease: 'power2.out' });
-      gsap.to(storyItems, { autoAlpha: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power3.out' });
-      gsap.to(storiesFeature, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, delay: 0.15, ease: 'power3.out' });
+      gsap.to(storiesFeature, { autoAlpha: 1, y: 0, scale: 1, duration: 0.8, delay: 0.15, ease: 'power3.out', onComplete: startCarousel });
       observer.disconnect();
     }, { threshold: 0.14 });
-
     storiesObserver.observe(storiesSection);
   }
 

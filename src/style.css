@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
   --paper: #f3eee5;
@@ -748,8 +748,8 @@ button {
       #c6a96c 62%,
       #c6a96c 100%
     );
-    background-size: 400% 100%;
-    background-position: 100% 0;
+    background-size: 200% 100%;
+    background-position: 150% 0;
     background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
@@ -1126,7 +1126,7 @@ button {
 
 .stories-section {
   width: min(93vw, 1320px);
-  padding: clamp(5rem, 9vw, 9rem) 0 clamp(5rem, 9vw, 9rem);
+  padding: clamp(2rem, 4vw, 4rem) 0 clamp(5rem, 9vw, 9rem);
   color: #3a2922;
 }
 
@@ -1246,9 +1246,37 @@ button {
   gap: clamp(3rem, 7vw, 8rem);
 }
 
-.story-list {
+/* ── Story viewport: fixed-height masked container ── */
+.story-viewport {
+  position: relative;
+  overflow: hidden;
+  height: 360px; /* 4 slots × ~90px each — JS will refine at runtime */
+}
+
+.story-track {
+  position: relative;
+  width: 100%;
+  visibility: hidden;
+}
+
+.story-slot {
+  position: absolute;
+  left: 0;
+  right: 0;
   display: grid;
-  gap: 0.5rem;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 0.8rem;
+  border-bottom: 1px solid rgba(58, 41, 34, 0.12);
+  cursor: pointer;
+  transform-origin: left center;
+  will-change: transform, opacity;
+  box-sizing: border-box;
+}
+
+.story-slot:hover {
+  background: rgba(255, 255, 255, 0.42);
 }
 
 .story-item {
@@ -1280,7 +1308,8 @@ button {
   letter-spacing: 0.08em;
 }
 
-.story-content h2 {
+.story-slot .story-content h2,
+.story-item .story-content h2 {
   margin: 0;
   font-family: var(--sans);
   font-size: 0.8rem;
@@ -2013,15 +2042,9 @@ button {
 }
 
 @keyframes promo-glance {
-  0% {
-    background-position: 200% 0;
-  }
-  56% {
-    background-position: -100% 0;
-  }
-  100% {
-    background-position: -100% 0;
-  }
+  0%   { background-position: 150% 0; }
+  45%  { background-position: 0%   0; }
+  100% { background-position: 0%   0; }
 }
 
 .hero-art {
@@ -3761,17 +3784,16 @@ button {
   }
 
   .stories-layout {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+    gap: 1.5rem;
   }
 
   .stories-feature {
-    order: -1;
-    min-height: 270px;
+    min-height: 300px;
   }
 
   .stories-feature > img {
-    height: 270px;
+    height: 300px;
   }
 
   .stories-feature-card {
@@ -4029,6 +4051,11 @@ button {
   .footer-contact-group a[href^="mailto"] .footer-email-text {
     overflow-wrap: anywhere;
     word-break: break-all;
+  }
+
+  /* ── Mobile address: suppress forced line break so Chattogram stays on same line ── */
+  .footer-visit-group address br {
+    display: none;
   }
 
   /* ── Mobile phone: always one line ── */
@@ -4852,7 +4879,7 @@ button {
   }
 
   .cinema-frame-wrap {
-    margin-top: -10px;
+    margin-top: -18px;
   }
 
   .cinema-ed-top {
@@ -5141,12 +5168,122 @@ button {
   }
 
   .cinema-heading {
-    font-size: clamp(1.35rem, 6vw, 1.7rem);
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
   }
 
   .cinema-sub {
-    font-size: 0.74rem;
+    font-size: 0.58rem;
     max-width: none;
   }
 }
 
+
+/* ══════════════════════════════════════════════
+   REVIEW MODAL
+══════════════════════════════════════════════ */
+.review-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(23, 48, 47, 0.48);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.review-modal-overlay.is-open {
+  pointer-events: auto;
+}
+
+.review-modal {
+  position: relative;
+  width: min(92vw, 440px);
+  padding: 2.2rem 2rem 2rem;
+  background: var(--ivory);
+  border-radius: 18px;
+  box-shadow: 0 24px 64px rgba(23, 48, 47, 0.22), 0 4px 16px rgba(23, 48, 47, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+}
+
+.review-modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: rgba(58, 41, 34, 0.5);
+  font-size: 1.3rem;
+  line-height: 1;
+  border-radius: 50%;
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.review-modal-close:hover {
+  color: var(--brass);
+  background: rgba(184, 154, 98, 0.1);
+}
+
+.review-modal-avatar {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: #d8c5b2;
+  color: #3a2922;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.review-modal-name {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3a2922;
+}
+
+.review-modal-detail {
+  margin: 0;
+  color: var(--brass);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.review-modal-quote {
+  margin: 0.6rem 0 0;
+  color: rgba(58, 41, 34, 0.78);
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+@media (max-width: 560px) {
+  .review-modal {
+    padding: 1.8rem 1.4rem 1.6rem;
+  }
+
+  .review-modal-quote {
+    font-size: 0.95rem;
+  }
+}
