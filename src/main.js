@@ -429,6 +429,9 @@ const heroMarkup = `
         `).join('')}
         </div>
       </div>
+      <div class="carousel-cta-wrap">
+        <a class="carousel-cta" href="/collections">EXPLORE OUR EXPERIENCE</a>
+      </div>
     </section>
 
     <section class="craft-process-section" aria-labelledby="craft-process-title">
@@ -649,6 +652,9 @@ const heroMarkup = `
           `).join('')}
         </div>
       </div>
+      <div class="carousel-cta-wrap">
+        <a class="carousel-cta" href="/collections">EXPLORE OUR EXPERIENCE</a>
+      </div>
     </section>
 
     <section class="editorial-discovery-section" aria-labelledby="editorial-discovery-title">
@@ -739,6 +745,18 @@ const heroMarkup = `
         <p class="review-modal-quote"></p>
       </div>
     </div>
+
+    <section class="md-message-section" aria-label="Message from the Managing Director">
+      <img class="md-photo" src="/images/MD.png" alt="Abul Kalam Bhuiyan, Managing Director of Heaven Furniture Mart" loading="lazy" />
+      <blockquote class="md-quote">
+        <p>"At Heaven Furniture Mart, we believe furniture is more than just function; it is a reflection of lifestyle, taste, and comfort. Every piece we create is designed to bring lasting elegance into the homes of our clients."</p>
+        <footer>
+          <strong class="md-name">Abul Kalam Bhuiyan</strong>
+          <span class="md-title">MD, Heaven Furniture Mart</span>
+        </footer>
+      </blockquote>
+    </section>
+
     <footer class="site-footer" aria-labelledby="footer-brand-title">
       <div class="footer-art" aria-hidden="true">H</div>
       <div class="footer-inner">

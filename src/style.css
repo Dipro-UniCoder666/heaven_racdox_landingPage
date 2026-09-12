@@ -527,6 +527,50 @@ button {
   line-height: 1.55;
 }
 
+/* ── Carousel CTA — brass/glacé editorial text button, below both carousels ── */
+.carousel-cta-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.4rem 0 0;
+}
+
+.carousel-cta {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.81rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  /* Brass glacé — identical gradient + animation to hero .eyebrow */
+  background-image: linear-gradient(
+    100deg,
+    #c6a96c 0%,
+    #c6a96c 42%,
+    #f7e6b8 50%,
+    #c6a96c 58%,
+    #c6a96c 100%
+  );
+  background-size: 280% 100%;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: hero-sub-glance 2.3s linear infinite;
+  /* tiny underline in brass */
+  border-bottom: 1px solid rgba(198, 169, 108, 0.45);
+  padding-bottom: 2px;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.carousel-cta:hover,
+.carousel-cta:focus-visible {
+  border-color: rgba(198, 169, 108, 0.9);
+  transform: translateY(-2px);
+}
+
 .premium-section {
   width: min(96vw, 1760px);
   height: 100vh;
@@ -1474,6 +1518,100 @@ button {
   color: rgba(58, 41, 34, 0.72);
   font-size: 0.7rem;
   line-height: 1.45;
+}
+
+/* ── MD message section ── */
+.md-message-section {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.8rem);
+  width: min(93vw, 1760px);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border-top: 1px solid rgba(58, 41, 34, 0.1);
+}
+
+.md-photo {
+  flex: 0 0 auto;
+  width: clamp(110px, 10vw, 150px);
+  height: clamp(135px, 12.2vw, 185px);
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 14px;
+  display: block;
+}
+
+.md-quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  max-width: 600px;
+}
+
+.md-quote p {
+  margin: 0 0 0.6rem;
+  font-family: 'Cormorant Garamond', var(--display);
+  font-size: clamp(1rem, 1.2vw, 1.22rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #3a2922;
+  font-style: italic;
+}
+
+.md-quote footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: none;
+  padding: 0;
+}
+
+.md-name {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3a2922;
+}
+
+.md-title {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--brass);
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .md-message-section {
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-top: none;
+  }
+
+  .md-photo {
+    width: clamp(72px, 22vw, 100px);
+    height: clamp(88px, 27vw, 124px);
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .md-quote p {
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+    line-height: 1.6;
+    color: #111111;
+    margin-bottom: 0.65rem;
+  }
+
+  .md-name {
+    color: #111111;
+    font-size: 0.68rem;
+  }
+
+  .md-title {
+    font-size: 0.58rem;
+  }
 }
 
 .site-footer {
