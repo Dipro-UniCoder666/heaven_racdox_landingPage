@@ -1595,7 +1595,7 @@ button {
     height: clamp(88px, 27vw, 124px);
     border-radius: 10px;
     flex-shrink: 0;
-    margin-top: -10px;
+    margin-top: -14px;
   }
 
   .md-quote p {
